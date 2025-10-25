@@ -7,26 +7,33 @@ import { LbwDisabledOptionsComponent } from './lbw-disabled-options/lbw-disabled
 import { LbwFormsValidationComponent } from './lbw-forms-validation/lbw-forms-validation.component';
 import { HorizontalListboxComponent } from './horizontal-listbox/horizontal-listbox.component';
 import { LbwReactiveFormsComponent } from './lbw-reactive-forms/lbw-reactive-forms.component';
-import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-listbox',
     standalone: true,
-    imports: [RouterLink, MatCardModule, CdkListbox, CdkOption, LbwComplexObjectAsValuesComponent, LbwDisabledOptionsComponent, LbwFormsValidationComponent, HorizontalListboxComponent, LbwReactiveFormsComponent],
+    imports: [
+        RouterLink,
+        MatCardModule,
+        CdkListbox,
+        CdkOption,
+        LbwComplexObjectAsValuesComponent,
+        LbwDisabledOptionsComponent,
+        LbwFormsValidationComponent,
+        HorizontalListboxComponent,
+        LbwReactiveFormsComponent,
+    ],
     templateUrl: './listbox.component.html',
-    styleUrl: './listbox.component.scss'
+    styleUrl: './listbox.component.scss',
 })
 export class ListboxComponent {
-
     features = ['Hydrodynamic', 'Port & Starboard Attachments', 'Turbo Drive'];
 
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -35,5 +42,4 @@ export class ListboxComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

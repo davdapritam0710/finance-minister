@@ -1,20 +1,31 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormControl,
+    Validators,
+    FormsModule,
+    ReactiveFormsModule,
+} from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-lbw-forms-validation',
     standalone: true,
-    imports: [CdkListbox, FormsModule, ReactiveFormsModule, CdkOption, AsyncPipe, JsonPipe],
+    imports: [
+        CdkListbox,
+        FormsModule,
+        ReactiveFormsModule,
+        CdkOption,
+        AsyncPipe,
+        JsonPipe,
+    ],
     templateUrl: './lbw-forms-validation.component.html',
-    styleUrl: './lbw-forms-validation.component.scss'
+    styleUrl: './lbw-forms-validation.component.scss',
 })
 export class LbwFormsValidationComponent {
-
     signs = [
         'Rat',
         'Ox',
@@ -31,13 +42,11 @@ export class LbwFormsValidationComponent {
     ];
     invalid: Observable<boolean>;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(public themeService: CustomizerSettingsService) {
         this.invalid = this.signCtrl.valueChanges.pipe(
-            map(() => this.signCtrl.touched && !this.signCtrl.valid),
+            map(() => this.signCtrl.touched && !this.signCtrl.valid)
         );
-        this.themeService.isToggled$.subscribe(isToggled => {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -53,8 +62,12 @@ export class LbwFormsValidationComponent {
             errors.push('You can only select one zodiac sign');
         }
         if (this.signCtrl.hasError('cdkListboxUnexpectedOptionValues')) {
-            const invalidOptions = this.signCtrl.getError('cdkListboxUnexpectedOptionValues').values;
-            errors.push(`You entered an invalid zodiac sign: ${invalidOptions[0]}`);
+            const invalidOptions = this.signCtrl.getError(
+                'cdkListboxUnexpectedOptionValues'
+            ).values;
+            errors.push(
+                `You entered an invalid zodiac sign: ${invalidOptions[0]}`
+            );
         }
         return errors.length ? errors : null;
     }
@@ -66,5 +79,4 @@ export class LbwFormsValidationComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

@@ -6,17 +6,16 @@ import {
     CdkDropList,
     moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-custom-placeholder',
     standalone: true,
     imports: [CdkDropList, CdkDrag, CdkDragPlaceholder],
     templateUrl: './dd-custom-placeholder.component.html',
-    styleUrl: './dd-custom-placeholder.component.scss'
+    styleUrl: './dd-custom-placeholder.component.scss',
 })
 export class DdCustomPlaceholderComponent {
-
     movies = [
         'Episode I - The Phantom Menace',
         'Episode II - Attack of the Clones',
@@ -36,10 +35,8 @@ export class DdCustomPlaceholderComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -48,5 +45,4 @@ export class DdCustomPlaceholderComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

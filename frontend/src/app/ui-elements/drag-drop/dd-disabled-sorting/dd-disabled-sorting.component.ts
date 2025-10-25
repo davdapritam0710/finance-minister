@@ -7,53 +7,52 @@ import {
     moveItemInArray,
     transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-disabled-sorting',
     standalone: true,
     imports: [CdkDropListGroup, CdkDropList, CdkDrag],
     templateUrl: './dd-disabled-sorting.component.html',
-    styleUrl: './dd-disabled-sorting.component.scss'
+    styleUrl: './dd-disabled-sorting.component.scss',
 })
 export class DdDisabledSortingComponent {
-
     items = [
         {
             value: 'Carrots',
-            disabled: false
+            disabled: false,
         },
         {
             value: 'Tomatoes',
-            disabled: true
+            disabled: true,
         },
         {
             value: 'Onions',
-            disabled: false
+            disabled: false,
         },
         {
             value: 'Apples',
-            disabled: false
+            disabled: false,
         },
         {
             value: 'Avocados',
-            disabled: false
-        }
+            disabled: false,
+        },
     ];
 
     basket = [
         {
             value: 'Oranges',
-            disabled: false
+            disabled: false,
         },
         {
             value: 'Bananas',
-            disabled: false
+            disabled: false,
         },
         {
             value: 'Cucumbers',
-            disabled: true
-        }
+            disabled: true,
+        },
     ];
 
     drop(event: CdkDragDrop<string[]>) {
@@ -63,10 +62,8 @@ export class DdDisabledSortingComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -75,5 +72,4 @@ export class DdDisabledSortingComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import {
+    CdkDragDrop,
+    CdkDropList,
+    CdkDrag,
+    moveItemInArray,
+} from '@angular/cdk/drag-drop';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-sorting',
     standalone: true,
     imports: [CdkDropList, CdkDrag],
     templateUrl: './dd-sorting.component.html',
-    styleUrl: './dd-sorting.component.scss'
+    styleUrl: './dd-sorting.component.scss',
 })
 export class DdSortingComponent {
-
     movies = [
         'Episode I - The Phantom Menace',
         'Episode II - Attack of the Clones',
@@ -30,10 +34,8 @@ export class DdSortingComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -42,5 +44,4 @@ export class DdSortingComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

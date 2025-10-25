@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-autosize-sidenav',
     standalone: true,
     imports: [MatSidenavModule, MatButtonModule],
     templateUrl: './autosize-sidenav.component.html',
-    styleUrl: './autosize-sidenav.component.scss'
+    styleUrl: './autosize-sidenav.component.scss',
 })
 export class AutosizeSidenavComponent {
-
     showFiller = false;
 
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -29,5 +26,4 @@ export class AutosizeSidenavComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

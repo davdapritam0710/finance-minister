@@ -6,17 +6,16 @@ import {
     CdkDrag,
     moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-custom-preview',
     standalone: true,
     imports: [CdkDropList, CdkDrag, CdkDragPreview],
     templateUrl: './dd-custom-preview.component.html',
-    styleUrl: './dd-custom-preview.component.scss'
+    styleUrl: './dd-custom-preview.component.scss',
 })
 export class DdCustomPreviewComponent {
-
     // tslint:disable:max-line-length
     movies = [
         {
@@ -58,17 +57,15 @@ export class DdCustomPreviewComponent {
     ];
     // tslint:enable:max-line-length
 
-    drop(event: CdkDragDrop<{title: string; poster: string}[]>) {
+    drop(event: CdkDragDrop<{ title: string; poster: string }[]>) {
         moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
     }
 
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -77,5 +74,4 @@ export class DdCustomPreviewComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

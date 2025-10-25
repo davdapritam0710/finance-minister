@@ -11,24 +11,35 @@ import { DdEnterPredicateComponent } from './dd-enter-predicate/dd-enter-predica
 import { DdHorizontalSortingComponent } from './dd-horizontal-sorting/dd-horizontal-sorting.component';
 import { DdOpenDraggableDialogComponent } from './dd-open-draggable-dialog/dd-open-draggable-dialog.component';
 import { DdSortingComponent } from './dd-sorting/dd-sorting.component';
-import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-drag-drop',
     standalone: true,
-    imports: [RouterLink, MatCardModule, CdkDrag, CdkDragHandle, DdConnectedSortingGroupComponent, DdConnectedSortingComponent, DdCustomPlaceholderComponent, DdCustomPreviewComponent, DdDisabledSortingComponent, DdEnterPredicateComponent, DdHorizontalSortingComponent, DdOpenDraggableDialogComponent, DdSortingComponent],
+    imports: [
+        RouterLink,
+        MatCardModule,
+        CdkDrag,
+        CdkDragHandle,
+        DdConnectedSortingGroupComponent,
+        DdConnectedSortingComponent,
+        DdCustomPlaceholderComponent,
+        DdCustomPreviewComponent,
+        DdDisabledSortingComponent,
+        DdEnterPredicateComponent,
+        DdHorizontalSortingComponent,
+        DdOpenDraggableDialogComponent,
+        DdSortingComponent,
+    ],
     templateUrl: './drag-drop.component.html',
-    styleUrl: './drag-drop.component.scss'
+    styleUrl: './drag-drop.component.scss',
 })
 export class DragDropComponent {
-
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -37,5 +48,4 @@ export class DragDropComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

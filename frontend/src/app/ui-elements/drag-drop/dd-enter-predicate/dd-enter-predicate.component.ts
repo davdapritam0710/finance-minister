@@ -6,29 +6,32 @@ import {
     CdkDrag,
     CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-enter-predicate',
     standalone: true,
     imports: [CdkDropList, CdkDrag],
     templateUrl: './dd-enter-predicate.component.html',
-    styleUrl: './dd-enter-predicate.component.scss'
+    styleUrl: './dd-enter-predicate.component.scss',
 })
 export class DdEnterPredicateComponent {
-
     all = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     even = [10];
 
     drop(event: CdkDragDrop<number[]>) {
         if (event.previousContainer === event.container) {
-            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+            moveItemInArray(
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex
+            );
         } else {
             transferArrayItem(
                 event.previousContainer.data,
                 event.container.data,
                 event.previousIndex,
-                event.currentIndex,
+                event.currentIndex
             );
         }
     }
@@ -46,10 +49,8 @@ export class DdEnterPredicateComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -58,5 +59,4 @@ export class DdEnterPredicateComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

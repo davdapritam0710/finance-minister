@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-color-picker',
     standalone: true,
     imports: [RouterLink, MatCardModule, ColorPickerModule],
     templateUrl: './color-picker.component.html',
-    styleUrl: './color-picker.component.scss'
+    styleUrl: './color-picker.component.scss',
 })
 export class ColorPickerComponent {
-
     // Color Picker
     color: any;
     color2: any;
@@ -29,10 +28,8 @@ export class ColorPickerComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -41,5 +38,4 @@ export class ColorPickerComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

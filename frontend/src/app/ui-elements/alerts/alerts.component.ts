@@ -2,17 +2,16 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
-import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-alerts',
     standalone: true,
     imports: [RouterLink, MatCardModule, NgIf],
     templateUrl: './alerts.component.html',
-    styleUrl: './alerts.component.scss'
+    styleUrl: './alerts.component.scss',
 })
 export class AlertsComponent {
-
     showAlert = true;
     showAlert2 = true;
     showAlert3 = true;
@@ -90,10 +89,8 @@ export class AlertsComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -102,5 +99,4 @@ export class AlertsComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }
