@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -11,8 +10,8 @@ import {
     ApexTooltip,
     ApexDataLabels,
     ApexChart,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -29,49 +28,48 @@ export type ChartOptions = {
 @Component({
     selector: 'app-pie-donut-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './pie-donut-chart.component.html',
-    styleUrl: './pie-donut-chart.component.scss'
+    styleUrl: './pie-donut-chart.component.scss',
 })
 export class PieDonutChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [44, 55, 13, 43, 22],
             chart: {
-                type: "donut"
+                type: 'donut',
             },
-            labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
             responsive: [
                 {
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 200
+                            width: 200,
                         },
                         legend: {
-                            position: "bottom"
-                        }
-                    }
-                }
+                            position: 'bottom',
+                        },
+                    },
+                },
             ],
             legend: {
                 offsetY: 0,
-                fontSize: "14px",
+                fontSize: '14px',
                 labels: {
-                    colors: '#919aa3'
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 0,
-                    vertical: 5
-                }
+                    vertical: 5,
+                },
             },
             stroke: {
                 width: 0,
-                show: true
+                show: true,
             },
             colors: [
                 // "#0f79f3", "#796df6", "#e74c3c", "#00cae3", "#ffb264"
@@ -82,17 +80,16 @@ export class PieDonutChartComponent {
                     fontSize: '14px',
                 },
                 dropShadow: {
-                    enabled: false
-                }
+                    enabled: false,
+                },
             },
             tooltip: {
                 y: {
-                    formatter: function(val:any) {
-                        return val + "%";
-                    }
-                }
-            }
+                    formatter: function (val: any) {
+                        return val + '%';
+                    },
+                },
+            },
         };
     }
-
 }

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -11,8 +10,8 @@ import {
     ApexGrid,
     ApexLegend,
     ApexFill,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -28,62 +27,66 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-polar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-polar-chart.component.html',
-    styleUrl: './basic-polar-chart.component.scss'
+    styleUrl: './basic-polar-chart.component.scss',
 })
 export class BasicPolarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
-            series: [
-                14, 23, 21, 17, 15, 10, 12, 17, 21
-            ],
+            series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
             chart: {
-                type: "polarArea"
+                type: 'polarArea',
             },
             stroke: {
-                colors: ["#ffffff"]
+                colors: ['#ffffff'],
             },
             fill: {
-                opacity: 0.8
+                opacity: 0.8,
             },
             responsive: [
                 {
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 200
+                            width: 200,
                         },
                         legend: {
-                            position: "bottom"
-                        }
-                    }
-                }
+                            position: 'bottom',
+                        },
+                    },
+                },
             ],
             labels: [
-                'Bananas', 'Apples', 'Grapes', 'Papayas', 'Mangos', 'Blueberrys', 'Cherrys', 'Oranges', 'Pineapples'
+                'Bananas',
+                'Apples',
+                'Grapes',
+                'Papayas',
+                'Mangos',
+                'Blueberrys',
+                'Cherrys',
+                'Oranges',
+                'Pineapples',
             ],
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
+                borderColor: '#e0e0e0',
             },
             legend: {
                 offsetY: 0,
-                fontSize: "14px",
+                fontSize: '14px',
                 labels: {
-                    colors: '#919aa3'
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 0,
-                    vertical: 5
-                }
-            }
+                    vertical: 5,
+                },
+            },
         };
     }
-
 }

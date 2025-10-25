@@ -4,25 +4,27 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
 import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-recent-customer-rating:not(p)',
     standalone: true,
-    imports: [MatCardModule, MatMenuModule, MatButtonModule, RouterLink, MatTableModule, MatProgressBarModule],
+    imports: [
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatTableModule,
+        MatProgressBarModule,
+    ],
     templateUrl: './recent-customer-rating.component.html',
-    styleUrl: './recent-customer-rating.component.scss'
+    styleUrl: './recent-customer-rating.component.scss',
 })
 export class RecentCustomerRatingComponent {
-
     displayedColumns: string[] = ['id', 'customer', 'rating', 'message'];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -39,7 +41,6 @@ export class RecentCustomerRatingComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -47,7 +48,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#158',
         customer: {
             img: 'assets/images/users/user15.jpg',
-            name: 'Walter Frazier'
+            name: 'Walter Frazier',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -55,7 +56,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-fill',
-            overallStar: '5'
+            overallStar: '5',
         },
         message: 'Overall good experience.',
     },
@@ -63,7 +64,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#132',
         customer: {
             img: 'assets/images/users/user7.jpg',
-            name: 'Kimberly Anderson'
+            name: 'Kimberly Anderson',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -71,7 +72,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-half-fill',
-            overallStar: '4.5'
+            overallStar: '4.5',
         },
         message: 'Excellent experience!',
     },
@@ -79,7 +80,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#142',
         customer: {
             img: 'assets/images/users/user5.jpg',
-            name: 'Roscoe Guerrero'
+            name: 'Roscoe Guerrero',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -87,7 +88,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-line',
-            overallStar: '4'
+            overallStar: '4',
         },
         message: 'Top-notch customer service.',
     },
@@ -95,7 +96,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#125',
         customer: {
             img: 'assets/images/users/user12.jpg',
-            name: 'Robert Stewart'
+            name: 'Robert Stewart',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -103,7 +104,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-half-fill',
-            overallStar: '4.9'
+            overallStar: '4.9',
         },
         message: 'Excellent experience overall.',
     },
@@ -111,7 +112,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#176',
         customer: {
             img: 'assets/images/users/user15.jpg',
-            name: 'Walter Frazier'
+            name: 'Walter Frazier',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -119,7 +120,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-fill',
-            overallStar: '5'
+            overallStar: '5',
         },
         message: 'Overall good experience.',
     },
@@ -127,7 +128,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#199',
         customer: {
             img: 'assets/images/users/user7.jpg',
-            name: 'Kimberly Anderson'
+            name: 'Kimberly Anderson',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -135,7 +136,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-half-fill',
-            overallStar: '4.5'
+            overallStar: '4.5',
         },
         message: 'Excellent experience!',
     },
@@ -143,7 +144,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#162',
         customer: {
             img: 'assets/images/users/user5.jpg',
-            name: 'Roscoe Guerrero'
+            name: 'Roscoe Guerrero',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -151,7 +152,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-line',
-            overallStar: '4'
+            overallStar: '4',
         },
         message: 'Top-notch customer service.',
     },
@@ -159,7 +160,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         id: '#187',
         customer: {
             img: 'assets/images/users/user12.jpg',
-            name: 'Robert Stewart'
+            name: 'Robert Stewart',
         },
         rating: {
             star1: 'ri-star-fill',
@@ -167,10 +168,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
             star3: 'ri-star-fill',
             star4: 'ri-star-fill',
             star5: 'ri-star-half-fill',
-            overallStar: '4.9'
+            overallStar: '4.9',
         },
         message: 'Excellent experience overall.',
-    }
+    },
 ];
 
 export interface PeriodicElement {

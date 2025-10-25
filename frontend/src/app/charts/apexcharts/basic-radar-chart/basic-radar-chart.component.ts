@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexAxisChartSeries,
@@ -8,8 +7,8 @@ import {
     ApexChart,
     ApexXAxis,
     ChartComponent,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -22,45 +21,50 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-radar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-radar-chart.component.html',
-    styleUrl: './basic-radar-chart.component.scss'
+    styleUrl: './basic-radar-chart.component.scss',
 })
 export class BasicRadarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "Daxa",
-                    data: [80, 50, 30, 40, 100, 20]
-                }
+                    name: 'Daxa',
+                    data: [80, 50, 30, 40, 100, 20],
+                },
             ],
             chart: {
                 height: 350,
-                type: "radar",
+                type: 'radar',
                 toolbar: {
-                    show: true
-                }
+                    show: true,
+                },
             },
             title: {
-                text: "Basic Radar Chart",
-                align: "left",
+                text: 'Basic Radar Chart',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: '500',
                     fontSize: '15px',
-                    color: '#475569'
-                }
+                    color: '#475569',
+                },
             },
             xaxis: {
-                categories: ["January", "February", "March", "April", "May", "June"]
+                categories: [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                ],
             },
-            colors: ["#0f79f3"]
+            colors: ['#0f79f3'],
         };
     }
-
 }

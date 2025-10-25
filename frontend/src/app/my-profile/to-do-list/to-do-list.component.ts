@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -18,13 +17,34 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
 @Component({
     selector: 'app-to-do-list:not(pp)',
     standalone: true,
-    imports: [MatCardModule, MatMenuModule, MatButtonModule, RouterLink, MatTableModule, NgIf, MatCheckboxModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule],
+    imports: [
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatTableModule,
+        NgIf,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+    ],
     templateUrl: './to-do-list.component.html',
-    styleUrl: './to-do-list.component.scss'
+    styleUrl: './to-do-list.component.scss',
 })
 export class ToDoListComponent {
-
-    displayedColumns: string[] = ['select', 'taskID', 'taskName', 'assignedTo', 'dueDate', 'priority', 'status', 'action'];
+    displayedColumns: string[] = [
+        'select',
+        'taskID',
+        'taskName',
+        'assignedTo',
+        'dueDate',
+        'priority',
+        'status',
+        'action',
+    ];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -49,7 +69,9 @@ export class ToDoListComponent {
         if (!row) {
             return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
         }
-        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.taskID + 1}`;
+        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+            row.taskID + 1
+        }`;
     }
 
     // Search Filter
@@ -67,10 +89,8 @@ export class ToDoListComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -79,7 +99,6 @@ export class ToDoListComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -98,8 +117,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
+            delete: 'delete',
+        },
     },
     {
         taskID: '#587',
@@ -116,8 +135,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
+            delete: 'delete',
+        },
     },
     {
         taskID: '#618',
@@ -134,8 +153,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
+            delete: 'delete',
+        },
     },
     {
         taskID: '#367',
@@ -152,8 +171,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
+            delete: 'delete',
+        },
     },
     {
         taskID: '#761',
@@ -170,8 +189,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
+            delete: 'delete',
+        },
     },
     {
         taskID: '#431',
@@ -188,9 +207,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
         action: {
             view: 'visibility',
             edit: 'edit',
-            delete: 'delete'
-        }
-    }
+            delete: 'delete',
+        },
+    },
 ];
 
 export interface PeriodicElement {

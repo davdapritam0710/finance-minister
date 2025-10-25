@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
 import { EcommerceComponent } from './dashboard/ecommerce/ecommerce.component';
-import { CrmComponent } from './dashboard/crm/crm.component';
-import { ProjectManagementComponent } from './dashboard/project-management/project-management.component';
-import { LmsComponent } from './dashboard/lms/lms.component';
-import { HelpDeskComponent } from './dashboard/help-desk/help-desk.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
 import { StarterComponent } from './starter/starter.component';
 import { IconsComponent } from './icons/icons.component';
@@ -89,10 +85,6 @@ import { UtilitiesComponent } from './ui-elements/utilities/utilities.component'
 
 export const routes: Routes = [
     { path: '', component: EcommerceComponent },
-    { path: 'crm', component: CrmComponent },
-    { path: 'project-management', component: ProjectManagementComponent },
-    { path: 'lms', component: LmsComponent },
-    { path: 'help-desk', component: HelpDeskComponent },
 
     { path: 'starter', component: StarterComponent },
 

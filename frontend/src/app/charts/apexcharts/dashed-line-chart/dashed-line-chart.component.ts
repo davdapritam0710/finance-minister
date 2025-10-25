@@ -1,6 +1,5 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -14,8 +13,8 @@ import {
     ApexGrid,
     ApexTitleSubtitle,
     ApexLegend,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -35,158 +34,156 @@ export type ChartOptions = {
 @Component({
     selector: 'app-dashed-line-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './dashed-line-chart.component.html',
-    styleUrl: './dashed-line-chart.component.scss'
+    styleUrl: './dashed-line-chart.component.scss',
 })
 export class DashedLineChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "Session Duration",
-                    data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10]
+                    name: 'Session Duration',
+                    data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
                 },
                 {
-                    name: "Page Views",
-                    data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
+                    name: 'Page Views',
+                    data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
                 },
                 {
-                    name: "Total Visits",
-                    data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
-                }
+                    name: 'Total Visits',
+                    data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+                },
             ],
             chart: {
                 height: 350,
-                type: "line",
+                type: 'line',
                 toolbar: {
-                    show: true
-                }
+                    show: true,
+                },
             },
-            colors: [
-                "#796df6", "#00cae3", "#0f79f3"
-            ],
+            colors: ['#796df6', '#00cae3', '#0f79f3'],
             dataLabels: {
-                enabled: false
+                enabled: false,
             },
             stroke: {
                 width: 5,
-                curve: "straight",
-                dashArray: [0, 8, 5]
+                curve: 'straight',
+                dashArray: [0, 8, 5],
             },
             title: {
-                text: "Page Statistics",
-                align: "left",
+                text: 'Page Statistics',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: '500',
                     fontSize: '15px',
-                    color: '#475569'
-                }
+                    color: '#475569',
+                },
             },
             legend: {
                 show: true,
                 fontSize: '14px',
                 labels: {
-                    colors: "#919aa3"
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 10,
-                    vertical: 0
+                    vertical: 0,
                 },
-                tooltipHoverFormatter: function(val, opts) {
+                tooltipHoverFormatter: function (val, opts) {
                     return (
                         val +
-                        " - <strong>" +
-                        opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
-                        "</strong>"
+                        ' - <strong>' +
+                        opts.w.globals.series[opts.seriesIndex][
+                            opts.dataPointIndex
+                        ] +
+                        '</strong>'
                     );
-                }
+                },
             },
             markers: {
                 size: 0,
                 hover: {
-                    sizeOffset: 6
-                }
+                    sizeOffset: 6,
+                },
             },
             xaxis: {
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 categories: [
-                    "01 Jan",
-                    "02 Jan",
-                    "03 Jan",
-                    "04 Jan",
-                    "05 Jan",
-                    "06 Jan",
-                    "07 Jan",
-                    "08 Jan",
-                    "09 Jan",
-                    "10 Jan",
-                    "11 Jan",
-                    "12 Jan"
-                ]
+                    '01 Jan',
+                    '02 Jan',
+                    '03 Jan',
+                    '04 Jan',
+                    '05 Jan',
+                    '06 Jan',
+                    '07 Jan',
+                    '08 Jan',
+                    '09 Jan',
+                    '10 Jan',
+                    '11 Jan',
+                    '12 Jan',
+                ],
             },
             tooltip: {
                 y: [
                     {
                         title: {
-                            formatter: function(val:any) {
-                                return val + " (mins)";
-                            }
-                        }
+                            formatter: function (val: any) {
+                                return val + ' (mins)';
+                            },
+                        },
                     },
                     {
                         title: {
-                            formatter: function(val:any) {
-                                return val + " per session";
-                            }
-                        }
+                            formatter: function (val: any) {
+                                return val + ' per session';
+                            },
+                        },
                     },
                     {
                         title: {
-                            formatter: function(val:any) {
+                            formatter: function (val: any) {
                                 return val;
-                            }
-                        }
-                    }
-                ]
+                            },
+                        },
+                    },
+                ],
             },
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
+                borderColor: '#e0e0e0',
             },
             yaxis: {
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
-            }
+                    show: false,
+                },
+            },
         };
     }
-
 }

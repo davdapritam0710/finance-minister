@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-tables',
     standalone: true,
-    imports: [RouterLink, RouterOutlet],
+    imports: [RouterOutlet],
     templateUrl: './tables.component.html',
-    styleUrl: './tables.component.scss'
+    styleUrl: './tables.component.scss',
 })
 export class TablesComponent {}

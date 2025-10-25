@@ -1,24 +1,20 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-total-orders',
     standalone: true,
-    imports: [MatCardModule, RouterLink],
+    imports: [MatCardModule],
     templateUrl: './total-orders.component.html',
-    styleUrl: './total-orders.component.scss'
+    styleUrl: './total-orders.component.scss',
 })
 export class TotalOrdersComponent {
-
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -27,5 +23,4 @@ export class TotalOrdersComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

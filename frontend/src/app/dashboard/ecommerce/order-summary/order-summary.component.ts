@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -12,8 +11,8 @@ import {
     ApexLegend,
     NgApexchartsModule,
     ApexDataLabels,
-    ApexTooltip
-} from "ng-apexcharts";
+    ApexTooltip,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -29,13 +28,17 @@ export type ChartOptions = {
 @Component({
     selector: 'app-order-summary',
     standalone: true,
-    imports: [MatCardModule, MatMenuModule, MatButtonModule, RouterLink, NgApexchartsModule],
+    imports: [
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        NgApexchartsModule,
+    ],
     templateUrl: './order-summary.component.html',
-    styleUrl: './order-summary.component.scss'
+    styleUrl: './order-summary.component.scss',
 })
 export class OrderSummaryComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -43,44 +46,39 @@ export class OrderSummaryComponent {
             series: [60, 30, 10],
             chart: {
                 height: 467,
-                type: "donut"
+                type: 'donut',
             },
-            labels: [
-                "Completed", "New Order", "Pending"
-            ],
+            labels: ['Completed', 'New Order', 'Pending'],
             legend: {
                 offsetY: 0,
-                fontSize: "14px",
-                position: "bottom",
-                horizontalAlign: "center",
+                fontSize: '14px',
+                position: 'bottom',
+                horizontalAlign: 'center',
                 labels: {
-                    colors: "#919aa3",
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 12,
-                    vertical: 12
-                }
+                    vertical: 12,
+                },
             },
             dataLabels: {
                 enabled: false,
                 style: {
-                    fontSize: '14px'
+                    fontSize: '14px',
                 },
                 dropShadow: {
-                    enabled: false
-                }
+                    enabled: false,
+                },
             },
-            colors: [
-                "#00cae3", "#0e7aee", "#796df6"
-            ],
+            colors: ['#00cae3', '#0e7aee', '#796df6'],
             tooltip: {
                 y: {
-                    formatter: function(val) {
-                        return val + "%";
-                    }
-                }
-            }
+                    formatter: function (val) {
+                        return val + '%';
+                    },
+                },
+            },
         };
     }
-
 }

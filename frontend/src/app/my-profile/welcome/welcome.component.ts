@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 import {
@@ -11,8 +10,8 @@ import {
     ApexChart,
     ApexFill,
     ChartComponent,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 export type ChartOptions = {
@@ -27,14 +26,18 @@ export type ChartOptions = {
 @Component({
     selector: 'app-welcome:not(p)',
     standalone: true,
-    imports: [MatCardModule, MatMenuModule, MatButtonModule, RouterLink, NgApexchartsModule],
+    imports: [
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        NgApexchartsModule,
+    ],
     templateUrl: './welcome.component.html',
     styleUrl: './welcome.component.scss',
-    providers: [DatePipe]
+    providers: [DatePipe],
 })
 export class WelcomeComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
     currentDate: any;
 
@@ -49,37 +52,35 @@ export class WelcomeComponent {
         this.chartOptions = {
             series: [75],
             chart: {
-                type: "radialBar",
-                height: 240
+                type: 'radialBar',
+                height: 240,
             },
             plotOptions: {
                 radialBar: {
                     startAngle: -90,
                     endAngle: 90,
                     track: {
-                        background: "#958df4",
-                        strokeWidth: "100%",
+                        background: '#958df4',
+                        strokeWidth: '100%',
                         margin: 3, // margin is in pixels
                         dropShadow: {
-                            enabled: false
-                        }
+                            enabled: false,
+                        },
                     },
                     dataLabels: {
                         name: {
-                            show: false
+                            show: false,
                         },
                         value: {
                             offsetY: -2,
-                            fontSize: "25px",
+                            fontSize: '25px',
                             fontWeight: 500,
-                            color: "#ffffff"
-                        }
-                    }
-                }
+                            color: '#ffffff',
+                        },
+                    },
+                },
             },
-            colors: [
-                "#00cae3"
-            ]
+            colors: ['#00cae3'],
         };
     }
 
@@ -87,5 +88,4 @@ export class WelcomeComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }

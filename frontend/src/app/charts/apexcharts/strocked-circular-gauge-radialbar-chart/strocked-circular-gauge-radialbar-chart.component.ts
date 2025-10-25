@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexNonAxisChartSeries,
@@ -9,8 +8,8 @@ import {
     ApexFill,
     ChartComponent,
     ApexStroke,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -25,13 +24,12 @@ export type ChartOptions = {
 @Component({
     selector: 'app-strocked-circular-gauge-radialbar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './strocked-circular-gauge-radialbar-chart.component.html',
-    styleUrl: './strocked-circular-gauge-radialbar-chart.component.scss'
+    styleUrl: './strocked-circular-gauge-radialbar-chart.component.scss',
 })
 export class StrockedCircularGaugeRadialbarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -39,8 +37,8 @@ export class StrockedCircularGaugeRadialbarChartComponent {
             series: [67],
             chart: {
                 height: 370,
-                type: "radialBar",
-                offsetY: -10
+                type: 'radialBar',
+                offsetY: -10,
             },
             plotOptions: {
                 radialBar: {
@@ -48,38 +46,37 @@ export class StrockedCircularGaugeRadialbarChartComponent {
                     endAngle: 135,
                     dataLabels: {
                         name: {
-                            fontSize: "16px",
+                            fontSize: '16px',
                             color: undefined,
-                            offsetY: 120
+                            offsetY: 120,
                         },
                         value: {
                             offsetY: 76,
-                            fontSize: "22px",
+                            fontSize: '22px',
                             color: undefined,
-                            formatter: function(val) {
-                                return val + "%";
-                            }
-                        }
-                    }
-                }
+                            formatter: function (val) {
+                                return val + '%';
+                            },
+                        },
+                    },
+                },
             },
             fill: {
-                type: "gradient",
+                type: 'gradient',
                 gradient: {
-                    shade: "dark",
+                    shade: 'dark',
                     shadeIntensity: 0.15,
                     inverseColors: false,
                     opacityFrom: 1,
                     opacityTo: 1,
                     // stops: [0, 50, 65, 91]
-                }
+                },
             },
             stroke: {
-                dashArray: 4
+                dashArray: 4,
             },
-            labels: ["Median Ratio"],
-            colors: ["#0f79f3"]
+            labels: ['Median Ratio'],
+            colors: ['#0f79f3'],
         };
     }
-
 }

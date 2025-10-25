@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CustomizerSettingsService } from './customizer-settings.service';
-import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,19 +9,22 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 @Component({
     selector: 'app-customizer-settings',
     standalone: true,
-    imports: [RouterLink, NgClass, MatDividerModule, MatIconModule, MatButtonModule, NgScrollbarModule],
+    imports: [
+        NgClass,
+        MatDividerModule,
+        MatIconModule,
+        MatButtonModule,
+        NgScrollbarModule,
+    ],
     templateUrl: './customizer-settings.component.html',
-    styleUrl: './customizer-settings.component.scss'
+    styleUrl: './customizer-settings.component.scss',
 })
 export class CustomizerSettingsComponent {
-
     // isToggled
     isToggled = false;
-    
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -71,5 +73,4 @@ export class CustomizerSettingsComponent {
     toggle() {
         this.themeService.toggle();
     }
-
 }

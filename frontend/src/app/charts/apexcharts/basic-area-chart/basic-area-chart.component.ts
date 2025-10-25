@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -13,10 +12,10 @@ import {
     ApexYAxis,
     ApexTitleSubtitle,
     ApexLegend,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
-import { series } from "./data";
+import { series } from './data';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -36,100 +35,96 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-area-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-area-chart.component.html',
-    styleUrl: './basic-area-chart.component.scss'
+    styleUrl: './basic-area-chart.component.scss',
 })
 export class BasicAreaChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "STOCK ABC",
-                    data: series.monthDataSeries1.prices
-                }
+                    name: 'STOCK ABC',
+                    data: series.monthDataSeries1.prices,
+                },
             ],
             chart: {
-                type: "area",
+                type: 'area',
                 height: 350,
                 zoom: {
-                    enabled: false
+                    enabled: false,
                 },
                 toolbar: {
-                    show: true
-                }
+                    show: true,
+                },
             },
             dataLabels: {
-                enabled: false
+                enabled: false,
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             stroke: {
-                curve: "straight"
+                curve: 'straight',
             },
             title: {
-                text: "Fundamental Analysis of Stocks",
-                align: "left",
+                text: 'Fundamental Analysis of Stocks',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: '500',
                     fontSize: '15px',
-                    color: '#475569'
-                }
+                    color: '#475569',
+                },
             },
             subtitle: {
-                text: "Price Movements",
-                align: "left",
+                text: 'Price Movements',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: 'normal',
                     fontSize: '14px',
-                    color: '#919aa3'
-                }
+                    color: '#919aa3',
+                },
             },
             labels: series.monthDataSeries1.dates,
             xaxis: {
-                type: "datetime",
+                type: 'datetime',
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
             },
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
+                borderColor: '#e0e0e0',
             },
             yaxis: {
                 opposite: true,
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
-            }
+                    show: false,
+                },
+            },
         };
     }
-
 }

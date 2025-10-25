@@ -5,26 +5,44 @@ import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { ToggleService } from '../app/common/sidebar/toggle.service';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
-import { CommonModule, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {
+    CommonModule,
+    Location,
+    LocationStrategy,
+    PathLocationStrategy,
+} from '@angular/common';
 import { CustomizerSettingsComponent } from './customizer-settings/customizer-settings.component';
-import { RouterOutlet, Router, NavigationCancel, NavigationEnd, RouterLink } from '@angular/router';
+import {
+    RouterOutlet,
+    Router,
+    NavigationCancel,
+    NavigationEnd,
+} from '@angular/router';
 import { CustomizerSettingsService } from './customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, SidebarComponent, HeaderComponent, FooterComponent, RouterLink, CustomizerSettingsComponent],
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        SidebarComponent,
+        HeaderComponent,
+        FooterComponent,
+
+        CustomizerSettingsComponent,
+    ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     providers: [
-        Location, {
+        Location,
+        {
             provide: LocationStrategy,
-            useClass: PathLocationStrategy
-        }
-    ]
+            useClass: PathLocationStrategy,
+        },
+    ],
 })
 export class AppComponent {
-
     title = 'Daxa -  Angular 17 Material Design Admin Dashboard Template';
     routerSubscription: any;
     location: any;
@@ -40,30 +58,36 @@ export class AppComponent {
         private toggleService: ToggleService,
         public themeService: CustomizerSettingsService
     ) {
-        this.toggleService.isSidebarToggled$.subscribe(isSidebarToggled => {
+        this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
         });
-        this.themeService.isToggled$.subscribe(isToggled => {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
 
     // ngOnInit
-    ngOnInit(){
+    ngOnInit() {
         this.recallJsFuntions();
     }
 
     // recallJsFuntions
     recallJsFuntions() {
         this.routerSubscription = this.router.events
-        .pipe(filter(event => event instanceof NavigationEnd || event instanceof NavigationCancel))
-        .subscribe(event => {
-            this.location = this.router.url;
-            if (!(event instanceof NavigationEnd)) {
-                return;
-            }
-            window.scrollTo(0, 0);
-        });
+            .pipe(
+                filter(
+                    (event) =>
+                        event instanceof NavigationEnd ||
+                        event instanceof NavigationCancel
+                )
+            )
+            .subscribe((event) => {
+                this.location = this.router.url;
+                if (!(event instanceof NavigationEnd)) {
+                    return;
+                }
+                window.scrollTo(0, 0);
+            });
     }
 
     // Dark Mode
@@ -105,5 +129,4 @@ export class AppComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }

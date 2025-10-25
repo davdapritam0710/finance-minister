@@ -15,14 +15,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatInputModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
-        AsyncPipe,
-        MatCardModule
+        // AsyncPipe,
+        MatCardModule,
     ],
     templateUrl: './require-option-selected.component.html',
-    styleUrl: './require-option-selected.component.scss'
+    styleUrl: './require-option-selected.component.scss',
 })
 export class RequireOptionSelectedComponent {
-
     // Require an Autocomplete Option to be Selected
     @ViewChild('input') input: ElementRef<HTMLInputElement>;
     myControl = new FormControl('');
@@ -33,7 +32,8 @@ export class RequireOptionSelectedComponent {
     }
     filter(): void {
         const filterValue = this.input.nativeElement.value.toLowerCase();
-        this.filteredOptions = this.options.filter(o => o.toLowerCase().includes(filterValue));
+        this.filteredOptions = this.options.filter((o) =>
+            o.toLowerCase().includes(filterValue)
+        );
     }
-
 }

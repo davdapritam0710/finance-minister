@@ -1,24 +1,20 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-privacy-policy',
     standalone: true,
-    imports: [RouterLink, MatButtonModule],
+    imports: [MatButtonModule],
     templateUrl: './privacy-policy.component.html',
-    styleUrl: './privacy-policy.component.scss'
+    styleUrl: './privacy-policy.component.scss',
 })
 export class PrivacyPolicyComponent {
-
     // isToggled
     isToggled = false;
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
-        this.themeService.isToggled$.subscribe(isToggled => {
+    constructor(public themeService: CustomizerSettingsService) {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -27,5 +23,4 @@ export class PrivacyPolicyComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }

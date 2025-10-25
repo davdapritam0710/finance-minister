@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexAxisChartSeries,
@@ -15,8 +14,8 @@ import {
     ApexFill,
     ApexGrid,
     ApexTooltip,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -36,133 +35,129 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-column-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-column-chart.component.html',
-    styleUrl: './basic-column-chart.component.scss'
+    styleUrl: './basic-column-chart.component.scss',
 })
 export class BasicColumnChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "Net Profit",
-                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                    name: 'Net Profit',
+                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
                 },
                 {
-                    name: "Revenue",
-                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+                    name: 'Revenue',
+                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
                 },
                 {
-                    name: "Free Cash Flow",
-                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-                }
+                    name: 'Free Cash Flow',
+                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+                },
             ],
             chart: {
-                type: "bar",
+                type: 'bar',
                 height: 350,
                 toolbar: {
-                    show: false
-                }
+                    show: false,
+                },
             },
-            colors: [
-                "#00cae3", "#0f79f3", "#ffb264"
-            ],
+            colors: ['#00cae3', '#0f79f3', '#ffb264'],
             plotOptions: {
                 bar: {
                     horizontal: false,
-                    columnWidth: "55%",
-                }
+                    columnWidth: '55%',
+                },
             },
             dataLabels: {
-                enabled: false
+                enabled: false,
             },
             stroke: {
                 show: true,
                 width: 3,
-                colors: ["transparent"]
+                colors: ['transparent'],
             },
             xaxis: {
                 categories: [
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sep",
-                    "Oct"
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
                 ],
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
             },
             yaxis: {
                 title: {
-                    text: "$ (thousands)",
+                    text: '$ (thousands)',
                     style: {
-                        color: "#475569",
-                        fontSize: "14px",
-                        fontWeight: 500
-                    }
+                        color: '#475569',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                    },
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
+                    show: false,
+                },
             },
             fill: {
-                opacity: 1
+                opacity: 1,
             },
             tooltip: {
                 y: {
-                    formatter: function(val) {
-                        return "$" + val;
-                    }
-                }
+                    formatter: function (val) {
+                        return '$' + val;
+                    },
+                },
             },
             legend: {
                 show: true,
                 offsetY: 5,
                 fontSize: '14px',
-                position: "bottom",
-                horizontalAlign: "center",
+                position: 'bottom',
+                horizontalAlign: 'center',
                 labels: {
-                    colors: "#919aa3"
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 10,
-                    vertical: 5
-                }
+                    vertical: 5,
+                },
             },
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
-            }
+                borderColor: '#e0e0e0',
+            },
         };
     }
-
 }

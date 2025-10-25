@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
     ApexNonAxisChartSeries,
     ApexPlotOptions,
     ApexChart,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -21,13 +20,12 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-radialbar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-radialbar-chart.component.html',
-    styleUrl: './basic-radialbar-chart.component.scss'
+    styleUrl: './basic-radialbar-chart.component.scss',
 })
 export class BasicRadialbarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -35,18 +33,17 @@ export class BasicRadialbarChartComponent {
             series: [70],
             chart: {
                 height: 350,
-                type: "radialBar"
+                type: 'radialBar',
             },
             plotOptions: {
                 radialBar: {
                     hollow: {
-                        size: "70%"
-                    }
-                }
+                        size: '70%',
+                    },
+                },
             },
-            labels: ["Cricket"],
-            colors: ["#0f79f3"]
+            labels: ['Cricket'],
+            colors: ['#0f79f3'],
         };
     }
-
 }

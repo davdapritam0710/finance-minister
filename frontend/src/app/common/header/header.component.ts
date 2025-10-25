@@ -3,18 +3,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Component, HostListener } from '@angular/core';
 import { ToggleService } from '../sidebar/toggle.service';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [NgClass, MatMenuModule, MatButtonModule, RouterLink, RouterLinkActive],
+    imports: [NgClass, MatMenuModule, MatButtonModule],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+    styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
     // isSidebarToggled
     isSidebarToggled = false;
 
@@ -25,10 +23,10 @@ export class HeaderComponent {
         private toggleService: ToggleService,
         public themeService: CustomizerSettingsService
     ) {
-        this.toggleService.isSidebarToggled$.subscribe(isSidebarToggled => {
+        this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
         });
-        this.themeService.isToggled$.subscribe(isToggled => {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -42,7 +40,11 @@ export class HeaderComponent {
     isSticky: boolean = false;
     @HostListener('window:scroll', ['$event'])
     checkScroll() {
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const scrollPosition =
+            window.scrollY ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
         if (scrollPosition >= 50) {
             this.isSticky = true;
         } else {
@@ -84,5 +86,4 @@ export class HeaderComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
-
 }

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -13,8 +12,8 @@ import {
     ApexGrid,
     ApexDataLabels,
     ApexMarkers,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -32,86 +31,82 @@ export type ChartOptions = {
 @Component({
     selector: 'app-stepline-line-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './stepline-line-chart.component.html',
-    styleUrl: './stepline-line-chart.component.scss'
+    styleUrl: './stepline-line-chart.component.scss',
 })
 export class SteplineLineChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "Stepline Series",
-                    data: [34, 44, 54, 21, 12, 43, 33, 23, 66, 66, 58]
-                }
+                    name: 'Stepline Series',
+                    data: [34, 44, 54, 21, 12, 43, 33, 23, 66, 66, 58],
+                },
             ],
             chart: {
-                type: "line",
-                height: 350
+                type: 'line',
+                height: 350,
             },
             stroke: {
-                curve: "stepline"
+                curve: 'stepline',
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             dataLabels: {
-                enabled: false
+                enabled: false,
             },
             title: {
-                text: "Stepline Chart",
-                align: "left",
+                text: 'Stepline Chart',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: '500',
                     fontSize: '15px',
-                    color: '#475569'
-                }
+                    color: '#475569',
+                },
             },
             markers: {
                 hover: {
-                    sizeOffset: 4
-                }
+                    sizeOffset: 4,
+                },
             },
             xaxis: {
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
             },
             yaxis: {
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
+                    show: false,
+                },
             },
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
-            }
+                borderColor: '#e0e0e0',
+            },
         };
     }
-
 }

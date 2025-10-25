@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexNonAxisChartSeries,
@@ -8,8 +7,8 @@ import {
     ApexChart,
     ApexLegend,
     ChartComponent,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -23,13 +22,12 @@ export type ChartOptions = {
 @Component({
     selector: 'app-custom-angle-circle-radialbar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './custom-angle-circle-radialbar-chart.component.html',
-    styleUrl: './custom-angle-circle-radialbar-chart.component.scss'
+    styleUrl: './custom-angle-circle-radialbar-chart.component.scss',
 })
 export class CustomAngleCircleRadialbarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -37,7 +35,7 @@ export class CustomAngleCircleRadialbarChartComponent {
             series: [100, 90, 80, 70],
             chart: {
                 height: 350,
-                type: "radialBar"
+                type: 'radialBar',
             },
             plotOptions: {
                 radialBar: {
@@ -46,41 +44,40 @@ export class CustomAngleCircleRadialbarChartComponent {
                     endAngle: 270,
                     hollow: {
                         margin: 10,
-                        size: "30%",
+                        size: '30%',
                         image: undefined,
-                        background: "transparent"
+                        background: 'transparent',
                     },
                     dataLabels: {
                         name: {
-                            show: false
+                            show: false,
                         },
                         value: {
-                            show: false
-                        }
-                    }
-                }
+                            show: false,
+                        },
+                    },
+                },
             },
-            colors: [
-                "#757FEF", "#9EA5F4", "#C8CCF9", "#F1F2FD"
-            ],
-            labels: [
-                "Completed", "Active", "Assigned", "Pending"
-            ],
+            colors: ['#757FEF', '#9EA5F4', '#C8CCF9', '#F1F2FD'],
+            labels: ['Completed', 'Active', 'Assigned', 'Pending'],
             legend: {
                 show: true,
                 offsetY: 0,
                 offsetX: -20,
                 floating: true,
-                position: "left",
-                fontSize: "14px",
+                position: 'left',
+                fontSize: '14px',
                 labels: {
-                    colors: '#5B5B98'
+                    colors: '#5B5B98',
                 },
-                formatter: function(seriesName, opts) {
-                    return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
-                }
-            }
+                formatter: function (seriesName, opts) {
+                    return (
+                        seriesName +
+                        ':  ' +
+                        opts.w.globals.series[opts.seriesIndex]
+                    );
+                },
+            },
         };
     }
-
 }

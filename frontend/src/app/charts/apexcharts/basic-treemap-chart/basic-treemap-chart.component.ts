@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -10,8 +9,8 @@ import {
     ApexChart,
     ApexPlotOptions,
     ApexLegend,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -25,13 +24,12 @@ export type ChartOptions = {
 @Component({
     selector: 'app-basic-treemap-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './basic-treemap-chart.component.html',
-    styleUrl: './basic-treemap-chart.component.scss'
+    styleUrl: './basic-treemap-chart.component.scss',
 })
 export class BasicTreemapChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -40,94 +38,94 @@ export class BasicTreemapChartComponent {
                 {
                     data: [
                         {
-                            x: "London",
-                            y: 218
+                            x: 'London',
+                            y: 218,
                         },
                         {
-                            x: "New York",
-                            y: 149
+                            x: 'New York',
+                            y: 149,
                         },
                         {
-                            x: "Tokyo",
-                            y: 184
+                            x: 'Tokyo',
+                            y: 184,
                         },
                         {
-                            x: "Beijing",
-                            y: 55
+                            x: 'Beijing',
+                            y: 55,
                         },
                         {
-                            x: "Paris",
-                            y: 84
+                            x: 'Paris',
+                            y: 84,
                         },
                         {
-                            x: "Chicago",
-                            y: 31
+                            x: 'Chicago',
+                            y: 31,
                         },
                         {
-                            x: "Osaka",
-                            y: 70
+                            x: 'Osaka',
+                            y: 70,
                         },
                         {
-                            x: "İstanbul",
-                            y: 30
+                            x: 'İstanbul',
+                            y: 30,
                         },
                         {
-                            x: "Bangkok",
-                            y: 44
+                            x: 'Bangkok',
+                            y: 44,
                         },
                         {
-                            x: "Madrid",
-                            y: 68
+                            x: 'Madrid',
+                            y: 68,
                         },
                         {
-                            x: "Barcelona",
-                            y: 28
+                            x: 'Barcelona',
+                            y: 28,
                         },
                         {
-                            x: "Toronto",
-                            y: 19
+                            x: 'Toronto',
+                            y: 19,
                         },
                         {
-                            x: "Shanghai",
-                            y: 29
-                        }
-                    ]
-                }
+                            x: 'Shanghai',
+                            y: 29,
+                        },
+                    ],
+                },
             ],
             chart: {
                 height: 350,
-                type: "treemap",
+                type: 'treemap',
                 toolbar: {
-                    show: true
-                }
+                    show: true,
+                },
             },
             title: {
-                text: "Basic Treemap",
-                align: "left",
+                text: 'Basic Treemap',
+                align: 'left',
                 offsetX: -9,
                 style: {
                     fontWeight: '500',
                     fontSize: '15px',
-                    color: '#475569'
-                }
-            }
+                    color: '#475569',
+                },
+            },
         };
     }
 
-    public generateData(count:any, yrange:any) {
+    public generateData(count: any, yrange: any) {
         var i = 0;
         var series = [];
         while (i < count) {
-            var x = "w" + (i + 1).toString();
+            var x = 'w' + (i + 1).toString();
             var y =
-                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
+                yrange.min;
             series.push({
                 x: x,
-                y: y
+                y: y,
             });
             i++;
         }
         return series;
     }
-
 }

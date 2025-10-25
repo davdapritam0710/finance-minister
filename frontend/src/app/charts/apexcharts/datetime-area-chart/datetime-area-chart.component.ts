@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -16,10 +15,10 @@ import {
     ApexMarkers,
     ApexAnnotations,
     ApexStroke,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
-import { data } from "./series-data";
+import { data } from './series-data';
 import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 
 export type ChartOptions = {
@@ -42,53 +41,50 @@ export type ChartOptions = {
 @Component({
     selector: 'app-datetime-area-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './datetime-area-chart.component.html',
-    styleUrl: './datetime-area-chart.component.scss'
+    styleUrl: './datetime-area-chart.component.scss',
 })
 export class DatetimeAreaChartComponent {
-
-    @ViewChild("chart", { static: false }) chart: ChartComponent;
+    @ViewChild('chart', { static: false }) chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
-    public activeOptionButton = "all";
-    public updateOptionsData:any = {
-        "1m": {
+    public activeOptionButton = 'all';
+    public updateOptionsData: any = {
+        '1m': {
             xaxis: {
-                min: new Date("28 Jan 2013").getTime(),
-                max: new Date("27 Feb 2013").getTime()
-            }
+                min: new Date('28 Jan 2013').getTime(),
+                max: new Date('27 Feb 2013').getTime(),
+            },
         },
-        "6m": {
+        '6m': {
             xaxis: {
-                min: new Date("27 Sep 2012").getTime(),
-                max: new Date("27 Feb 2013").getTime()
-            }
+                min: new Date('27 Sep 2012').getTime(),
+                max: new Date('27 Feb 2013').getTime(),
+            },
         },
-        "1y": {
+        '1y': {
             xaxis: {
-                min: new Date("27 Feb 2012").getTime(),
-                max: new Date("27 Feb 2013").getTime()
-            }
+                min: new Date('27 Feb 2012').getTime(),
+                max: new Date('27 Feb 2013').getTime(),
+            },
         },
-        "1yd": {
+        '1yd': {
             xaxis: {
-                min: new Date("01 Jan 2013").getTime(),
-                max: new Date("27 Feb 2013").getTime()
-            }
+                min: new Date('01 Jan 2013').getTime(),
+                max: new Date('27 Feb 2013').getTime(),
+            },
         },
         all: {
             xaxis: {
                 min: undefined,
-                max: undefined
-            }
-        }
+                max: undefined,
+            },
+        },
     };
 
-    constructor(
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(public themeService: CustomizerSettingsService) {
         this.initChart();
-        this.themeService.isToggled$.subscribe(isToggled => {
+        this.themeService.isToggled$.subscribe((isToggled) => {
             this.isToggled = isToggled;
         });
     }
@@ -97,108 +93,111 @@ export class DatetimeAreaChartComponent {
         this.chartOptions = {
             series: [
                 {
-                    name: "Daxa",
-                    data: data
-                }
+                    name: 'Daxa',
+                    data: data,
+                },
             ],
             chart: {
-                type: "area",
-                height: 350
+                type: 'area',
+                height: 350,
             },
             annotations: {
                 yaxis: [
                     {
                         y: 30,
-                        borderColor: "#999",
+                        borderColor: '#999',
                         label: {
-                            text: "Support",
+                            text: 'Support',
                             style: {
-                                color: "#fff",
-                                background: "#00E396"
-                            }
-                        }
-                    }
+                                color: '#fff',
+                                background: '#00E396',
+                            },
+                        },
+                    },
                 ],
                 xaxis: [
                     {
-                        x: new Date("14 Nov 2012").getTime(),
-                        borderColor: "#999",
+                        x: new Date('14 Nov 2012').getTime(),
+                        borderColor: '#999',
                         label: {
-                            text: "Rally",
+                            text: 'Rally',
                             style: {
-                                color: "#fff",
-                                background: "#775DD0"
-                            }
-                        }
-                    }
-                ]
+                                color: '#fff',
+                                background: '#775DD0',
+                            },
+                        },
+                    },
+                ],
             },
             dataLabels: {
-                enabled: false
+                enabled: false,
             },
             markers: {
-                size: 0
+                size: 0,
             },
             xaxis: {
-                type: "datetime",
-                min: new Date("01 Mar 2012").getTime(),
+                type: 'datetime',
+                min: new Date('01 Mar 2012').getTime(),
                 tickAmount: 6,
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             tooltip: {
                 x: {
-                    format: "dd MMM yyyy"
-                }
+                    format: 'dd MMM yyyy',
+                },
             },
             grid: {
                 show: true,
                 strokeDashArray: 5,
-                borderColor: "#e0e0e0"
+                borderColor: '#e0e0e0',
             },
             fill: {
-                type: "gradient",
+                type: 'gradient',
                 gradient: {
                     shadeIntensity: 1,
                     opacityFrom: 0.7,
                     opacityTo: 0.9,
                     // stops: [0, 100]
-                }
+                },
             },
             yaxis: {
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
-            }
+                    show: false,
+                },
+            },
         };
     }
 
-    public updateOptions(option:any): void {
+    public updateOptions(option: any): void {
         this.activeOptionButton = option;
-        this.chart.updateOptions(this.updateOptionsData[option], false, true, true);
+        this.chart.updateOptions(
+            this.updateOptionsData[option],
+            false,
+            true,
+            true
+        );
     }
 
     // isToggled
@@ -208,5 +207,4 @@ export class DatetimeAreaChartComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
-
 }

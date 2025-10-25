@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexNonAxisChartSeries,
@@ -9,8 +8,8 @@ import {
     ApexFill,
     ChartComponent,
     ApexStroke,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -24,13 +23,12 @@ export type ChartOptions = {
 @Component({
     selector: 'app-gradient-radialbar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './gradient-radialbar-chart.component.html',
-    styleUrl: './gradient-radialbar-chart.component.scss'
+    styleUrl: './gradient-radialbar-chart.component.scss',
 })
 export class GradientRadialbarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
@@ -38,10 +36,10 @@ export class GradientRadialbarChartComponent {
             series: [75],
             chart: {
                 height: 350,
-                type: "radialBar",
+                type: 'radialBar',
                 toolbar: {
-                    show: true
-                }
+                    show: true,
+                },
             },
             plotOptions: {
                 radialBar: {
@@ -49,67 +47,66 @@ export class GradientRadialbarChartComponent {
                     endAngle: 225,
                     hollow: {
                         margin: 0,
-                        size: "70%",
-                        background: "#fff",
+                        size: '70%',
+                        background: '#fff',
                         image: undefined,
-                        position: "front",
+                        position: 'front',
                         dropShadow: {
                             enabled: true,
                             top: 3,
                             left: 0,
                             blur: 4,
-                            opacity: 0.24
-                        }
+                            opacity: 0.24,
+                        },
                     },
                     track: {
-                        background: "#fff",
-                        strokeWidth: "67%",
+                        background: '#fff',
+                        strokeWidth: '67%',
                         margin: 0, // margin is in pixels
                         dropShadow: {
                             enabled: true,
                             top: -3,
                             left: 0,
                             blur: 4,
-                            opacity: 0.35
-                        }
+                            opacity: 0.35,
+                        },
                     },
                     dataLabels: {
                         show: true,
                         name: {
                             offsetY: -10,
                             show: true,
-                            color: "#888",
-                            fontSize: "17px"
+                            color: '#888',
+                            fontSize: '17px',
                         },
                         value: {
-                            formatter: function(val) {
+                            formatter: function (val) {
                                 return parseInt(val.toString(), 10).toString();
                             },
-                            color: "#111",
-                            fontSize: "36px",
-                            show: true
-                        }
-                    }
-                }
+                            color: '#111',
+                            fontSize: '36px',
+                            show: true,
+                        },
+                    },
+                },
             },
             fill: {
-                type: "gradient",
+                type: 'gradient',
                 gradient: {
-                    shade: "dark",
-                    type: "horizontal",
+                    shade: 'dark',
+                    type: 'horizontal',
                     shadeIntensity: 0.5,
-                    gradientToColors: ["#ABE5A1"],
+                    gradientToColors: ['#ABE5A1'],
                     inverseColors: true,
                     opacityFrom: 1,
                     opacityTo: 1,
                     // stops: [0, 100]
-                }
+                },
             },
             stroke: {
-                lineCap: "round"
+                lineCap: 'round',
             },
-            labels: ["Percent"]
+            labels: ['Percent'],
         };
     }
-
 }

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ChartComponent,
@@ -14,8 +13,8 @@ import {
     ApexYAxis,
     ApexLegend,
     ApexPlotOptions,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -24,72 +23,66 @@ export type ChartOptions = {
     labels: any;
     theme: ApexTheme;
     title: ApexTitleSubtitle;
-    fill: ApexFill,
-    yaxis: ApexYAxis,
-    stroke: ApexStroke,
-    legend: ApexLegend,
-    plotOptions: ApexPlotOptions
+    fill: ApexFill;
+    yaxis: ApexYAxis;
+    stroke: ApexStroke;
+    legend: ApexLegend;
+    plotOptions: ApexPlotOptions;
 };
 
 @Component({
     selector: 'app-monochrome-polar-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './monochrome-polar-chart.component.html',
-    styleUrl: './monochrome-polar-chart.component.scss'
+    styleUrl: './monochrome-polar-chart.component.scss',
 })
 export class MonochromePolarChartComponent {
-
-    @ViewChild("chart") chart: ChartComponent;
+    @ViewChild('chart') chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
 
     constructor() {
         this.chartOptions = {
-            series: [
-                42, 39, 35, 29, 26
-            ],
+            series: [42, 39, 35, 29, 26],
             chart: {
-                type: 'polarArea'
+                type: 'polarArea',
             },
-            labels: [
-                'Rose A', 'Rose B', 'Rose C', 'Rose D', 'Rose E'
-            ],
+            labels: ['Rose A', 'Rose B', 'Rose C', 'Rose D', 'Rose E'],
             fill: {
-                opacity: 1
+                opacity: 1,
             },
             stroke: {
                 width: 1,
-                colors: undefined
+                colors: undefined,
             },
             yaxis: {
-                show: false
+                show: false,
             },
             legend: {
                 position: 'bottom',
-                fontSize: "14px",
+                fontSize: '14px',
                 labels: {
-                    colors: '#919aa3'
+                    colors: '#919aa3',
                 },
                 itemMargin: {
                     horizontal: 10,
-                    vertical: 0
-                }
+                    vertical: 0,
+                },
             },
             plotOptions: {
                 polarArea: {
                     rings: {
-                        strokeWidth: 0
-                    }
-                }
+                        strokeWidth: 0,
+                    },
+                },
             },
             theme: {
                 monochrome: {
                     // enabled: true,
                     shadeTo: 'light',
-                    shadeIntensity: 0.6
-                }
-            }
+                    shadeIntensity: 0.6,
+                },
+            },
         };
     }
-
 }

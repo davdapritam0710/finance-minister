@@ -4,8 +4,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 @Component({
     selector: 'app-icons',
     standalone: true,
-    imports: [RouterLink, RouterOutlet],
+    imports: [RouterOutlet],
     templateUrl: './icons.component.html',
-    styleUrl: './icons.component.scss'
+    styleUrl: './icons.component.scss',
 })
 export class IconsComponent {}

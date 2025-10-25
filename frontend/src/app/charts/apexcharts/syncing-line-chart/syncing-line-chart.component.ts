@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexAxisChartSeries,
@@ -12,8 +11,8 @@ import {
     ApexXAxis,
     ApexTooltip,
     ApexStroke,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -34,77 +33,76 @@ export type ChartOptions = {
 @Component({
     selector: 'app-syncing-line-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './syncing-line-chart.component.html',
-    styleUrl: './syncing-line-chart.component.scss'
+    styleUrl: './syncing-line-chart.component.scss',
 })
 export class SyncingLineChartComponent {
-
     public chart1options: Partial<ChartOptions>;
     public chart2options: Partial<ChartOptions>;
     public chart3options: Partial<ChartOptions>;
     public commonOptions: Partial<ChartOptions> = {
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
         stroke: {
-            curve: "straight"
+            curve: 'straight',
         },
         toolbar: {
             tools: {
-                selection: false
-            }
+                selection: false,
+            },
         },
         markers: {
             size: 6,
             hover: {
-                size: 10
-            }
+                size: 10,
+            },
         },
         tooltip: {
             followCursor: false,
             x: {
-                show: false
+                show: false,
             },
             marker: {
-                show: false
+                show: false,
             },
             y: {
                 title: {
-                    formatter: function() {
-                        return "";
-                    }
-                }
-            }
+                    formatter: function () {
+                        return '';
+                    },
+                },
+            },
         },
         grid: {
             clipMarkers: false,
             show: true,
             strokeDashArray: 5,
-            borderColor: "#e0e0e0",
+            borderColor: '#e0e0e0',
             row: {
-                colors: ["#f4f6fc", "transparent"], // takes an array which will be repeated on columns
-                opacity: 0.5
-            }
+                colors: ['#f4f6fc', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5,
+            },
         },
         xaxis: {
-            type: "datetime",
+            type: 'datetime',
             axisBorder: {
                 show: false,
-                color: '#e0e0e0'
+                color: '#e0e0e0',
             },
             axisTicks: {
                 show: true,
-                color: '#e0e0e0'
+                color: '#e0e0e0',
             },
             labels: {
                 show: true,
                 style: {
-                    colors: "#919aa3",
-                    fontSize: "14px"
-                }
-            }
-        }
+                    colors: '#919aa3',
+                    fontSize: '14px',
+                },
+            },
+        },
     };
 
     constructor() {
@@ -115,176 +113,174 @@ export class SyncingLineChartComponent {
         this.chart1options = {
             series: [
                 {
-                    name: "chart1",
+                    name: 'chart1',
                     data: this.generateDayWiseTimeSeries(
-                        new Date("11 Feb 2017").getTime(),
+                        new Date('11 Feb 2017').getTime(),
                         20,
                         {
                             min: 10,
-                            max: 60
+                            max: 60,
                         }
-                    )
-                }
+                    ),
+                },
             ],
             chart: {
-                id: "fb",
-                group: "social",
-                type: "line",
-                height: 160
+                id: 'fb',
+                group: 'social',
+                type: 'line',
+                height: 160,
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             yaxis: {
                 tickAmount: 2,
                 labels: {
                     minWidth: 40,
                     style: {
-                        colors: "#a9a9c8",
-                        fontSize: "14px",
-                    }
-                }
+                        colors: '#a9a9c8',
+                        fontSize: '14px',
+                    },
+                },
             },
             xaxis: {
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
-            }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
+            },
         };
 
         this.chart2options = {
             series: [
                 {
-                    name: "chart2",
+                    name: 'chart2',
                     data: this.generateDayWiseTimeSeries(
-                        new Date("11 Feb 2017").getTime(),
+                        new Date('11 Feb 2017').getTime(),
                         20,
                         {
                             min: 10,
-                            max: 30
+                            max: 30,
                         }
-                    )
-                }
+                    ),
+                },
             ],
             chart: {
-                id: "tw",
-                group: "social",
-                type: "line",
-                height: 160
+                id: 'tw',
+                group: 'social',
+                type: 'line',
+                height: 160,
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             yaxis: {
                 tickAmount: 2,
                 labels: {
                     minWidth: 40,
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
+                    show: false,
+                },
             },
             xaxis: {
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
-            }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
+            },
         };
 
         this.chart3options = {
             series: [
                 {
-                    name: "chart3",
+                    name: 'chart3',
                     data: this.generateDayWiseTimeSeries(
-                        new Date("11 Feb 2017").getTime(),
+                        new Date('11 Feb 2017').getTime(),
                         20,
                         {
                             min: 10,
-                            max: 60
+                            max: 60,
                         }
-                    )
-                }
+                    ),
+                },
             ],
             chart: {
-                id: "yt",
-                group: "social",
-                type: "area",
-                height: 160
+                id: 'yt',
+                group: 'social',
+                type: 'area',
+                height: 160,
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             yaxis: {
                 tickAmount: 2,
                 labels: {
                     minWidth: 40,
                     style: {
-                        colors: "#a9a9c8",
-                        fontSize: "14px",
-                    }
-                }
+                        colors: '#a9a9c8',
+                        fontSize: '14px',
+                    },
+                },
             },
             xaxis: {
                 axisBorder: {
                     show: false,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 axisTicks: {
                     show: true,
-                    color: '#e0e0e0'
+                    color: '#e0e0e0',
                 },
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
-                }
-            }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
+                },
+            },
         };
     }
 
-    public generateDayWiseTimeSeries(baseval:any, count:any, yrange:any): any[] {
+    public generateDayWiseTimeSeries(
+        baseval: any,
+        count: any,
+        yrange: any
+    ): any[] {
         let i = 0;
         let series = [];
         while (i < count) {
             var x = baseval;
             var y =
-                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
+                yrange.min;
             series.push([x, y]);
             baseval += 86400000;
             i++;
         }
         return series;
     }
-
 }

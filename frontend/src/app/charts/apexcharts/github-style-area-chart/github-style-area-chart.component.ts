@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 
 import {
     ApexAxisChartSeries,
@@ -12,10 +11,10 @@ import {
     ApexGrid,
     ApexLegend,
     ApexChart,
-    NgApexchartsModule
-} from "ng-apexcharts";
+    NgApexchartsModule,
+} from 'ng-apexcharts';
 
-import { githubData } from "./github-data";
+import { githubData } from './github-data';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -33,61 +32,60 @@ export type ChartOptions = {
 @Component({
     selector: 'app-github-style-area-chart',
     standalone: true,
-    imports: [RouterLink, MatCardModule, NgApexchartsModule],
+    imports: [MatCardModule, NgApexchartsModule],
     templateUrl: './github-style-area-chart.component.html',
-    styleUrl: './github-style-area-chart.component.scss'
+    styleUrl: './github-style-area-chart.component.scss',
 })
 export class GithubStyleAreaChartComponent {
-
     public chartMonths: Partial<ChartOptions>;
     public chartYears: Partial<ChartOptions>;
     public commonOptions: Partial<ChartOptions> = {
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
         fill: {
             opacity: 1,
-            type: "solid"
+            type: 'solid',
         },
         xaxis: {
-            type: "datetime",
+            type: 'datetime',
             axisBorder: {
                 show: false,
-                color: '#e0e0e0'
+                color: '#e0e0e0',
             },
             axisTicks: {
                 show: true,
-                color: '#e0e0e0'
+                color: '#e0e0e0',
             },
             labels: {
                 show: true,
                 style: {
-                    colors: "#919aa3",
-                    fontSize: "14px"
-                }
-            }
+                    colors: '#919aa3',
+                    fontSize: '14px',
+                },
+            },
         },
         stroke: {
             width: 0,
-            curve: "smooth"
+            curve: 'smooth',
         },
         grid: {
             show: true,
             strokeDashArray: 5,
-            borderColor: "#e0e0e0"
+            borderColor: '#e0e0e0',
         },
         yaxis: {
             labels: {
                 show: true,
                 style: {
-                    colors: "#919aa3",
-                    fontSize: "14px"
-                }
+                    colors: '#919aa3',
+                    fontSize: '14px',
+                },
             },
             axisBorder: {
-                show: false
-            }
-        }
+                show: false,
+            },
+        },
     };
 
     constructor() {
@@ -98,70 +96,65 @@ export class GithubStyleAreaChartComponent {
         this.chartMonths = {
             series: [
                 {
-                    name: "commits",
-                    data: githubData.series
-                }
+                    name: 'commits',
+                    data: githubData.series,
+                },
             ],
             chart: {
-                id: "chartyear",
-                type: "area",
+                id: 'chartyear',
+                type: 'area',
                 height: 160,
                 toolbar: {
                     show: false,
-                    autoSelected: "pan"
-                }
+                    autoSelected: 'pan',
+                },
             },
-            colors: [
-                "#0f79f3"
-            ],
+            colors: ['#0f79f3'],
             yaxis: {
                 show: false,
                 tickAmount: 3,
                 labels: {
                     show: true,
                     style: {
-                        colors: "#919aa3",
-                        fontSize: "14px"
-                    }
+                        colors: '#919aa3',
+                        fontSize: '14px',
+                    },
                 },
                 axisBorder: {
-                    show: false
-                }
-            }
+                    show: false,
+                },
+            },
         };
         this.chartYears = {
             series: [
                 {
-                    name: "commits",
-                    data: githubData.series
-                }
+                    name: 'commits',
+                    data: githubData.series,
+                },
             ],
             chart: {
                 height: 200,
-                type: "area",
+                type: 'area',
                 toolbar: {
-                    autoSelected: "selection"
+                    autoSelected: 'selection',
                 },
                 brush: {
                     enabled: true,
-                    target: "chartyear"
+                    target: 'chartyear',
                 },
                 selection: {
                     enabled: true,
                     xaxis: {
-                        min: new Date("26 Jan 2014").getTime(),
-                        max: new Date("29 Mar 2015").getTime()
-                    }
-                }
+                        min: new Date('26 Jan 2014').getTime(),
+                        max: new Date('29 Mar 2015').getTime(),
+                    },
+                },
             },
-            colors: [
-                "#7bd39a"
-            ],
+            colors: ['#7bd39a'],
             legend: {
-                position: "top",
-                horizontalAlign: "left"
-            }
+                position: 'top',
+                horizontalAlign: 'left',
+            },
         };
     }
-
 }

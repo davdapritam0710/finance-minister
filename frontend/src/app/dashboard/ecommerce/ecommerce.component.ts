@@ -15,13 +15,29 @@ import { AverageDailySalesComponent } from './average-daily-sales/average-daily-
 import { ProfitComponent } from './profit/profit.component';
 import { BestSellerOfTheMonthComponent } from './best-seller-of-the-month/best-seller-of-the-month.component';
 import { NewCustomersThisMonthComponent } from './new-customers-this-month/new-customers-this-month.component';
-import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-ecommerce',
     standalone: true,
-    imports: [TotalSalesComponent, TotalRevenueComponent, TotalOrdersComponent, TotalCustomersComponent, SalesOverviewComponent, TopSellingProductsComponent, TransactionsHistoryComponent, RecentOrdersComponent, TopSellersComponent, OrderSummaryComponent, RevenueComponent, TopSalesLocationsComponent, AverageDailySalesComponent, ProfitComponent, BestSellerOfTheMonthComponent, NewCustomersThisMonthComponent, RouterLink],
+    imports: [
+        TotalSalesComponent,
+        TotalRevenueComponent,
+        TotalOrdersComponent,
+        TotalCustomersComponent,
+        SalesOverviewComponent,
+        TopSellingProductsComponent,
+        TransactionsHistoryComponent,
+        RecentOrdersComponent,
+        TopSellersComponent,
+        OrderSummaryComponent,
+        RevenueComponent,
+        TopSalesLocationsComponent,
+        AverageDailySalesComponent,
+        ProfitComponent,
+        BestSellerOfTheMonthComponent,
+        NewCustomersThisMonthComponent,
+    ],
     templateUrl: './ecommerce.component.html',
-    styleUrl: './ecommerce.component.scss'
+    styleUrl: './ecommerce.component.scss',
 })
 export class EcommerceComponent {}
