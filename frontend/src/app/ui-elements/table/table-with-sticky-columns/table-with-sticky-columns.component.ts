@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-table-with-sticky-columns',
@@ -38,16 +37,7 @@ export class TableWithStickyColumnsComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }
 
 export interface PeriodicElement {

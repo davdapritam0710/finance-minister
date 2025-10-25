@@ -4,7 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-transactions-history',
@@ -35,16 +34,7 @@ export class TransactionsHistoryComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
+    constructor() {}
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [

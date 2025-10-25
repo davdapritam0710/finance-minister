@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-lbw-disabled-options',
@@ -16,14 +15,5 @@ export class LbwDisabledOptionsComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

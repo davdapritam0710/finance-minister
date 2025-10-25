@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-autosize-sidenav',
@@ -16,14 +15,5 @@ export class AutosizeSidenavComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

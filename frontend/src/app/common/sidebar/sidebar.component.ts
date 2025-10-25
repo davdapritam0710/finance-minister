@@ -4,7 +4,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { ToggleService } from './toggle.service';
 import { NgClass } from '@angular/common';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -27,15 +26,9 @@ export class SidebarComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        private toggleService: ToggleService,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(private toggleService: ToggleService) {
         this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
-        });
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
         });
     }
 
@@ -46,39 +39,4 @@ export class SidebarComponent {
 
     // Mat Expansion
     panelOpenState = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // Sidebar Dark
-    toggleSidebarTheme() {
-        this.themeService.toggleSidebarTheme();
-    }
-
-    // Right Sidebar
-    toggleRightSidebarTheme() {
-        this.themeService.toggleRightSidebarTheme();
-    }
-
-    // Hide Sidebar
-    toggleHideSidebarTheme() {
-        this.themeService.toggleHideSidebarTheme();
-    }
-
-    // Header Dark Mode
-    toggleHeaderTheme() {
-        this.themeService.toggleHeaderTheme();
-    }
-
-    // Card Border
-    toggleCardBorderTheme() {
-        this.themeService.toggleCardBorderTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
 }

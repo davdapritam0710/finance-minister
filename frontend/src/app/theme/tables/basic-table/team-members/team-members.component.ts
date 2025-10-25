@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-team-members:not(p)',
@@ -13,22 +12,5 @@ import { CustomizerSettingsService } from '@src/app/customizer-settings/customiz
     styleUrl: './team-members.component.scss',
 })
 export class TeamMembersComponent {
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // isToggled
-    isToggled = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
+    constructor() {}
 }

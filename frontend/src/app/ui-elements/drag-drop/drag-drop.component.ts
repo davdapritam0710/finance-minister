@@ -11,7 +11,6 @@ import { DdEnterPredicateComponent } from './dd-enter-predicate/dd-enter-predica
 import { DdHorizontalSortingComponent } from './dd-horizontal-sorting/dd-horizontal-sorting.component';
 import { DdOpenDraggableDialogComponent } from './dd-open-draggable-dialog/dd-open-draggable-dialog.component';
 import { DdSortingComponent } from './dd-sorting/dd-sorting.component';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-drag-drop',
@@ -38,14 +37,5 @@ export class DragDropComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

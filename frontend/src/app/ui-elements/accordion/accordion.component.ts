@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-accordion',
@@ -25,14 +24,5 @@ export class AccordionComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

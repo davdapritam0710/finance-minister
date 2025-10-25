@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-horizontal-listbox',
@@ -15,14 +14,5 @@ export class HorizontalListboxComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

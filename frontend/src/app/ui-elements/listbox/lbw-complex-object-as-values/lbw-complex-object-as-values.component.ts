@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 const today = new Date();
 
@@ -54,15 +53,4 @@ export class LbwComplexObjectAsValuesComponent {
 
     // isToggled
     isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
 }

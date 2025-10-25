@@ -4,7 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-sla-monitoring:not(p)',
@@ -29,24 +28,7 @@ export class SlaMonitoringComponent {
     ];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // isToggled
-    isToggled = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
+    constructor() {}
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [

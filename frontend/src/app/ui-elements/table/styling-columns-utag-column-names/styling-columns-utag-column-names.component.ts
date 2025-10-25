@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 export interface PeriodicElement {
     name: string;
@@ -38,17 +37,5 @@ export class StylingColumnsUtagColumnNamesComponent {
     ];
     dataSource = ELEMENT_DATA;
 
-    // isToggled
-    isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

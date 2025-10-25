@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-footer',
@@ -11,44 +10,5 @@ export class FooterComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // Sidebar Dark
-    toggleSidebarTheme() {
-        this.themeService.toggleSidebarTheme();
-    }
-
-    // Right Sidebar
-    toggleRightSidebarTheme() {
-        this.themeService.toggleRightSidebarTheme();
-    }
-
-    // Hide Sidebar
-    toggleHideSidebarTheme() {
-        this.themeService.toggleHideSidebarTheme();
-    }
-
-    // Header Dark Mode
-    toggleHeaderTheme() {
-        this.themeService.toggleHeaderTheme();
-    }
-
-    // Card Border
-    toggleCardBorderTheme() {
-        this.themeService.toggleCardBorderTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
+    constructor() {}
 }

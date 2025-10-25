@@ -3,7 +3,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Component, HostListener } from '@angular/core';
 import { ToggleService } from '../sidebar/toggle.service';
 import { MatButtonModule } from '@angular/material/button';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-header',
@@ -19,15 +18,9 @@ export class HeaderComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        private toggleService: ToggleService,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(private toggleService: ToggleService) {
         this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
-        });
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
         });
     }
 
@@ -50,40 +43,5 @@ export class HeaderComponent {
         } else {
             this.isSticky = false;
         }
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // Sidebar Dark
-    toggleSidebarTheme() {
-        this.themeService.toggleSidebarTheme();
-    }
-
-    // Right Sidebar
-    toggleRightSidebarTheme() {
-        this.themeService.toggleRightSidebarTheme();
-    }
-
-    // Hide Sidebar
-    toggleHideSidebarTheme() {
-        this.themeService.toggleHideSidebarTheme();
-    }
-
-    // Header Dark Mode
-    toggleHeaderTheme() {
-        this.themeService.toggleHeaderTheme();
-    }
-
-    // Card Border
-    toggleCardBorderTheme() {
-        this.themeService.toggleCardBorderTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
     }
 }

@@ -11,14 +11,12 @@ import {
     LocationStrategy,
     PathLocationStrategy,
 } from '@angular/common';
-import { CustomizerSettingsComponent } from './customizer-settings/customizer-settings.component';
 import {
     RouterOutlet,
     Router,
     NavigationCancel,
     NavigationEnd,
 } from '@angular/router';
-import { CustomizerSettingsService } from './customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-root',
@@ -29,8 +27,6 @@ import { CustomizerSettingsService } from './customizer-settings/customizer-sett
         SidebarComponent,
         HeaderComponent,
         FooterComponent,
-
-        CustomizerSettingsComponent,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
@@ -53,16 +49,9 @@ export class AppComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        public router: Router,
-        private toggleService: ToggleService,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(public router: Router, private toggleService: ToggleService) {
         this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
-        });
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
         });
     }
 
@@ -88,45 +77,5 @@ export class AppComponent {
                 }
                 window.scrollTo(0, 0);
             });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // Sidebar Dark
-    toggleSidebarTheme() {
-        this.themeService.toggleSidebarTheme();
-    }
-
-    // Right Sidebar
-    toggleRightSidebarTheme() {
-        this.themeService.toggleRightSidebarTheme();
-    }
-
-    // Hide Sidebar
-    toggleHideSidebarTheme() {
-        this.themeService.toggleHideSidebarTheme();
-    }
-
-    // Header Dark Mode
-    toggleHeaderTheme() {
-        this.themeService.toggleHeaderTheme();
-    }
-
-    // Card Border
-    toggleCardBorderTheme() {
-        this.themeService.toggleCardBorderTheme();
-    }
-
-    // Card Border Radius
-    toggleCardBorderRadiusTheme() {
-        this.themeService.toggleCardBorderRadiusTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
     }
 }

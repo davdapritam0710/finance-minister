@@ -6,7 +6,6 @@ import {
     CdkDrag,
     CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-enter-predicate',
@@ -48,15 +47,4 @@ export class DdEnterPredicateComponent {
 
     // isToggled
     isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
 }

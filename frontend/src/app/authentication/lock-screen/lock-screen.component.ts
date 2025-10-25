@@ -11,7 +11,6 @@ import {
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-lock-screen',
@@ -31,16 +30,9 @@ export class LockScreenComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        private fb: FormBuilder,
-        private router: Router,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(private fb: FormBuilder, private router: Router) {
         this.authForm = this.fb.group({
             password: ['', [Validators.required, Validators.minLength(8)]],
-        });
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
         });
     }
 
@@ -55,20 +47,5 @@ export class LockScreenComponent {
         } else {
             console.log('Form is invalid. Please check the fields.');
         }
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // Card Border
-    toggleCardBorderTheme() {
-        this.themeService.toggleCardBorderTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
     }
 }

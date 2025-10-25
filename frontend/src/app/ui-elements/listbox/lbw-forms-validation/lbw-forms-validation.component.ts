@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-lbw-forms-validation',
@@ -42,13 +41,10 @@ export class LbwFormsValidationComponent {
     ];
     invalid: Observable<boolean>;
 
-    constructor(public themeService: CustomizerSettingsService) {
+    constructor() {
         this.invalid = this.signCtrl.valueChanges.pipe(
             map(() => this.signCtrl.touched && !this.signCtrl.valid)
         );
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
     }
 
     signCtrl = new FormControl<string[]>([], Validators.required);
@@ -74,9 +70,4 @@ export class LbwFormsValidationComponent {
 
     // isToggled
     isToggled = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
 }

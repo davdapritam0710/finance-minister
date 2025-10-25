@@ -1,7 +1,4 @@
-<mat-card
-    class="daxa-card performance-of-agents-card mb-25 border-radius bg-white border-none d-block"
-    [class.rtl-enabled]="themeService.isRTLEnabled()"
->
+<mat-card class="daxa-card performance-of-agents-card mb-25 border-radius bg-white border-none d-block">
     <mat-card-header>
         <mat-card-title>
             <h5 class="mt-0 mb-0">
@@ -91,7 +88,8 @@
                                 <span class="percentage d-block text-body">
                                     {{element.satisfactionRate}}%
                                 </span>
-                                <mat-progress-bar mode="determinate" [value]="element.satisfactionRate"></mat-progress-bar>
+                                <mat-progress-bar mode="determinate"
+                                    [value]="element.satisfactionRate"></mat-progress-bar>
                             </div>
                         </td>
                     </ng-container>

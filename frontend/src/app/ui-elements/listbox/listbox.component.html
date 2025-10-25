@@ -22,10 +22,7 @@
 <!-- Listbox -->
 <div class="row">
     <div class="col-md-6 col-xxl-4">
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -38,10 +35,7 @@
                     <label class="example-listbox-label fw-medium" id="example-fav-color-label">
                         Favorite color
                     </label>
-                    <ul cdkListbox
-                        aria-labelledby="example-fav-color-label"
-                        class="example-listbox"
-                    >
+                    <ul cdkListbox aria-labelledby="example-fav-color-label" class="example-listbox">
                         <li cdkOption="red" class="example-option text-body">Red</li>
                         <li cdkOption="green" class="example-option text-body">Green</li>
                         <li cdkOption="blue" class="example-option text-body">Blue</li>
@@ -49,10 +43,7 @@
                 </div>
             </mat-card-content>
         </mat-card>
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -65,10 +56,7 @@
                     <label class="example-listbox-label fw-medium" id="example-satisfaction-label">
                         How was your service?
                     </label>
-                    <ul cdkListbox
-                        aria-labelledby="example-satisfaction-label"
-                        class="example-listbox"
-                    >
+                    <ul cdkListbox aria-labelledby="example-satisfaction-label" class="example-listbox">
                         <li [cdkOption]="1" cdkOptionTypeaheadLabel="great" class="example-option text-body">
                             😀 Great
                         </li>
@@ -94,10 +82,7 @@
                 <app-horizontal-listbox></app-horizontal-listbox>
             </mat-card-content>
         </mat-card>
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -110,11 +95,8 @@
                     <label class="example-listbox-label fw-medium" id="example-fav-cuisine-label">
                         Favorite cuisines
                     </label>
-                    <ul cdkListbox
-                        cdkListboxMultiple
-                        aria-labelledby="example-fav-cuisine-label"
-                        class="example-listbox"
-                    >
+                    <ul cdkListbox cdkListboxMultiple aria-labelledby="example-fav-cuisine-label"
+                        class="example-listbox">
                         <li cdkOption="chinese" class="example-option text-body">Chinese</li>
                         <li cdkOption="french" class="example-option text-body">French</li>
                         <li cdkOption="italian" class="example-option text-body">Italian</li>
@@ -149,10 +131,7 @@
                 <app-lbw-disabled-options></app-lbw-disabled-options>
             </mat-card-content>
         </mat-card>
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -165,14 +144,10 @@
                     <label class="example-listbox-label fw-medium" id="example-spatula-label">
                         Spatula Features
                     </label>
-                    <ul cdkListbox
-                        cdkListboxMultiple
-                        cdkListboxUseActiveDescendant
-                        aria-labelledby="example-spatula-label"
-                        class="example-listbox"
-                    >
+                    <ul cdkListbox cdkListboxMultiple cdkListboxUseActiveDescendant
+                        aria-labelledby="example-spatula-label" class="example-listbox">
                         @for (feature of features; track feature) {
-                            <li [cdkOption]="feature" class="example-option text-body">{{feature}}</li>
+                        <li [cdkOption]="feature" class="example-option text-body">{{feature}}</li>
                         }
                     </ul>
                 </div>
@@ -180,10 +155,7 @@
         </mat-card>
     </div>
     <div class="col-md-6 col-xxl-4">
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -196,12 +168,8 @@
                     <label class="example-listbox-label fw-medium" id="example-flavor-label">
                         Flavor
                     </label>
-                    <ul cdkListbox
-                        cdkListboxNavigatesDisabledOptions
-                        cdkListboxNavigationWrapDisabled
-                        aria-labelledby="example-flavor-label"
-                        class="example-listbox"
-                    >
+                    <ul cdkListbox cdkListboxNavigatesDisabledOptions cdkListboxNavigationWrapDisabled
+                        aria-labelledby="example-flavor-label" class="example-listbox">
                         <li cdkOption="chocolate" class="example-option text-body">
                             Chocolate
                         </li>

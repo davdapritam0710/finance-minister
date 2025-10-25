@@ -5,9 +5,7 @@ import {
     CdkDropList,
     CdkDropListGroup,
     moveItemInArray,
-    transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-dd-disabled-sorting',
@@ -57,19 +55,5 @@ export class DdDisabledSortingComponent {
 
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-    }
-
-    // isToggled
-    isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
     }
 }

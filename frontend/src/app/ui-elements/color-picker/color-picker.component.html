@@ -20,10 +20,7 @@
 </div>
 
 <!-- Color Picker -->
-<div
-    class="row"
-    [class.component-dark-theme]="themeService.isDark()"
->
+<div class="row">
     <div class="col-xl-3 col-lg-4 col-sm-6">
         <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
@@ -79,7 +76,8 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color4" [cpOutputFormat]="'rgba'" [(colorPicker)]="color4" [style.border]="color4" />
+                <input [style.background]="color4" [cpOutputFormat]="'rgba'" [(colorPicker)]="color4"
+                    [style.border]="color4" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -94,7 +92,8 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color5" [cpPosition]="'top-right'" [(colorPicker)]="color5" [style.border]="color5" />
+                <input [style.background]="color5" [cpPosition]="'top-right'" [(colorPicker)]="color5"
+                    [style.border]="color5" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -109,7 +108,8 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color7" [cpOKButton]="true" [(colorPicker)]="color7" [style.border]="color7" />
+                <input [style.background]="color7" [cpOKButton]="true" [(colorPicker)]="color7"
+                    [style.border]="color7" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -124,7 +124,8 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color8" [cpCancelButton]="true" [(colorPicker)]="color8"[style.border]="color8" />
+                <input [style.background]="color8" [cpCancelButton]="true" [(colorPicker)]="color8"
+                    [style.border]="color8" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -139,7 +140,8 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color9" [cpEyeDropper]="true" [cpSaveClickOutside]="false" [(colorPicker)]="color9"[style.border]="color9" />
+                <input [style.background]="color9" [cpEyeDropper]="true" [cpSaveClickOutside]="false"
+                    [(colorPicker)]="color9" [style.border]="color9" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -154,7 +156,9 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <input [style.background]="color10" [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)']" [(colorPicker)]="color10"[style.border]="color10" />
+                <input [style.background]="color10"
+                    [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)']"
+                    [(colorPicker)]="color10" [style.border]="color10" />
                 <span class="d-block text-body"><i>Click in the input field.</i></span>
             </mat-card-content>
         </mat-card>
@@ -169,7 +173,9 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <span [style.color]="color6" class="fw-medium cursor-pointer" [cpPosition]="'bottom'" [cpPositionOffset]="'50%'" [cpPositionRelativeToArrow]="true" [(colorPicker)]="color6">Change me!</span>
+                <span [style.color]="color6" class="fw-medium cursor-pointer" [cpPosition]="'bottom'"
+                    [cpPositionOffset]="'50%'" [cpPositionRelativeToArrow]="true" [(colorPicker)]="color6">Change
+                    me!</span>
             </mat-card-content>
         </mat-card>
     </div>

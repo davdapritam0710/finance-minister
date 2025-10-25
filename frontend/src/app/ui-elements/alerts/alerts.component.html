@@ -250,40 +250,46 @@
             </mat-card-header>
             <mat-card-content class="example-alerts">
                 <div class="alert alert-daxa" role="alert">
-                    A simple daxa alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple daxa alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click
+                    if you like.
                 </div>
                 <div class="alert alert-primary" role="alert">
-                    A simple primary alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple primary alert with <a routerLink="." class="alert-link">an example link</a>. Give it a
+                    click if you like.
                 </div>
                 <div class="alert alert-secondary" role="alert">
-                    A simple secondary alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple secondary alert with <a routerLink="." class="alert-link">an example link</a>. Give it a
+                    click if you like.
                 </div>
                 <div class="alert alert-success" role="alert">
-                    A simple success alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple success alert with <a routerLink="." class="alert-link">an example link</a>. Give it a
+                    click if you like.
                 </div>
                 <div class="alert alert-danger" role="alert">
-                    A simple danger alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple danger alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click
+                    if you like.
                 </div>
                 <div class="alert alert-warning" role="alert">
-                    A simple warning alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple warning alert with <a routerLink="." class="alert-link">an example link</a>. Give it a
+                    click if you like.
                 </div>
                 <div class="alert alert-info" role="alert">
-                    A simple info alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple info alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click
+                    if you like.
                 </div>
                 <div class="alert alert-light" role="alert">
-                    A simple light alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple light alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click
+                    if you like.
                 </div>
                 <div class="alert alert-dark" role="alert">
-                    A simple dark alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click if you like.
+                    A simple dark alert with <a routerLink="." class="alert-link">an example link</a>. Give it a click
+                    if you like.
                 </div>
             </mat-card-content>
         </mat-card>
     </div>
     <div class="col-lg-6">
-        <mat-card
-            class="daxa-card mb-25 border-radius bg-white border-none d-block"
-            [class.component-dark-theme]="themeService.isDark()"
-        >
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mt-0 mb-0">
@@ -292,57 +298,75 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content class="example-alerts">
-                <div class="alert alert-daxa d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert">
+                <div class="alert alert-daxa d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert">
                     A simple daxa alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert2">
+                <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert2">
                     A simple primary alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert2()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert2()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-secondary d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert3">
+                <div class="alert alert-secondary d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert3">
                     A simple secondary alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert3()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert3()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert4">
+                <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert4">
                     A simple success alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert4()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert4()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert5">
+                <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert5">
                     A simple danger alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert5()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert5()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert6">
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert6">
                     A simple warning alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert6()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert6()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert7">
+                <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert7">
                     A simple info alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert7()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert7()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-light d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert8">
+                <div class="alert alert-light d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert8">
                     A simple light alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert8()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert8()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-dark d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert9">
+                <div class="alert alert-dark d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert9">
                     A simple dark alert—check it out!
-                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert9()">
+                    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert9()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
@@ -359,57 +383,75 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content class="example-alerts">
-                <div class="alert alert-bg-daxa d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert10">
+                <div class="alert alert-bg-daxa d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert10">
                     A simple daxa alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert10()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert10()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-primary d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert11">
+                <div class="alert alert-bg-primary d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert11">
                     A simple primary alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert11()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert11()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-secondary d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert12">
+                <div class="alert alert-bg-secondary d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert12">
                     A simple secondary alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert12()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert12()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-success d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert13">
+                <div class="alert alert-bg-success d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert13">
                     A simple success alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert13()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert13()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-danger d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert14">
+                <div class="alert alert-bg-danger d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert14">
                     A simple danger alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert14()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert14()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-warning d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert15">
+                <div class="alert alert-bg-warning d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert15">
                     A simple warning alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert15()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert15()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-info d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert16">
+                <div class="alert alert-bg-info d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert16">
                     A simple info alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert16()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert16()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-light d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert17">
+                <div class="alert alert-bg-light d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert17">
                     A simple light alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert17()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert17()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
-                <div class="alert alert-bg-dark d-flex justify-content-between align-items-center" role="alert" *ngIf="showAlert18">
+                <div class="alert alert-bg-dark d-flex justify-content-between align-items-center" role="alert"
+                    *ngIf="showAlert18">
                     A simple dark alert—check it out!
-                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert18()">
+                    <button type="button" class="close bg-transparent text-white p-0 border-none" data-dismiss="alert"
+                        aria-label="Close" (click)="dismissAlert18()">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>

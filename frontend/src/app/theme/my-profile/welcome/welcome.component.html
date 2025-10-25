@@ -1,9 +1,6 @@
-<mat-card
-    class="daxa-card welcome-card mb-25 border-radius position-relative bg-gradient border-none d-block"
-    [class.rtl-enabled]="themeService.isRTLEnabled()"
->
+<mat-card class="daxa-card welcome-card mb-25 border-radius position-relative bg-gradient border-none d-block">
     <mat-card-content>
-        <div class="row">
+        <div class=" row">
             <div class="col-lg-6">
                 <div class="content">
                     <span class="d-block text-white">
@@ -19,13 +16,9 @@
                         Daily Performance
                     </span>
                     <div class="chart">
-                        <apx-chart
-                            [series]="chartOptions.series!"
-                            [colors]="chartOptions.colors!"
-                            [chart]="chartOptions.chart!"
-                            [plotOptions]="chartOptions.plotOptions!"
-                            [fill]="chartOptions.fill!"
-                        ></apx-chart>
+                        <apx-chart [series]="chartOptions.series!" [colors]="chartOptions.colors!"
+                            [chart]="chartOptions.chart!" [plotOptions]="chartOptions.plotOptions!"
+                            [fill]="chartOptions.fill!"></apx-chart>
                     </div>
                 </div>
             </div>

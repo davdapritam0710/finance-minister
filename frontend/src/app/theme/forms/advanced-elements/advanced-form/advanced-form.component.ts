@@ -12,7 +12,6 @@ import {
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-advanced-form',
@@ -35,17 +34,10 @@ export class AdvancedFormComponent {
 
     // Form
     authForm: FormGroup;
-    constructor(
-        private fb: FormBuilder,
-        private router: Router,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(private fb: FormBuilder, private router: Router) {
         this.authForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(8)]],
-        });
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
         });
     }
     onSubmit() {
@@ -58,14 +50,4 @@ export class AdvancedFormComponent {
 
     // isToggled
     isToggled = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
 }

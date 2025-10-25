@@ -7,7 +7,6 @@ import { LbwDisabledOptionsComponent } from './lbw-disabled-options/lbw-disabled
 import { LbwFormsValidationComponent } from './lbw-forms-validation/lbw-forms-validation.component';
 import { HorizontalListboxComponent } from './horizontal-listbox/horizontal-listbox.component';
 import { LbwReactiveFormsComponent } from './lbw-reactive-forms/lbw-reactive-forms.component';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-listbox',
@@ -32,14 +31,5 @@ export class ListboxComponent {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

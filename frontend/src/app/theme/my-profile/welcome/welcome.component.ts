@@ -12,7 +12,6 @@ import {
     ChartComponent,
     NgApexchartsModule,
 } from 'ng-apexcharts';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -44,10 +43,7 @@ export class WelcomeComponent {
     // isToggled
     isToggled = false;
 
-    constructor(
-        private datePipe: DatePipe,
-        public themeService: CustomizerSettingsService
-    ) {
+    constructor(private datePipe: DatePipe) {
         this.currentDate = this.datePipe.transform(new Date(), 'MMMM d, yyyy');
         this.chartOptions = {
             series: [75],
@@ -82,10 +78,5 @@ export class WelcomeComponent {
             },
             colors: ['#00cae3'],
         };
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
     }
 }

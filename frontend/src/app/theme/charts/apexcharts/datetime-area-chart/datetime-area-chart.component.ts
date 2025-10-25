@@ -19,7 +19,6 @@ import {
 } from 'ng-apexcharts';
 
 import { data } from './series-data';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -82,11 +81,8 @@ export class DatetimeAreaChartComponent {
         },
     };
 
-    constructor(public themeService: CustomizerSettingsService) {
+    constructor() {
         this.initChart();
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
     }
 
     initChart(): void {
@@ -198,13 +194,5 @@ export class DatetimeAreaChartComponent {
             true,
             true
         );
-    }
-
-    // isToggled
-    isToggled = false;
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
     }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 interface Transaction {
     item: string;
@@ -33,17 +32,5 @@ export class MultipleHeaderFooterRowsComponent {
             .reduce((acc, value) => acc + value, 0);
     }
 
-    // isToggled
-    isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
+    constructor() {}
 }

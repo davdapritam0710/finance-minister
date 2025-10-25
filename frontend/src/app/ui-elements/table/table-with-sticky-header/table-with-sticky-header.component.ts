@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-table-with-sticky-header',
@@ -15,17 +14,6 @@ export class TableWithStickyHeaderComponent {
 
     // isToggled
     isToggled = false;
-
-    constructor(public themeService: CustomizerSettingsService) {
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
-    }
-
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
 }
 
 export interface PeriodicElement {

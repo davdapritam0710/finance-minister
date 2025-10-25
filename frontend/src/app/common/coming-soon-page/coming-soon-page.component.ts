@@ -4,7 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
-import { CustomizerSettingsService } from '@src/app/customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-coming-soon-page',
@@ -31,11 +30,8 @@ export class ComingSoonPageComponent implements OnInit, OnDestroy {
     // isToggled
     isToggled = false;
 
-    constructor(public themeService: CustomizerSettingsService) {
+    constructor() {
         this.countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        this.themeService.isToggled$.subscribe((isToggled) => {
-            this.isToggled = isToggled;
-        });
     }
 
     ngOnInit(): void {
@@ -71,10 +67,5 @@ export class ComingSoonPageComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         // Clear the interval to prevent memory leaks
         clearInterval(this.countdownInterval);
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
     }
 }

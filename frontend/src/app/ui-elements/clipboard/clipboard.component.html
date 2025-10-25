@@ -20,15 +20,13 @@
 </div>
 
 <!-- Clipboard -->
-<mat-card
-    class="daxa-card mb-25 border-radius bg-white border-none d-block"
-    [class.component-dark-theme]="themeService.isDark()"
->
+<mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
     <mat-card-content>
         <label for="clipboard-example-textarea" class="mb-10 d-block">
             Text to be copied
         </label>
-        <textarea id="clipboard-example-textarea" class="d-block w-100" cols="30" rows="10" [(ngModel)]="value"></textarea>
+        <textarea id="clipboard-example-textarea" class="d-block w-100" cols="30" rows="10"
+            [(ngModel)]="value"></textarea>
         <button [cdkCopyToClipboard]="value" mat-flat-button class="daxa mt-10">Click to Copy Clipboard</button>
     </mat-card-content>
 </mat-card>
