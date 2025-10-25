@@ -1,7 +1,11 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
+@use "./utilities";
+@use "./ui-kit";
+@use "./typography";
+@use "./rtl";
+@use "./dark";
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -11,21 +15,18 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$daxa-primary: mat.define-palette(mat.$indigo-palette);
-$daxa-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$daxa-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$daxa-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$daxa-warn: mat.define-palette(mat.$red-palette);
+$daxa-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$daxa-theme: mat.define-light-theme((
-    color: (
-        primary: $daxa-primary,
-        accent: $daxa-accent,
-        warn: $daxa-warn,
-    )
-));
+$daxa-theme: mat.m2-define-light-theme((color: (primary: $daxa-primary,
+                accent: $daxa-accent,
+                warn: $daxa-warn,
+            )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -48,20 +49,28 @@ $daxa-theme: mat.define-light-theme((
     --fontSize: 16px;
     --borderBoxShadow: rgba(0, 0, 0, .05) 0px 6px 24px 0px, rgba(0, 0, 0, .08) 0px 0px 0px 1px;
 }
-*, ::after, ::before {
+
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
     padding: 0;
     color: var(--blackColor);
     background-color: #eff3f9;
+
     font: {
         weight: 400;
         size: var(--fontSize);
         family: var(--fontFamily);
-    };
+    }
+
+    ;
 }
+
 a {
     transition: var(--transition);
     color: var(--blackColor);
@@ -73,6 +82,7 @@ a {
         color: var(--daxaColor);
     }
 }
+
 .d-table {
     width: 100%;
     height: 100%;
@@ -81,40 +91,35 @@ a {
         vertical-align: middle;
     }
 }
+
 img {
     max-width: 100%;
     height: auto;
 }
+
 input {
     font: {
         family: var(--fontFamily);
         size: var(--fontSize);
-    };
+    }
+
+    ;
 }
+
 button {
     font: {
         family: var(--fontFamily) !important;
         size: var(--fontSize) !important;
-    };
+    }
+
+    ;
 }
+
 .mb-25 {
     margin-bottom: 25px !important;
 }
 
-// Utilities CSS
-@import "./utilities";
-
-// UI Kit CSS
-@import "./ui-kit";
-
-// Typography CSS
-@import "./typography";
-
-// RTL CSS
-@import "./rtl";
-
-// Dark CSS
-@import "./dark";
+// Utilities CSS, UI Kit CSS, Typography CSS, RTL CSS, and Dark CSS are imported at the top
 
 /* Max width 767px */
 @media only screen and (max-width : 767px) {
@@ -122,9 +127,11 @@ button {
     body {
         font-size: 14px;
     }
+
     .mb-25 {
         margin-bottom: 15px !important;
     }
+
     button {
         font-size: 14px !important;
     }
@@ -146,6 +153,7 @@ button {
     body {
         font-size: 15px;
     }
+
     button {
         font-size: 15px !important;
     }
