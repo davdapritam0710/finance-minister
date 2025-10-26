@@ -6,8 +6,9 @@
                     <h3>
                         Sign In
                     </h3>
-                    <p class="text-black">
-                        Don’t have an account yet? <a routerLink="/authentication/sign-up" class="text-daxa">Sign Up</a>
+                    <p class="text-black cursor-pointer">
+                        Don’t have an account yet? <a (click)="navigateTo('/authentication/sign-up')"
+                            class="text-daxa">Sign Up</a>
                     </p>
                 </div>
                 <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
@@ -64,8 +65,14 @@
                             Forgot Password?
                         </a>
                     </div>
-                    <button mat-button class="btn" type="submit" [disabled]="authForm.invalid">
-                        Sign In
+                    <!-- Error message display -->
+                    <div class="error text-danger mb-3" *ngIf="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <button mat-button class="btn" type="submit" [disabled]="authForm.invalid || isLoading">
+                        <span *ngIf="!isLoading">Sign In</span>
+                        <span *ngIf="isLoading">Signing In...</span>
                     </button>
                     <div class="signin-with-socials text-center">
                         <div class="or position-relative">

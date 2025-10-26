@@ -3,17 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './theme/dashboard/ecommerce/ecommerce.component';
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: 'auth',
-    //     pathMatch: 'full',
-    // },
-    { path: '', component: EcommerceComponent },
+    {
+        path: '',
+        redirectTo: 'authentication',
+        pathMatch: 'full',
+    },
+    { path: 'dashboard', component: EcommerceComponent },
 
-    // {
-    //   path: 'auth',
-    //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    // },
+    {
+        path: 'authentication',
+        loadChildren: () =>
+            import('@src/app/authentication/auth.module').then(
+                (m) => m.AuthModule
+            ),
+    },
     // {
     //   path: 'user',
     //   loadChildren: () => import('./user/user.module').then((m) => m.UserModule),

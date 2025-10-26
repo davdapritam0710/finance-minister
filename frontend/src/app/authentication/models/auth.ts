@@ -21,7 +21,7 @@ export interface LoginResponse {
         email: string;
         role: string;
         isEmailVerified: boolean;
-        lastLogin: Date;
+        lastLogin: string;
     };
     token: string;
 }
