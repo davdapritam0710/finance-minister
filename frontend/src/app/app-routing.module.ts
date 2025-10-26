@@ -9,6 +9,7 @@ const routes: Routes = [
     //     pathMatch: 'full',
     // },
     { path: '', component: EcommerceComponent },
+
     // {
     //   path: 'auth',
     //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),

@@ -3,9 +3,11 @@ import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
 import { dbLogger, authLogger, securityLogger } from "../middlewares/logger.js";
 
-// @desc    Register a new user
-// @route   POST /api/users/register
-// @access  Public
+/**
+ * @description: Register a new user
+ * @route: POST /api/users/register
+ * @access: Public
+ */
 const registerUser = async (req, res, next) => {
   try {
     // Check for validation errors
@@ -40,7 +42,8 @@ const registerUser = async (req, res, next) => {
     });
 
     // Generate email verification token
-    const emailVerificationToken = user.generateEmailVerificationToken();
+    // TODO: Uncomment this when email verification is implemented
+    // const emailVerificationToken = user.generateEmailVerificationToken();
     await user.save();
 
     // Log successful registration
@@ -51,6 +54,7 @@ const registerUser = async (req, res, next) => {
     const token = user.generateAuthToken();
 
     res.status(201).json({
+      statusCode: 201,
       success: true,
       message: "User registered successfully",
       data: {
@@ -63,7 +67,8 @@ const registerUser = async (req, res, next) => {
           isEmailVerified: user.isEmailVerified,
         },
         token,
-        emailVerificationToken,
+        // TODO: Uncomment this when email verification is implemented
+        // emailVerificationToken,
       },
     });
   } catch (error) {
@@ -71,9 +76,11 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/users/login
-// @access  Public
+/**
+ * @description: Login user
+ * @route: POST /api/users/login
+ * @access: Public
+ */
 const loginUser = async (req, res, next) => {
   try {
     // Check for validation errors
@@ -139,6 +146,7 @@ const loginUser = async (req, res, next) => {
     const token = user.generateAuthToken();
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "Login successful",
       data: {
@@ -159,9 +167,11 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-// @desc    Get current user profile
-// @route   GET /api/users/profile
-// @access  Private
+/**
+ * @description: Get current user profile
+ * @route: GET /api/users/profile
+ * @access: Private
+ */
 const getProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -173,7 +183,9 @@ const getProfile = async (req, res, next) => {
     }
 
     res.json({
+      statusCode: 200,
       success: true,
+      message: "Profile fetched successfully",
       data: { user },
     });
   } catch (error) {
@@ -181,9 +193,11 @@ const getProfile = async (req, res, next) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private
+/**
+ * @description: Update user profile
+ * @route: PUT /api/users/profile
+ * @access: Private
+ */
 const updateProfile = async (req, res, next) => {
   try {
     // Check for validation errors
@@ -231,18 +245,20 @@ const updateProfile = async (req, res, next) => {
     dbLogger("update", "users", { userId: user._id, updates });
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "Profile updated successfully",
-      data: { user },
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Change password
-// @route   PUT /api/users/change-password
-// @access  Private
+/**
+ * @description: Change password
+ * @route: PUT /api/users/change-password
+ * @access: Private
+ */
 const changePassword = async (req, res, next) => {
   try {
     // Check for validation errors
@@ -284,6 +300,7 @@ const changePassword = async (req, res, next) => {
     securityLogger("Password changed", { userId: user._id, ip: req.ip });
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "Password changed successfully",
     });
@@ -292,9 +309,11 @@ const changePassword = async (req, res, next) => {
   }
 };
 
-// @desc    Get all users (Admin only)
-// @route   GET /api/users
-// @access  Private/Admin
+/**
+ * @description: Get all users (Admin only)
+ * @route: GET /api/users
+ * @access: Private/Admin
+ */
 const getAllUsers = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -321,7 +340,9 @@ const getAllUsers = async (req, res, next) => {
     });
 
     res.json({
+      statusCode: 200,
       success: true,
+      message: "Users fetched successfully",
       data: {
         users,
         pagination: {
@@ -336,9 +357,11 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
-// @desc    Get user by ID (Admin only)
-// @route   GET /api/users/:id
-// @access  Private/Admin
+/**
+ * @description: Get user by ID (Admin only)
+ * @route: GET /api/users/:id
+ * @access: Private/Admin
+ */
 const getUserById = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -350,7 +373,9 @@ const getUserById = async (req, res, next) => {
     }
 
     res.json({
+      statusCode: 200,
       success: true,
+      message: "User fetched successfully",
       data: { user },
     });
   } catch (error) {
@@ -358,9 +383,11 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-// @desc    Update user by ID (Admin only)
-// @route   PUT /api/users/:id
-// @access  Private/Admin
+/**
+ * @description: Update user by ID (Admin only)
+ * @route: PUT /api/users/:id
+ * @access: Private/Admin
+ */
 const updateUserById = async (req, res, next) => {
   try {
     // Check for validation errors
@@ -412,18 +439,20 @@ const updateUserById = async (req, res, next) => {
     });
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "User updated successfully",
-      data: { user },
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Delete user by ID (Admin only)
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
+/**
+ * @description: Delete user by ID (Admin only)
+ * @route: DELETE /api/users/:id
+ * @access: Private/Admin
+ */
 const deleteUserById = async (req, res, next) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
@@ -450,6 +479,7 @@ const deleteUserById = async (req, res, next) => {
     });
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "User deleted successfully",
     });
@@ -458,9 +488,11 @@ const deleteUserById = async (req, res, next) => {
   }
 };
 
-// @desc    Forgot password
-// @route   POST /api/users/forgot-password
-// @access  Public
+/**
+ * @description: Forgot password
+ * @route: POST /api/users/forgot-password
+ * @access: Public
+ */
 const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -487,6 +519,7 @@ const forgotPassword = async (req, res, next) => {
 
     // In a real application, you would send this token via email
     res.json({
+      statusCode: 200,
       success: true,
       message: "Password reset token generated",
       data: { resetToken }, // Remove this in production
@@ -496,9 +529,11 @@ const forgotPassword = async (req, res, next) => {
   }
 };
 
-// @desc    Reset password
-// @route   POST /api/users/reset-password
-// @access  Public
+/**
+ * @description: Reset password
+ * @route: POST /api/users/reset-password
+ * @access: Public
+ */
 const resetPassword = async (req, res, next) => {
   try {
     const { token, newPassword } = req.body;
@@ -542,6 +577,7 @@ const resetPassword = async (req, res, next) => {
     });
 
     res.json({
+      statusCode: 200,
       success: true,
       message: "Password reset successfully",
     });
