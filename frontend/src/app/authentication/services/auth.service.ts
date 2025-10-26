@@ -24,7 +24,15 @@ export class AuthService {
     }
 
     register(data: RegisterRequest): Observable<any> {
-        return this.http.post<any>('api/users/register', data);
+        return this.http.post<any>('api/users/register', data).pipe(
+            map((res) => res.data),
+            tap((response) => {
+                // Store token in localStorage if provided
+                if (response.token) {
+                    localStorage.setItem('access-token', response.token);
+                }
+            })
+        );
     }
 
     // Helper method to get token from localStorage
