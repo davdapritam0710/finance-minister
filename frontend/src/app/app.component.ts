@@ -1,33 +1,17 @@
 declare let $: any;
 import { Component } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
 import { ToggleService } from '../app/common/sidebar/toggle.service';
-import { SidebarComponent } from './common/sidebar/sidebar.component';
 import {
-    CommonModule,
     Location,
     LocationStrategy,
     PathLocationStrategy,
 } from '@angular/common';
-import {
-    RouterOutlet,
-    Router,
-    NavigationCancel,
-    NavigationEnd,
-} from '@angular/router';
+import { Router, NavigationCancel, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
-    imports: [
-        CommonModule,
-        RouterOutlet,
-        SidebarComponent,
-        HeaderComponent,
-        FooterComponent,
-    ],
+    standalone: false,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     providers: [
