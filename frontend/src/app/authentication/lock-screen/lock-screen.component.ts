@@ -9,13 +9,14 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-lock-screen',
     standalone: true,
     imports: [
+        CommonModule,
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,

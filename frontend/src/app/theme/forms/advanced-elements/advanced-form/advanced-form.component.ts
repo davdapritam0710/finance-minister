@@ -10,13 +10,14 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-advanced-form',
     standalone: true,
     imports: [
+        CommonModule,
         RouterLink,
         MatFormFieldModule,
         MatInputModule,
