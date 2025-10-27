@@ -126,6 +126,101 @@ const validateUpdateProfile = [
     .optional()
     .isBoolean()
     .withMessage("Push notification preference must be a boolean"),
+
+  // Finance preferences validation
+  body("preferences.finance.currency")
+    .optional()
+    .isIn(["USD", "EUR", "GBP", "JPY", "CAD", "AUD", "CHF", "CNY", "INR"])
+    .withMessage("Invalid currency selection"),
+
+  body("preferences.finance.dateFormat")
+    .optional()
+    .isIn(["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"])
+    .withMessage("Invalid date format selection"),
+
+  body("preferences.finance.numberFormat")
+    .optional()
+    .isIn(["US", "EU", "IN"])
+    .withMessage("Invalid number format selection"),
+
+  body("preferences.finance.budgetAlerts")
+    .optional()
+    .isBoolean()
+    .withMessage("Budget alerts preference must be a boolean"),
+
+  body("preferences.finance.defaultBudgetPeriod")
+    .optional()
+    .isIn(["weekly", "monthly", "yearly"])
+    .withMessage("Invalid budget period selection"),
+
+  body("preferences.finance.investmentRiskTolerance")
+    .optional()
+    .isIn(["conservative", "moderate", "aggressive"])
+    .withMessage("Invalid risk tolerance selection"),
+
+  body("preferences.finance.taxYear")
+    .optional()
+    .isNumeric()
+    .withMessage("Tax year must be a number")
+    .isLength({ min: 4, max: 4 })
+    .withMessage("Tax year must be 4 digits"),
+
+  body("preferences.finance.expenseCategories")
+    .optional()
+    .isArray()
+    .withMessage("Expense categories must be an array"),
+
+  body("preferences.finance.expenseCategories.*.name")
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 50 })
+    .withMessage("Expense category name must be between 1 and 50 characters"),
+
+  body("preferences.finance.expenseCategories.*.color")
+    .optional()
+    .matches(/^#[0-9A-Fa-f]{6}$/)
+    .withMessage("Expense category color must be a valid hex color"),
+
+  body("preferences.finance.expenseCategories.*.icon")
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 20 })
+    .withMessage("Expense category icon must be between 1 and 20 characters"),
+
+  body("preferences.finance.financialGoals")
+    .optional()
+    .isArray()
+    .withMessage("Financial goals must be an array"),
+
+  body("preferences.finance.financialGoals.*.name")
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 100 })
+    .withMessage("Financial goal name must be between 1 and 100 characters"),
+
+  body("preferences.finance.financialGoals.*.targetAmount")
+    .optional()
+    .isNumeric()
+    .withMessage("Target amount must be a number")
+    .isFloat({ min: 0 })
+    .withMessage("Target amount must be positive"),
+
+  body("preferences.finance.financialGoals.*.currentAmount")
+    .optional()
+    .isNumeric()
+    .withMessage("Current amount must be a number")
+    .isFloat({ min: 0 })
+    .withMessage("Current amount must be positive"),
+
+  body("preferences.finance.financialGoals.*.targetDate")
+    .optional()
+    .isISO8601()
+    .withMessage("Target date must be a valid date"),
+
+  body("preferences.finance.financialGoals.*.category")
+    .optional()
+    .isIn(["emergency", "retirement", "education", "home", "vacation", "other"])
+    .withMessage("Invalid financial goal category"),
 ];
 
 // @desc    Validation rules for changing password

@@ -1,0 +1,493 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        <i class="ri-file-text-line me-2"></i>
+        KYC Form
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            User
+        </li>
+        <li class="breadcrumb-item position-relative">
+            KYC Form
+        </li>
+    </ol>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="text-center py-5">
+    <mat-progress-bar mode="indeterminate" class="mb-3"></mat-progress-bar>
+    <p class="mt-3 text-muted">
+        <i class="ri-loader-4-line me-2"></i>
+        Loading KYC form...
+    </p>
+</div>
+
+<!-- KYC Form -->
+<div *ngIf="!loading" class="kyc-form-container">
+    <!-- Status Card -->
+    <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block" *ngIf="kyc">
+        <mat-card-content class="p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h6 class="mb-2">
+                        <i class="ri-file-text-line me-2"></i>
+                        KYC Status:
+                        <span [class]="'text-' + getStatusColor()">
+                            {{ getStatusText() }}
+                        </span>
+                    </h6>
+                    <p class="mb-0 text-muted">
+                        Completion: {{ completionPercentage }}%
+                    </p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <mat-progress-bar mode="determinate" [value]="completionPercentage" [color]="getStatusColor()">
+                    </mat-progress-bar>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- KYC Form Stepper -->
+    <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mt-0 mb-0">
+                    <i class="ri-file-text-line me-2"></i>
+                    Complete Your KYC Form
+                </h5>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-stepper [linear]="isLinear" #stepper>
+
+                <!-- Step 1: Personal Information -->
+                <mat-step [stepControl]="personalInfoForm" label="Personal Information">
+                    <form [formGroup]="personalInfoForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Date of Birth *</mat-label>
+                                    <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth">
+                                    <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #dobPicker></mat-datepicker>
+                                    <mat-error *ngIf="personalInfoForm.get('dateOfBirth')?.hasError('required')">
+                                        Date of birth is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Gender *</mat-label>
+                                    <mat-select formControlName="gender">
+                                        <mat-option *ngFor="let option of genderOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="personalInfoForm.get('gender')?.hasError('required')">
+                                        Gender is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Marital Status *</mat-label>
+                                    <mat-select formControlName="maritalStatus">
+                                        <mat-option *ngFor="let option of maritalStatusOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="personalInfoForm.get('maritalStatus')?.hasError('required')">
+                                        Marital status is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Nationality *</mat-label>
+                                    <input matInput formControlName="nationality" placeholder="Enter your nationality">
+                                    <mat-error *ngIf="personalInfoForm.get('nationality')?.hasError('required')">
+                                        Nationality is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Occupation *</mat-label>
+                                    <input matInput formControlName="occupation" placeholder="Enter your occupation">
+                                    <mat-error *ngIf="personalInfoForm.get('occupation')?.hasError('required')">
+                                        Occupation is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Employer Name</mat-label>
+                                    <input matInput formControlName="employerName" placeholder="Enter employer name">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Work Experience (Years)</mat-label>
+                                    <input matInput type="number" formControlName="workExperience" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="stepper-actions">
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+
+                <!-- Step 2: Financial Information -->
+                <mat-step [stepControl]="financialInfoForm" label="Financial Information">
+                    <form [formGroup]="financialInfoForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Annual Income *</mat-label>
+                                    <input matInput type="number" formControlName="annualIncome" placeholder="0">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <mat-error *ngIf="financialInfoForm.get('annualIncome')?.hasError('required')">
+                                        Annual income is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Income Source *</mat-label>
+                                    <mat-select formControlName="incomeSource">
+                                        <mat-option *ngFor="let option of incomeSourceOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="financialInfoForm.get('incomeSource')?.hasError('required')">
+                                        Income source is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Monthly Expenses</mat-label>
+                                    <input matInput type="number" formControlName="monthlyExpenses" placeholder="0">
+                                    <span matPrefix>$&nbsp;</span>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Total Assets</mat-label>
+                                    <input matInput type="number" formControlName="assets" placeholder="0">
+                                    <span matPrefix>$&nbsp;</span>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Total Liabilities</mat-label>
+                                    <input matInput type="number" formControlName="liabilities" placeholder="0">
+                                    <span matPrefix>$&nbsp;</span>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="stepper-actions">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+
+                <!-- Step 3: Investment Information -->
+                <mat-step [stepControl]="investmentInfoForm" label="Investment Information">
+                    <form [formGroup]="investmentInfoForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Investment Experience *</mat-label>
+                                    <mat-select formControlName="investmentExperience">
+                                        <mat-option *ngFor="let option of investmentExperienceOptions"
+                                            [value]="option.value">
+                                            {{ option.label }} - {{ option.description }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="investmentInfoForm.get('investmentExperience')?.hasError('required')">
+                                        Investment experience is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Risk Tolerance *</mat-label>
+                                    <mat-select formControlName="riskTolerance">
+                                        <mat-option value="conservative">Conservative</mat-option>
+                                        <mat-option value="moderate">Moderate</mat-option>
+                                        <mat-option value="aggressive">Aggressive</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="investmentInfoForm.get('riskTolerance')?.hasError('required')">
+                                        Risk tolerance is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Investment Horizon *</mat-label>
+                                    <mat-select formControlName="investmentHorizon">
+                                        <mat-option *ngFor="let option of investmentHorizonOptions"
+                                            [value]="option.value">
+                                            {{ option.label }} - {{ option.description }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="investmentInfoForm.get('investmentHorizon')?.hasError('required')">
+                                        Investment horizon is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Investment Goals</mat-label>
+                                    <mat-select formControlName="investmentGoals" multiple>
+                                        <mat-option *ngFor="let option of investmentGoalsOptions"
+                                            [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Preferred Investment Types</mat-label>
+                                    <mat-select formControlName="preferredInvestmentTypes" multiple>
+                                        <mat-option *ngFor="let option of investmentTypesOptions"
+                                            [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="stepper-actions">
+                        <button mat-flat-button color="warn" matStepperPrevious>Back</button>
+                        <button mat-flat-button class="daxa" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+
+                <!-- Step 4: Compliance Information -->
+                <mat-step [stepControl]="complianceInfoForm" label="Compliance Information">
+                    <form [formGroup]="complianceInfoForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>PEP Status *</mat-label>
+                                    <mat-select formControlName="pepStatus">
+                                        <mat-option *ngFor="let option of pepStatusOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="complianceInfoForm.get('pepStatus')?.hasError('required')">
+                                        PEP status is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Tax Residency *</mat-label>
+                                    <input matInput formControlName="taxResidency" placeholder="Enter tax residency">
+                                    <mat-error *ngIf="complianceInfoForm.get('taxResidency')?.hasError('required')">
+                                        Tax residency is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>FATCA Status *</mat-label>
+                                    <mat-select formControlName="fatcaStatus">
+                                        <mat-option *ngFor="let option of fatcaStatusOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="complianceInfoForm.get('fatcaStatus')?.hasError('required')">
+                                        FATCA status is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>CRS Status *</mat-label>
+                                    <mat-select formControlName="crsStatus">
+                                        <mat-option *ngFor="let option of crsStatusOptions" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="complianceInfoForm.get('crsStatus')?.hasError('required')">
+                                        CRS status is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>PEP Details</mat-label>
+                                    <textarea matInput formControlName="pepDetails"
+                                        placeholder="Provide details if applicable"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-slide-toggle formControlName="sanctionsCheck" class="mb-3">
+                                    I confirm that I am not subject to any sanctions
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="stepper-actions">
+                        <button mat-flat-button color="warn" matStepperPrevious>Back</button>
+                        <button mat-flat-button class="daxa" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+
+                <!-- Step 5: Document Upload -->
+                <mat-step [stepControl]="documentsForm" label="Document Upload">
+                    <form [formGroup]="documentsForm">
+                        <div class="row">
+                            <!-- Identity Document -->
+                            <div class="col-12">
+                                <h6 class="mb-3 text-primary">
+                                    <i class="ri-id-card-line me-2"></i>
+                                    Identity Document
+                                </h6>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document Type *</mat-label>
+                                    <mat-select formControlName="documents.identityDocument.type">
+                                        <mat-option *ngFor="let option of identityDocumentTypes" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="documentsForm.get('documents.identityDocument.type')?.hasError('required')">
+                                        Document type is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document Number *</mat-label>
+                                    <input matInput formControlName="documents.identityDocument.number"
+                                        placeholder="Enter document number">
+                                    <mat-error
+                                        *ngIf="documentsForm.get('documents.identityDocument.number')?.hasError('required')">
+                                        Document number is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Expiry Date</mat-label>
+                                    <input matInput [matDatepicker]="expiryPicker"
+                                        formControlName="documents.identityDocument.expiryDate">
+                                    <mat-datepicker-toggle matSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #expiryPicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document URL</mat-label>
+                                    <input matInput formControlName="documents.identityDocument.fileUrl"
+                                        placeholder="Upload document URL">
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Address Document -->
+                            <div class="col-12 mt-4">
+                                <h6 class="mb-3 text-primary">
+                                    <i class="ri-map-pin-line me-2"></i>
+                                    Address Document
+                                </h6>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document Type *</mat-label>
+                                    <mat-select formControlName="documents.addressDocument.type">
+                                        <mat-option *ngFor="let option of addressDocumentTypes" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="documentsForm.get('documents.addressDocument.type')?.hasError('required')">
+                                        Document type is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document URL</mat-label>
+                                    <input matInput formControlName="documents.addressDocument.fileUrl"
+                                        placeholder="Upload document URL">
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Income Document -->
+                            <div class="col-12 mt-4">
+                                <h6 class="mb-3 text-primary">
+                                    <i class="ri-money-dollar-circle-line me-2"></i>
+                                    Income Document
+                                </h6>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document Type *</mat-label>
+                                    <mat-select formControlName="documents.incomeDocument.type">
+                                        <mat-option *ngFor="let option of incomeDocumentTypes" [value]="option.value">
+                                            {{ option.label }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="documentsForm.get('documents.incomeDocument.type')?.hasError('required')">
+                                        Document type is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="mb-25 w-100">
+                                    <mat-label>Document URL</mat-label>
+                                    <input matInput formControlName="documents.incomeDocument.fileUrl"
+                                        placeholder="Upload document URL">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="stepper-actions">
+                        <button mat-flat-button color="warn" matStepperPrevious>Back</button>
+                    </div>
+                </mat-step>
+
+            </mat-stepper>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 d-flex justify-content-between">
+                <button mat-flat-button color="warn" (click)="goBackToProfile()">
+                    <i class="ri-arrow-left-line me-2"></i>
+                    Back to Profile
+                </button>
+                <div>
+                    <button mat-flat-button class="daxa" (click)="saveKYC()" [disabled]="saving">
+                        <i class="ri-save-line me-2"></i>
+                        {{ saving ? 'Saving...' : 'Save Draft' }}
+                    </button>
+                    <button mat-raised-button color="primary" (click)="submitKYC()"
+                        [disabled]="submitting || !isFormValid()">
+                        <i class="ri-send-plane-line me-2"></i>
+                        {{ submitting ? 'Submitting...' : 'Submit for Review' }}
+                    </button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

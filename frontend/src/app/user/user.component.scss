@@ -1,0 +1,211 @@
+.user-profile-container {
+    .tab-content {
+        min-height: 500px;
+    }
+
+    .goals-list {
+        .goal-item {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #e9ecef;
+                border-color: #dee2e6;
+            }
+
+            .progress {
+                background-color: #e9ecef;
+
+                .progress-bar {
+                    background-color: #007bff;
+                    transition: width 0.6s ease;
+                }
+            }
+        }
+    }
+
+    .categories-list {
+        .category-item {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #e9ecef;
+                border-color: #dee2e6;
+            }
+
+            .category-color {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                display: inline-block;
+                border: 2px solid #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+    .color-preview {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1px solid #ccc;
+    }
+
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .mat-form-field {
+        .mat-form-field-label {
+            color: #6c757d;
+        }
+
+        &.mat-focused .mat-form-field-label {
+            color: #007bff;
+        }
+    }
+
+    .mat-slide-toggle {
+        .mat-slide-toggle-thumb {
+            background-color: #007bff;
+        }
+
+        &.mat-checked .mat-slide-toggle-bar {
+            background-color: rgba(0, 123, 255, 0.5);
+        }
+    }
+
+    .mat-button {
+        &.mat-primary {
+            background-color: #007bff;
+            color: white;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+
+            &:disabled {
+                background-color: #6c757d;
+                color: #fff;
+            }
+        }
+    }
+
+    .mat-icon-button {
+        &.mat-primary {
+            color: #007bff;
+        }
+
+        &.mat-warn {
+            color: #dc3545;
+        }
+    }
+
+    .breadcrumb-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+
+        h5 {
+            color: white;
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            margin-bottom: 0;
+
+            .breadcrumb-item {
+                a {
+                    color: rgba(255, 255, 255, 0.8);
+                    text-decoration: none;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:not(:last-child)::after {
+                    content: ">";
+                    color: rgba(255, 255, 255, 0.6);
+                    margin: 0 8px;
+                }
+            }
+        }
+    }
+
+    .daxa-card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        border: none;
+
+        .mat-card-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+
+            .mat-card-title {
+                h5 {
+                    color: #495057;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .mat-card-content {
+            padding: 30px;
+        }
+    }
+
+    .mat-tab-group {
+        .mat-tab-header {
+            border-bottom: 2px solid #e9ecef;
+
+            .mat-tab-label {
+                color: #6c757d;
+                font-weight: 500;
+
+                &.mat-tab-label-active {
+                    color: #007bff;
+                }
+            }
+
+            .mat-ink-bar {
+                background-color: #007bff;
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .user-profile-container {
+
+        .goals-list .goal-item,
+        .categories-list .category-item {
+            margin-bottom: 15px;
+        }
+
+        .daxa-card .mat-card-content {
+            padding: 20px;
+        }
+
+        .breadcrumb-card {
+            padding: 15px;
+
+            h5 {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}

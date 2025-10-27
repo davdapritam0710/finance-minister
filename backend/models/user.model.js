@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isKycCompleted: {
+      type: Boolean,
+      default: false,
+    },
     emailVerificationToken: {
       type: String,
       select: false,
@@ -94,6 +98,67 @@ const userSchema = new mongoose.Schema(
           type: Boolean,
           default: true,
         },
+      },
+      finance: {
+        currency: {
+          type: String,
+          enum: ["USD", "EUR", "GBP", "JPY", "CAD", "AUD", "CHF", "CNY", "INR"],
+          default: "USD",
+        },
+        dateFormat: {
+          type: String,
+          enum: ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"],
+          default: "MM/DD/YYYY",
+        },
+        numberFormat: {
+          type: String,
+          enum: ["US", "EU", "IN"],
+          default: "US",
+        },
+        budgetAlerts: {
+          type: Boolean,
+          default: true,
+        },
+        expenseCategories: [
+          {
+            name: String,
+            color: String,
+            icon: String,
+          },
+        ],
+        defaultBudgetPeriod: {
+          type: String,
+          enum: ["weekly", "monthly", "yearly"],
+          default: "monthly",
+        },
+        investmentRiskTolerance: {
+          type: String,
+          enum: ["conservative", "moderate", "aggressive"],
+          default: "moderate",
+        },
+        taxYear: {
+          type: String,
+          default: new Date().getFullYear().toString(),
+        },
+        financialGoals: [
+          {
+            name: String,
+            targetAmount: Number,
+            targetDate: Date,
+            currentAmount: { type: Number, default: 0 },
+            category: {
+              type: String,
+              enum: [
+                "emergency",
+                "retirement",
+                "education",
+                "home",
+                "vacation",
+                "other",
+              ],
+            },
+          },
+        ],
       },
     },
   },

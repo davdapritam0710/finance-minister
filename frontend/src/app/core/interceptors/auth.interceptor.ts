@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     private getToken(): string | null {
-        return localStorage.getItem('access_token');
+        return localStorage.getItem('access-token');
     }
 
     intercept(
@@ -20,12 +20,18 @@ export class AuthInterceptor implements HttpInterceptor {
         const token = this.getToken();
 
         if (token) {
+            console.log('AuthInterceptor: Adding token to request:', req.url);
             const cloned = req.clone({
                 setHeaders: {
                     Authorization: `Bearer ${token}`,
                 },
             });
             return next.handle(cloned);
+        } else {
+            console.log(
+                'AuthInterceptor: No token found for request:',
+                req.url
+            );
         }
 
         return next.handle(req);

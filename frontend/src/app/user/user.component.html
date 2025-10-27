@@ -1,0 +1,516 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        <i class="ri-user-line me-2"></i>
+        User Profile
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            User
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Profile
+        </li>
+    </ol>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="text-center py-5">
+    <mat-progress-bar mode="indeterminate" class="mb-3"></mat-progress-bar>
+    <p class="mt-3 text-muted">
+        <i class="ri-loader-4-line me-2"></i>
+        Loading profile...
+    </p>
+</div>
+
+<!-- User Profile Tabs -->
+<div *ngIf="!loading && user" class="user-profile-container">
+    <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mt-0 mb-0">
+                    <i class="ri-user-line me-2"></i>
+                    {{ user.firstName }} {{ user.lastName }}'s Profile
+                </h5>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+
+                <!-- My Profile Tab -->
+                <mat-tab label="My Profile">
+                    <div class="tab-content p-4">
+                        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+                            <div class="row">
+                                <!-- Basic Information -->
+                                <div class="col-12">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-user-line me-2"></i>
+                                        Basic Information
+                                    </h6>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>First Name *</mat-label>
+                                        <input matInput formControlName="firstName" placeholder="Enter your first name">
+                                        <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">
+                                            First name is required
+                                        </mat-error>
+                                        <mat-error *ngIf="profileForm.get('firstName')?.hasError('minlength')">
+                                            First name must be at least 2 characters
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Last Name *</mat-label>
+                                        <input matInput formControlName="lastName" placeholder="Enter your last name">
+                                        <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">
+                                            Last name is required
+                                        </mat-error>
+                                        <mat-error *ngIf="profileForm.get('lastName')?.hasError('minlength')">
+                                            Last name must be at least 2 characters
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Email Address</mat-label>
+                                        <input matInput [value]="user.email" readonly>
+                                        <mat-icon matSuffix>lock</mat-icon>
+                                        <mat-hint>Email cannot be changed</mat-hint>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Phone Number</mat-label>
+                                        <input matInput formControlName="phoneNumber"
+                                            placeholder="Enter your phone number">
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Address Information -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-map-pin-line me-2"></i>
+                                        Address Information
+                                    </h6>
+                                </div>
+
+                                <div formGroupName="address" class="row w-100">
+                                    <div class="col-12">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Street Address</mat-label>
+                                            <input matInput formControlName="street" placeholder="Enter street address">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>City</mat-label>
+                                            <input matInput formControlName="city" placeholder="Enter city">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>State</mat-label>
+                                            <input matInput formControlName="state" placeholder="Enter state">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Zip Code</mat-label>
+                                            <input matInput formControlName="zipCode" placeholder="Enter zip code">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Country</mat-label>
+                                            <input matInput formControlName="country" placeholder="Enter country">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <!-- Account Information -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-information-line me-2"></i>
+                                        Account Information
+                                    </h6>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Role</mat-label>
+                                        <input matInput [value]="user.role | titlecase" readonly>
+                                        <mat-icon matSuffix>lock</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Email Verified</mat-label>
+                                        <input matInput [value]="user.isEmailVerified ? 'Yes' : 'No'" readonly>
+                                        <mat-icon matSuffix>{{ user.isEmailVerified ? 'verified' : 'warning'
+                                            }}</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>KYC Status</mat-label>
+                                        <input matInput [value]="user.isKycCompleted ? 'Completed' : 'Pending'"
+                                            readonly>
+                                        <mat-icon matSuffix>{{ user.isKycCompleted ? 'verified' : 'pending'
+                                            }}</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Save Button -->
+                                <div class="col-12 mt-4">
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="saving || !profileForm.valid">
+                                        <i class="ri-save-line me-2"></i>
+                                        {{ saving ? 'Saving...' : 'Save Profile' }}
+                                    </button>
+                                </div>
+
+                                <!-- KYC Button -->
+                                <div class="col-12 mt-3" *ngIf="!user.isKycCompleted">
+                                    <button mat-raised-button color="accent" routerLink="/user/kyc">
+                                        <i class="ri-file-text-line me-2"></i>
+                                        Complete KYC Form
+                                    </button>
+                                    <p class="text-muted mt-2 mb-0">
+                                        <small>
+                                            <i class="ri-information-line me-1"></i>
+                                            Complete your KYC (Know Your Customer) form to access all features
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-tab>
+
+                <!-- Preferences Tab -->
+                <mat-tab label="Preferences">
+                    <div class="tab-content p-4">
+                        <form [formGroup]="preferencesForm" (ngSubmit)="savePreferences()">
+                            <div class="row">
+                                <!-- General Preferences -->
+                                <div class="col-12">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-settings-line me-2"></i>
+                                        General Preferences
+                                    </h6>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="mb-25 w-100">
+                                        <mat-label>Theme</mat-label>
+                                        <mat-select formControlName="theme">
+                                            <mat-option value="light">Light</mat-option>
+                                            <mat-option value="dark">Dark</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Notification Preferences -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-notification-line me-2"></i>
+                                        Notification Preferences
+                                    </h6>
+                                </div>
+
+                                <div formGroupName="notifications" class="row w-100">
+                                    <div class="col-md-6">
+                                        <mat-slide-toggle formControlName="email" class="mb-3">
+                                            Email Notifications
+                                        </mat-slide-toggle>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-slide-toggle formControlName="push" class="mb-3">
+                                            Push Notifications
+                                        </mat-slide-toggle>
+                                    </div>
+                                </div>
+
+                                <!-- Finance Preferences -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-money-dollar-circle-line me-2"></i>
+                                        Finance Preferences
+                                    </h6>
+                                </div>
+
+                                <div formGroupName="finance" class="row w-100">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Currency</mat-label>
+                                            <mat-select formControlName="currency">
+                                                <mat-option *ngFor="let currency of currencyOptions"
+                                                    [value]="currency.value">
+                                                    {{ currency.symbol }} {{ currency.label }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Date Format</mat-label>
+                                            <mat-select formControlName="dateFormat">
+                                                <mat-option *ngFor="let format of dateFormatOptions"
+                                                    [value]="format.value">
+                                                    {{ format.label }} ({{ format.example }})
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Number Format</mat-label>
+                                            <mat-select formControlName="numberFormat">
+                                                <mat-option *ngFor="let format of numberFormatOptions"
+                                                    [value]="format.value">
+                                                    {{ format.label }} ({{ format.example }})
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Default Budget Period</mat-label>
+                                            <mat-select formControlName="defaultBudgetPeriod">
+                                                <mat-option *ngFor="let period of budgetPeriodOptions"
+                                                    [value]="period.value">
+                                                    {{ period.label }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Investment Risk Tolerance</mat-label>
+                                            <mat-select formControlName="investmentRiskTolerance">
+                                                <mat-option *ngFor="let risk of riskToleranceOptions"
+                                                    [value]="risk.value">
+                                                    {{ risk.label }} - {{ risk.description }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-form-field class="mb-25 w-100">
+                                            <mat-label>Tax Year</mat-label>
+                                            <input matInput formControlName="taxYear" placeholder="Enter tax year">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <mat-slide-toggle formControlName="budgetAlerts" class="mb-3">
+                                            Budget Alerts
+                                        </mat-slide-toggle>
+                                    </div>
+                                </div>
+
+                                <!-- Financial Goals -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-target-line me-2"></i>
+                                        Financial Goals
+                                    </h6>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row mb-3">
+                                        <div class="col-md-3">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Goal Name</mat-label>
+                                                <input matInput [(ngModel)]="newGoal.name"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    placeholder="e.g., Emergency Fund">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Target Amount</mat-label>
+                                                <input matInput type="number" [(ngModel)]="newGoal.targetAmount"
+                                                    [ngModelOptions]="{standalone: true}" placeholder="10000">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Current Amount</mat-label>
+                                                <input matInput type="number" [(ngModel)]="newGoal.currentAmount"
+                                                    [ngModelOptions]="{standalone: true}" placeholder="2500">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Category</mat-label>
+                                                <mat-select [(ngModel)]="newGoal.category"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                    <mat-option *ngFor="let category of financialGoalCategories"
+                                                        [value]="category.value">
+                                                        {{ category.label }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Target Date</mat-label>
+                                                <input matInput [matDatepicker]="picker"
+                                                    [(ngModel)]="newGoal.targetDate"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-end">
+                                            <button mat-icon-button color="primary" (click)="addFinancialGoal()">
+                                                <mat-icon>add</mat-icon>
+                                                Add Goal
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Display existing goals -->
+                                    <div *ngIf="user?.preferences?.finance?.financialGoals?.length" class="goals-list">
+                                        <div *ngFor="let goal of user?.preferences?.finance?.financialGoals; let i = index"
+                                            class="goal-item mb-3 p-3 border rounded">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h6 class="mb-1">{{ goal.name }}</h6>
+                                                    <p class="mb-1 text-muted">{{ goal.category | titlecase }}</p>
+                                                    <div class="progress mb-2" style="height: 8px;">
+                                                        <div class="progress-bar"
+                                                            [style.width.%]="getProgressPercentage(goal)">
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">
+                                                        ${{ goal.currentAmount | number }} / ${{ goal.targetAmount |
+                                                        number }}
+                                                        ({{ getProgressPercentage(goal) | number:'1.0-0' }}%)
+                                                    </small>
+                                                </div>
+                                                <button mat-icon-button color="warn" (click)="removeFinancialGoal(i)">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Expense Categories -->
+                                <div class="col-12 mt-4">
+                                    <h6 class="mb-3 text-primary">
+                                        <i class="ri-list-check me-2"></i>
+                                        Expense Categories
+                                    </h6>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Category Name</mat-label>
+                                                <input matInput [(ngModel)]="newCategory.name"
+                                                    [ngModelOptions]="{standalone: true}" placeholder="e.g., Groceries">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Color</mat-label>
+                                                <mat-select [(ngModel)]="newCategory.color"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                    <mat-option *ngFor="let color of expenseCategoryColors"
+                                                        [value]="color.value">
+                                                        <span class="d-flex align-items-center">
+                                                            <span class="color-preview me-2"
+                                                                [style.background-color]="color.value"></span>
+                                                            {{ color.label }}
+                                                        </span>
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field class="w-100">
+                                                <mat-label>Icon</mat-label>
+                                                <input matInput [(ngModel)]="newCategory.icon"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    placeholder="e.g., shopping_cart">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-end">
+                                            <button mat-icon-button color="primary" (click)="addExpenseCategory()">
+                                                <mat-icon>add</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Display existing categories -->
+                                    <div *ngIf="user?.preferences?.finance?.expenseCategories?.length"
+                                        class="categories-list">
+                                        <div class="row">
+                                            <div *ngFor="let category of user?.preferences?.finance?.expenseCategories; let i = index"
+                                                class="col-md-3 mb-3">
+                                                <div
+                                                    class="category-item p-3 border rounded d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="category-color me-2"
+                                                            [style.background-color]="category.color"></span>
+                                                        <div>
+                                                            <h6 class="mb-0">{{ category.name }}</h6>
+                                                            <small class="text-muted">{{ category.icon }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <button mat-icon-button color="warn"
+                                                        (click)="removeExpenseCategory(i)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Save Button -->
+                                <div class="col-12 mt-4">
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="saving || !preferencesForm.valid">
+                                        <i class="ri-save-line me-2"></i>
+                                        {{ saving ? 'Saving...' : 'Save Preferences' }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-tab>
+
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>

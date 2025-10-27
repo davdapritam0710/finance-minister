@@ -17,10 +17,11 @@ const routes: Routes = [
                 (m) => m.AuthModule
             ),
     },
-    // {
-    //   path: 'user',
-    //   loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
-    // },
+    {
+        path: 'user',
+        loadChildren: () =>
+            import('./user/user.module').then((m) => m.UserModule),
+    },
     // {
     //   path: 'admin',
     //   loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),

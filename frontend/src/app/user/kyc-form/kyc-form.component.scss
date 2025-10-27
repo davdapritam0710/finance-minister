@@ -1,0 +1,302 @@
+.kyc-form-container {
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .text-accent {
+        color: #28a745 !important;
+    }
+
+    .text-warn {
+        color: #dc3545 !important;
+    }
+
+    .breadcrumb-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+
+        h5 {
+            color: white;
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            margin-bottom: 0;
+
+            .breadcrumb-item {
+                a {
+                    color: rgba(255, 255, 255, 0.8);
+                    text-decoration: none;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:not(:last-child)::after {
+                    content: ">";
+                    color: rgba(255, 255, 255, 0.6);
+                    margin: 0 8px;
+                }
+            }
+        }
+    }
+
+    .daxa-card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        border: none;
+
+        .mat-card-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+
+            .mat-card-title {
+                h5 {
+                    color: #495057;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .mat-card-content {
+            padding: 30px;
+        }
+    }
+
+    .mat-stepper {
+        .mat-step-header {
+            .mat-step-label {
+                font-weight: 500;
+            }
+
+            &.mat-step-header-selected {
+                .mat-step-label {
+                    color: #007bff;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .mat-step-content {
+            padding: 20px 0;
+        }
+    }
+
+    .stepper-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            min-width: 100px;
+        }
+    }
+
+    .mat-form-field {
+        .mat-form-field-label {
+            color: #6c757d;
+        }
+
+        &.mat-focused .mat-form-field-label {
+            color: #007bff;
+        }
+
+        .mat-form-field-prefix {
+            color: #6c757d;
+        }
+    }
+
+    .mat-button {
+        &.mat-primary {
+            background-color: #007bff;
+            color: white;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+
+            &:disabled {
+                background-color: #6c757d;
+                color: #fff;
+            }
+        }
+    }
+
+    .mat-progress-bar {
+        height: 8px;
+        border-radius: 4px;
+
+        .mat-progress-bar-fill::after {
+            border-radius: 4px;
+        }
+    }
+
+    .mat-slide-toggle {
+        .mat-slide-toggle-thumb {
+            background-color: #007bff;
+        }
+
+        &.mat-checked .mat-slide-toggle-bar {
+            background-color: rgba(0, 123, 255, 0.5);
+        }
+    }
+
+    .mat-select {
+        .mat-select-trigger {
+            .mat-select-value {
+                color: #495057;
+            }
+        }
+    }
+
+    .mat-datepicker-toggle {
+        color: #6c757d;
+    }
+
+    // Status indicators
+    .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+
+        &.status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        &.status-under-review {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        &.status-approved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        &.status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        &.status-requires-documents {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    }
+
+    // Form validation styles
+    .mat-form-field {
+        &.mat-form-field-invalid {
+            .mat-form-field-label {
+                color: #dc3545;
+            }
+        }
+    }
+
+    .mat-error {
+        font-size: 0.75rem;
+        color: #dc3545;
+        margin-top: 4px;
+    }
+
+    // Responsive adjustments
+    @media (max-width: 768px) {
+        .daxa-card .mat-card-content {
+            padding: 20px;
+        }
+
+        .breadcrumb-card {
+            padding: 15px;
+
+            h5 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .stepper-actions {
+            flex-direction: column;
+            gap: 10px;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .mat-stepper {
+            .mat-step-header {
+                .mat-step-label {
+                    font-size: 0.875rem;
+                }
+            }
+        }
+    }
+
+    // Animation for form transitions
+    .mat-step-content {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    // Custom checkbox styles for multi-select
+    .mat-select-panel {
+        .mat-option {
+            &.mat-selected {
+                background-color: rgba(0, 123, 255, 0.1);
+            }
+        }
+    }
+
+    // File upload area styling
+    .file-upload-area {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: #007bff;
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .upload-button {
+            margin-top: 10px;
+        }
+    }
+}

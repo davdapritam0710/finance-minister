@@ -82,6 +82,7 @@ export class HttpClientService {
     }
 
     private handleError(error: HttpErrorResponse) {
+        console.error('HTTP Error Details:', error);
         let errorMessage = 'An unknown error occurred!';
 
         if (error.error instanceof ErrorEvent) {
