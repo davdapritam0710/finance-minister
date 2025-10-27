@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import {
+    RouterLink,
+    RouterLinkActive,
+    RouterModule,
+    Router,
+} from '@angular/router';
 import { ToggleService } from './toggle.service';
 import { NgClass } from '@angular/common';
 
@@ -26,7 +31,7 @@ export class SidebarComponent {
     // isToggled
     isToggled = false;
 
-    constructor(private toggleService: ToggleService) {
+    constructor(private toggleService: ToggleService, private router: Router) {
         this.toggleService.isSidebarToggled$.subscribe((isSidebarToggled) => {
             this.isSidebarToggled = isSidebarToggled;
         });
@@ -39,4 +44,8 @@ export class SidebarComponent {
 
     // Mat Expansion
     panelOpenState = false;
+
+    navigateTo(path: string) {
+        this.router.navigate([path]);
+    }
 }

@@ -33,8 +33,8 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                                    class="sidemenu-link">
+                                <a (click)="navigateTo('/dashboard')" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     E-Commerce
                                 </a>
                             </li>
@@ -44,7 +44,7 @@
                         PAGES
                     </span>
 
-                    <a routerLink="/starter" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/starter')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             star_border
@@ -69,13 +69,13 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/icons" routerLinkActive="active"
+                                <a (click)="navigateTo('/icons')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Material Symbols
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/icons/remixicon" routerLinkActive="active"
+                                <a (click)="navigateTo('/icons/remixicon')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     RemixIcon
                                 </a>
@@ -95,271 +95,271 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Alerts
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/autocomplete" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/autocomplete')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Autocomplete
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/avatars" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/avatars')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Avatars
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/accordion" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/accordion')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Accordion
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/badges" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/badges')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Badges
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/breadcrumb" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/breadcrumb')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Breadcrumb
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/button-toggle" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/button-toggle')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Button Toggle
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/bottom-sheet" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/bottom-sheet')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Bottom Sheet
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/buttons" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/buttons')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Buttons
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/cards" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/cards')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Cards
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/carousels" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/carousels')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Carousels
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/checkbox" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/checkbox')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Checkbox
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/chips" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/chips')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Chips
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/clipboard" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/clipboard')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Clipboard
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/color-picker" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/color-picker')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Color Picker
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/datepicker" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/datepicker')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Datepicker
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/dialog" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/dialog')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Dialog
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/divider" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/divider')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Divider
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/drag-drop" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/drag-drop')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Drag & Drop
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/expansion" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/expansion')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Expansion
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/form-field" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/form-field')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Form Field
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/grid-list" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/grid-list')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Grid List
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/icon" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/icon')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Icon
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/input" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/input')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Input
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/list" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/list')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     List
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/listbox" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/listbox')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Listbox
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/menus" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/menus')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Menus
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/pagination" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/pagination')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Pagination
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/progress-bar" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/progress-bar')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Progress Bar
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/radio" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/radio')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Radio
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/ratio" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/ratio')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Ratio
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/select" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/select')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Select
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/sidenav" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/sidenav')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Sidenav
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/slide-toggle" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/slide-toggle')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Slide Toggle
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/slider" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/slider')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Slider
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/snackbar" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/snackbar')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Snackbar
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/stepper" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/stepper')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Stepper
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/table" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/table')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Table
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/tabs" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/tabs')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Tabs
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/toolbar" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/toolbar')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Toolbar
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/tooltip" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/tooltip')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Tooltip
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/tree" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/tree')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Tree
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/typography" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/typography')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Typography
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/videos" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/videos')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Videos
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/ui-kit/utilities" routerLinkActive="active"
+                                <a (click)="navigateTo('/ui-kit/utilities')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     _Utilities
                                 </a>
@@ -379,13 +379,13 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/tables" routerLinkActive="active"
+                                <a (click)="navigateTo('/tables')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Basic Table
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/tables/data-table" routerLinkActive="active"
+                                <a (click)="navigateTo('/tables/data-table')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Data Table
                                 </a>
@@ -405,31 +405,31 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/forms" routerLinkActive="active"
+                                <a (click)="navigateTo('/forms')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Basic Elements
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/forms/advanced-elements" routerLinkActive="active"
+                                <a (click)="navigateTo('/forms/advanced-elements')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Advanced Elements
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/forms/wizard" routerLinkActive="active"
+                                <a (click)="navigateTo('/forms/wizard')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Wizard
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/forms/editors" routerLinkActive="active"
+                                <a (click)="navigateTo('/forms/editors')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Editors
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/forms/file-uploader" routerLinkActive="active"
+                                <a (click)="navigateTo('/forms/file-uploader')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     File Uploader
                                 </a>
@@ -449,14 +449,12 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/charts" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a (click)="navigateTo('/charts')" class="sidemenu-link">
                                     Apexcharts
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/charts/gauge" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a (click)="navigateTo('/charts/gauge')" class="sidemenu-link">
                                     Gauge
                                 </a>
                             </li>
@@ -475,43 +473,43 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Sign In
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/sign-up" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/sign-up')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Sign Up
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/forgot-password" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/forgot-password')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Forgot Password
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/reset-password" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/reset-password')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Reset Password
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/confirm-email" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/confirm-email')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Confirm Email
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/lock-screen" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/lock-screen')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Lock Screen
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/authentication/logout" routerLinkActive="active"
+                                <a (click)="navigateTo('/authentication/logout')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Logout
                                 </a>
@@ -531,49 +529,13 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/pricing" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Pricing
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/timeline" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Timeline
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                                    class="sidemenu-link">
-                                    FAQ
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/gallery" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Gallery
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/testimonials" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Testimonials
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/search" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Search
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/coming-soon" routerLinkActive="active"
+                                <a (click)="navigateTo('/coming-soon')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Coming Soon
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/blank-page" routerLinkActive="active"
+                                <a (click)="navigateTo('/blank-page')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Blank Page
                                 </a>
@@ -593,20 +555,20 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/not-found" routerLinkActive="active"
+                                <a (click)="navigateTo('/not-found')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     404 Error Page
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/internal-error" routerLinkActive="active"
+                                <a (click)="navigateTo('/internal-error')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Internal Error
                                 </a>
                             </li>
                         </ul>
                     </mat-expansion-panel>
-                    <a routerLink="/widgets" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/widgets')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             widgets
@@ -615,7 +577,7 @@
                             Widgets
                         </span>
                     </a>
-                    <a routerLink="/maps" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/maps')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             map
@@ -624,7 +586,7 @@
                             Maps
                         </span>
                     </a>
-                    <a routerLink="/notifications" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/notifications')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             notifications
@@ -633,7 +595,7 @@
                             Notifications
                         </span>
                     </a>
-                    <a routerLink="/members" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/members')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             people
@@ -645,7 +607,7 @@
                     <span class="sub-title text-body">
                         OTHERS
                     </span>
-                    <a routerLink="/my-profile" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/my-profile')" class="sidebar-menu-link" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             account_circle
@@ -667,31 +629,31 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/settings" routerLinkActive="active"
+                                <a (click)="navigateTo('/settings')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Account Settings
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/settings/change-password" routerLinkActive="active"
+                                <a (click)="navigateTo('/settings/change-password')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Change Password
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/settings/connections" routerLinkActive="active"
+                                <a (click)="navigateTo('/settings/connections')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Connections
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/settings/privacy-policy" routerLinkActive="active"
+                                <a (click)="navigateTo('/settings/privacy-policy')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Privacy Policy
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/settings/terms-conditions" routerLinkActive="active"
+                                <a (click)="navigateTo('/settings/terms-conditions')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Terms & Conditions
                                 </a>
