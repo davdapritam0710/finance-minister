@@ -14,6 +14,7 @@ import { apiLogger, errorLogger } from "./middlewares/logger.js";
 // Import routes
 import userRoutes from "./routes/userRoutes.js";
 import kycRoutes from "./routes/kycRoutes.js";
+import transactionRoutes from "./routes/transactionRoutes.js";
 
 // Import middleware
 import errorHandler from "./middlewares/errorHandler.js";
@@ -59,6 +60,7 @@ app.get("/health", (req, res) => {
 // API routes
 app.use("/api/users", userRoutes);
 app.use("/api/kyc", kycRoutes);
+app.use("/api/transactions", transactionRoutes);
 
 // Error handling middleware
 app.use(errorLogger);

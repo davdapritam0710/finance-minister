@@ -31,7 +31,7 @@ import {
     InvestmentInfo,
     ComplianceInfo,
     Documents,
-} from '../services/kyc.service';
+} from '../../services/kyc.service';
 
 @Component({
     selector: 'app-kyc-form',
