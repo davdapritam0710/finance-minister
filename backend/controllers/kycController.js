@@ -1,7 +1,7 @@
 import KYC from "../models/kyc.model.js";
 import User from "../models/user.model.js";
 import { validationResult } from "express-validator";
-import { dbLogger, authLogger, securityLogger } from "../middlewares/logger.js";
+import { authLogger } from "../middlewares/logger.js";
 
 /**
  * @description: Create or update KYC form
@@ -35,7 +35,6 @@ const createOrUpdateKYC = async (req, res, next) => {
       );
 
       authLogger("KYC updated", userId, { kycId: kyc._id });
-      dbLogger("update", "kyc", { userId, kycId: kyc._id });
     } else {
       // Create new KYC
       kyc = new KYC({
@@ -46,7 +45,6 @@ const createOrUpdateKYC = async (req, res, next) => {
       await kyc.save();
 
       authLogger("KYC created", userId, { kycId: kyc._id });
-      dbLogger("create", "kyc", { userId, kycId: kyc._id });
     }
 
     res.status(201).json({
@@ -84,7 +82,6 @@ const getKYC = async (req, res, next) => {
     }
 
     authLogger("KYC retrieved", userId, { kycId: kyc._id });
-    dbLogger("read", "kyc", { userId, kycId: kyc._id });
 
     res.json({
       statusCode: 200,
@@ -177,7 +174,6 @@ const submitKYC = async (req, res, next) => {
     await User.findByIdAndUpdate(userId, { isKycCompleted: false });
 
     authLogger("KYC submitted for review", userId, { kycId: kyc._id });
-    dbLogger("update", "kyc", { userId, kycId: kyc._id, action: "submitted" });
 
     res.json({
       statusCode: 200,
@@ -221,11 +217,6 @@ const getAllKYC = async (req, res, next) => {
       limit,
       total,
       status,
-    });
-    dbLogger("read", "kyc", {
-      adminUserId: req.user.userId,
-      pagination: { page, limit },
-      filters: { status },
     });
 
     res.json({
@@ -295,12 +286,6 @@ const reviewKYC = async (req, res, next) => {
       targetUserId: kyc.userId,
       status,
     });
-    dbLogger("update", "kyc", {
-      adminUserId,
-      kycId,
-      targetUserId: kyc.userId,
-      status,
-    });
 
     res.json({
       statusCode: 200,
@@ -334,7 +319,6 @@ const getKYCById = async (req, res, next) => {
     }
 
     authLogger("Admin - Get KYC by ID", req.user.userId, { kycId });
-    dbLogger("read", "kyc", { adminUserId: req.user.userId, kycId });
 
     res.json({
       statusCode: 200,

@@ -1,7 +1,6 @@
 import rateLimit from "express-rate-limit";
 import slowDown from "express-slow-down";
 
-// @desc    General rate limiter
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
@@ -13,7 +12,6 @@ const generalLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// @desc    Strict rate limiter for auth routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // limit each IP to 5 requests per windowMs
@@ -25,7 +23,6 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// @desc    Password reset rate limiter
 const passwordResetLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 3, // limit each IP to 3 password reset requests per hour
@@ -37,19 +34,14 @@ const passwordResetLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// @desc    Speed limiter to slow down requests
 const speedLimiter = slowDown({
   windowMs: 15 * 60 * 1000, // 15 minutes
   delayAfter: 50, // allow 50 requests per 15 minutes, then...
   delayMs: 500, // begin adding 500ms of delay per request above 50
 });
 
-// @desc    Security headers middleware
 const securityHeaders = (req, res, next) => {
-  // Remove X-Powered-By header
   res.removeHeader("X-Powered-By");
-
-  // Set security headers
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-XSS-Protection", "1; mode=block");
@@ -62,9 +54,7 @@ const securityHeaders = (req, res, next) => {
   next();
 };
 
-// @desc    Request sanitization middleware
 const sanitizeInput = (req, res, next) => {
-  // Recursively sanitize strings in request body
   const sanitizeObject = (obj) => {
     if (typeof obj === "string") {
       return obj
@@ -88,11 +78,10 @@ const sanitizeInput = (req, res, next) => {
   next();
 };
 
-// @desc    IP whitelist middleware (optional)
-const ipWhitelist = (allowedIPs = []) => {
+const ipWhitelist = (allowedIPs = ["192.168.1.100"]) => {
   return (req, res, next) => {
     if (allowedIPs.length === 0) {
-      return next(); // No whitelist configured
+      return next();
     }
 
     const clientIP = req.ip || req.connection.remoteAddress;
@@ -108,11 +97,10 @@ const ipWhitelist = (allowedIPs = []) => {
   };
 };
 
-// @desc    Request size limiter
 const requestSizeLimiter = (maxSize = "10mb") => {
   return (req, res, next) => {
     const contentLength = parseInt(req.headers["content-length"] || "0");
-    const maxSizeBytes = parseInt(maxSize) * 1024 * 1024; // Convert MB to bytes
+    const maxSizeBytes = parseInt(maxSize) * 1024 * 1024;
 
     if (contentLength > maxSizeBytes) {
       return res.status(413).json({

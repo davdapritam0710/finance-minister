@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+    Component,
+    NO_ERRORS_SCHEMA,
+    OnInit,
+    ViewChild,
+    ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,13 +24,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { TransactionService } from '../../services/transaction.service';
 import {
-    TransactionService,
     Transaction,
     TransactionFilters,
     TransactionResponse,
-} from '../../services/transaction.service';
+} from '../../models/transaction';
 import { TransactionForm } from '../transaction-form/transaction-form';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-transaction-list',
@@ -46,17 +53,18 @@ import { TransactionForm } from '../transaction-form/transaction-form';
         MatNativeDateModule,
         MatTooltipModule,
     ],
+    schemas: [NO_ERRORS_SCHEMA],
     templateUrl: './transaction-list.html',
     styleUrl: './transaction-list.scss',
 })
 export class TransactionList implements OnInit {
     displayedColumns: string[] = ['transaction', 'amount', 'date', 'actions'];
-    dataSource = new MatTableDataSource<Transaction>([]);
+    dataSource = new MatTableDataSource<TransactionRow>([]);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     // Data properties
-    transactions: Transaction[] = [];
+    transactions: TransactionRow[] = [];
     loading = false;
     totalTransactions = 0;
     currentPage = 1;
@@ -74,7 +82,7 @@ export class TransactionList implements OnInit {
     filters: TransactionFilters = {
         page: 1,
         limit: 10,
-        type: undefined,
+        type: '',
         category: '',
         startDate: '',
         endDate: '',
@@ -98,7 +106,8 @@ export class TransactionList implements OnInit {
     constructor(
         private transactionService: TransactionService,
         private dialog: MatDialog,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit() {
@@ -111,33 +120,70 @@ export class TransactionList implements OnInit {
 
     loadTransactions() {
         this.loading = true;
-        this.transactionService.getTransactions(this.filters).subscribe({
-            next: (response: TransactionResponse) => {
-                console.log('Transaction response:', response); // Debug log
-                this.transactions = response.transactions || [];
-                this.dataSource.data = this.transactions;
-                this.totalTransactions = response.pagination?.total || 0;
-                this.currentPage = response.pagination?.current || 1;
+        this.filters.startDate = this.filters.startDate
+            ? new Date(this.filters.startDate).toISOString()
+            : '';
+        this.filters.endDate = this.filters.endDate
+            ? new Date(this.filters.endDate).toISOString()
+            : '';
 
-                // Ensure summary data is properly set
-                this.summary = {
-                    totalCredit: response.summary?.totalCredit || 0,
-                    totalDebit: response.summary?.totalDebit || 0,
-                    netAmount: response.summary?.netAmount || 0,
-                    transactionCount: response.summary?.transactionCount || 0,
-                };
+        this.transactionService
+            .getTransactions(this.filters)
+            .pipe(
+                finalize(() => {
+                    this.loading = false;
+                    this.dataSource._updateChangeSubscription();
+                    this.cdr.detectChanges();
+                })
+            )
+            .subscribe({
+                next: (response: TransactionResponse) => {
+                    const list = (response.transactions || []) as Transaction[];
+                    this.transactions = list.map((t) => this.toRow(t));
+                    this.dataSource.data = this.transactions;
+                    this.totalTransactions = response.pagination?.total || 0;
+                    this.currentPage = response.pagination?.current || 1;
 
-                console.log('Summary data:', this.summary); // Debug log
-                this.loading = false;
-            },
-            error: (error) => {
-                console.error('Error loading transactions:', error);
-                this.snackBar.open('Error loading transactions', 'Close', {
-                    duration: 3000,
-                });
-                this.loading = false;
-            },
-        });
+                    // Ensure summary data is properly set
+                    this.summary = {
+                        totalCredit: response.summary?.totalCredit || 0,
+                        totalDebit: response.summary?.totalDebit || 0,
+                        netAmount: response.summary?.netAmount || 0,
+                        transactionCount:
+                            response.summary?.transactionCount || 0,
+                    };
+                },
+                error: (error) => {
+                    console.error('Error loading transactions:', error);
+                    this.snackBar.open('Error loading transactions', 'Close', {
+                        duration: 3000,
+                    });
+                },
+            });
+    }
+
+    trackById = (_: number, item: TransactionRow) => item._id;
+
+    private toRow(t: Transaction): TransactionRow {
+        const formattedAmount = this.transactionService.formatCurrency(
+            t.amount,
+            t.currency
+        );
+        const formattedDate = this.transactionService.formatDate(t.date);
+        return {
+            ...t,
+            formattedAmount,
+            formattedDate,
+            categoryIcon: this.transactionService.getCategoryIcon(t.category),
+            categoryColor: this.transactionService.getCategoryColor(t.category),
+            typeIcon: t.type === 'credit' ? 'trending_up' : 'trending_down',
+            typeColor: t.type === 'credit' ? '#4CAF50' : '#F44336',
+        };
+    }
+
+    // Used in summary cards
+    formatCurrency(amount: number, currency: string): string {
+        return this.transactionService.formatCurrency(amount, currency);
     }
 
     onPageChange(event: any) {
@@ -150,11 +196,11 @@ export class TransactionList implements OnInit {
         this.filters = {
             page: 1,
             limit: this.pageSize,
-            type: (this.filterForm.type as 'credit' | 'debit') || undefined,
-            category: this.filterForm.category || undefined,
-            search: this.filterForm.search || undefined,
-            startDate: this.filterForm.startDate || undefined,
-            endDate: this.filterForm.endDate || undefined,
+            type: (this.filterForm.type as 'credit' | 'debit') || '',
+            category: this.filterForm.category || '',
+            search: this.filterForm.search || '',
+            startDate: this.filterForm.startDate || '',
+            endDate: this.filterForm.endDate || '',
         };
         this.loadTransactions();
     }
@@ -225,27 +271,14 @@ export class TransactionList implements OnInit {
         }
     }
 
-    getCategoryIcon(category: string): string {
-        return this.transactionService.getCategoryIcon(category);
-    }
-
-    getCategoryColor(category: string): string {
-        return this.transactionService.getCategoryColor(category);
-    }
-
-    formatCurrency(amount: number, currency: string): string {
-        return this.transactionService.formatCurrency(amount, currency);
-    }
-
-    formatDate(date: Date | string): string {
-        return this.transactionService.formatDate(date);
-    }
-
-    getTransactionTypeIcon(type: string): string {
-        return type === 'credit' ? 'trending_up' : 'trending_down';
-    }
-
-    getTransactionTypeColor(type: string): string {
-        return type === 'credit' ? '#4CAF50' : '#F44336';
-    }
+    // removed per-row template helpers; values are precomputed in toRow
 }
+
+type TransactionRow = Transaction & {
+    formattedAmount: string;
+    formattedDate: string;
+    categoryIcon: string;
+    categoryColor: string;
+    typeIcon: string;
+    typeColor: string;
+};

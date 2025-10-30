@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { UserService } from './services/user.service';
 import {
-    UserService,
     User,
     UpdateProfileRequest,
     UpdatePreferencesRequest,
-} from './services/user.service';
+} from './models/user';
 
 @Component({
     selector: 'app-user',

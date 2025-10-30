@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Transaction from "../models/transaction.model.js";
 import { validationResult } from "express-validator";
-import { dbLogger, authLogger } from "../middlewares/logger.js";
+import { authLogger } from "../middlewares/logger.js";
 
 /**
  * @description: Get all transactions for a user
@@ -85,11 +85,6 @@ const getAllTransactions = async (req, res, next) => {
       limit,
       filters: { type, category, startDate, endDate, search },
     });
-    dbLogger("read", "transactions", {
-      userId: req.user.userId,
-      pagination: { page, limit },
-      filters: { type, category, startDate, endDate, search },
-    });
 
     res.json({
       statusCode: 200,
@@ -137,10 +132,6 @@ const getTransactionById = async (req, res, next) => {
 
     // Log transaction access
     authLogger("Get transaction by ID", req.user.userId, {
-      transactionId: req.params.id,
-    });
-    dbLogger("read", "transactions", {
-      userId: req.user.userId,
       transactionId: req.params.id,
     });
 
@@ -206,13 +197,6 @@ const createTransaction = async (req, res, next) => {
 
     // Log transaction creation
     authLogger("Create transaction", req.user.userId, {
-      transactionId: transaction._id,
-      type,
-      category,
-      amount,
-    });
-    dbLogger("create", "transactions", {
-      userId: req.user.userId,
       transactionId: transaction._id,
       type,
       category,
@@ -292,11 +276,6 @@ const updateTransaction = async (req, res, next) => {
       transactionId: req.params.id,
       updatedFields: Object.keys(updates),
     });
-    dbLogger("update", "transactions", {
-      userId: req.user.userId,
-      transactionId: req.params.id,
-      updates,
-    });
 
     res.json({
       statusCode: 200,
@@ -335,10 +314,6 @@ const deleteTransaction = async (req, res, next) => {
       type: transaction.type,
       category: transaction.category,
       amount: transaction.amount,
-    });
-    dbLogger("delete", "transactions", {
-      userId: req.user.userId,
-      transactionId: req.params.id,
     });
 
     res.json({
@@ -439,11 +414,6 @@ const getTransactionStats = async (req, res, next) => {
 
     // Log stats access
     authLogger("Get transaction stats", req.user.userId, { period });
-    dbLogger("read", "transactions", {
-      userId: req.user.userId,
-      operation: "stats",
-      period,
-    });
 
     res.json({
       statusCode: 200,

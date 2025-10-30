@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
-import { dbLogger, authLogger, securityLogger } from "../middlewares/logger.js";
+import { authLogger, securityLogger } from "../middlewares/logger.js";
 
 /**
  * @description: Register a new user
@@ -48,7 +48,6 @@ const registerUser = async (req, res, next) => {
 
     // Log successful registration
     authLogger("User registration", user._id, { email, role: user.role });
-    dbLogger("create", "users", { userId: user._id, email });
 
     // Generate JWT token
     const token = user.generateAuthToken();
@@ -140,7 +139,6 @@ const loginUser = async (req, res, next) => {
 
     // Log successful login
     authLogger("User login", user._id, { email, role: user.role, ip: req.ip });
-    dbLogger("update", "users", { userId: user._id, field: "lastLogin" });
 
     // Generate JWT token
     const token = user.generateAuthToken();
@@ -242,7 +240,6 @@ const updateProfile = async (req, res, next) => {
     authLogger("Profile update", user._id, {
       updatedFields: Object.keys(updates),
     });
-    dbLogger("update", "users", { userId: user._id, updates });
 
     res.json({
       statusCode: 200,
@@ -333,10 +330,6 @@ const getAllUsers = async (req, res, next) => {
       page,
       limit,
       total,
-    });
-    dbLogger("read", "users", {
-      adminUserId: req.user.userId,
-      pagination: { page, limit },
     });
 
     res.json({
@@ -432,11 +425,6 @@ const updateUserById = async (req, res, next) => {
       targetUserId: req.params.id,
       updates,
     });
-    dbLogger("update", "users", {
-      adminUserId: req.user.userId,
-      targetUserId: req.params.id,
-      updates,
-    });
 
     res.json({
       statusCode: 200,
@@ -468,10 +456,7 @@ const deleteUserById = async (req, res, next) => {
       targetUserId: req.params.id,
       deletedUser: user.email,
     });
-    dbLogger("delete", "users", {
-      adminUserId: req.user.userId,
-      targetUserId: req.params.id,
-    });
+
     securityLogger("User deleted by admin", {
       adminUserId: req.user.userId,
       deletedUserId: req.params.id,

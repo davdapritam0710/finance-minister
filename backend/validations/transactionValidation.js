@@ -515,16 +515,6 @@ const validateUpdateTransaction = [
     .trim()
     .isIn(["manual", "plaid", "yodlee", "bank_api", "csv_import", "mobile_app"])
     .withMessage("Invalid source type"),
-
-  body("externalId")
-    .optional()
-    .trim()
-    .isLength({ min: 1, max: 100 })
-    .withMessage("External ID must be between 1 and 100 characters")
-    .matches(/^[a-zA-Z0-9\-_]+$/)
-    .withMessage(
-      "External ID can only contain letters, numbers, hyphens, and underscores"
-    ),
 ];
 
 // @desc    Validation rules for query parameters

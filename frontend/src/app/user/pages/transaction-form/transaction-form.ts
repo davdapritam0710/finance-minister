@@ -32,12 +32,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { TransactionService } from '../../services/transaction.service';
 import {
-    TransactionService,
     Transaction,
     CreateTransactionRequest,
     UpdateTransactionRequest,
-} from '../../services/transaction.service';
+} from '../../models/transaction';
 
 export interface TransactionFormData {
     mode: 'add' | 'edit';

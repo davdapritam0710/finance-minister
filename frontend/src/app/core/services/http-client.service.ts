@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import {
     HttpClient,
     HttpErrorResponse,
@@ -23,7 +23,7 @@ interface ApiResponse<T> {
 export class HttpClientService {
     private readonly baseUrl = environment.apiUrl;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private zone: NgZone) {}
 
     get<T>(
         endpoint: string,
@@ -34,9 +34,11 @@ export class HttpClientService {
             params: new HttpParams({ fromObject: params || {} }),
             headers,
         };
-        return this.http.get<T>(`${this.baseUrl}/${endpoint}`, options).pipe(
-            map((res) => res as ApiResponse<T>),
-            catchError(this.handleError)
+        return this.wrapInZone(
+            this.http.get<ApiResponse<T>>(
+                `${this.baseUrl}/${endpoint}`,
+                options
+            )
         );
     }
 
@@ -45,12 +47,13 @@ export class HttpClientService {
         body: any,
         headers?: HttpHeaders
     ): Observable<ApiResponse<T>> {
-        return this.http
-            .post<T>(`${this.baseUrl}/${endpoint}`, body, { headers })
-            .pipe(
-                map((res) => res as ApiResponse<T>),
-                catchError(this.handleError)
-            );
+        return this.wrapInZone(
+            this.http.post<ApiResponse<T>>(
+                `${this.baseUrl}/${endpoint}`,
+                body,
+                { headers }
+            )
+        );
     }
 
     put<T>(
@@ -58,12 +61,11 @@ export class HttpClientService {
         body: any,
         headers?: HttpHeaders
     ): Observable<ApiResponse<T>> {
-        return this.http
-            .put<T>(`${this.baseUrl}/${endpoint}`, body, { headers })
-            .pipe(
-                map((res) => res as ApiResponse<T>),
-                catchError(this.handleError)
-            );
+        return this.wrapInZone(
+            this.http.put<ApiResponse<T>>(`${this.baseUrl}/${endpoint}`, body, {
+                headers,
+            })
+        );
     }
 
     delete<T>(
@@ -75,10 +77,27 @@ export class HttpClientService {
             params: new HttpParams({ fromObject: params || {} }),
             headers,
         };
-        return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, options).pipe(
-            map((res) => res as ApiResponse<T>),
-            catchError(this.handleError)
+        return this.wrapInZone(
+            this.http.delete<ApiResponse<T>>(
+                `${this.baseUrl}/${endpoint}`,
+                options
+            )
         );
+    }
+
+    /**
+     * 🔒 Centralized Zone Wrapper — guarantees UI updates after any HTTP call
+     */
+    private wrapInZone<T>(source$: Observable<T>): Observable<T> {
+        return new Observable<T>((observer) => {
+            const sub = source$.pipe(catchError(this.handleError)).subscribe({
+                next: (value) => this.zone.run(() => observer.next(value)),
+                error: (err) => this.zone.run(() => observer.error(err)),
+                complete: () => this.zone.run(() => observer.complete()),
+            });
+
+            return () => sub.unsubscribe();
+        });
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -91,7 +110,6 @@ export class HttpClientService {
             errorMessage = `Server Error [${error.status}]: ${error.message}`;
         }
 
-        console.error('HTTP Error:', errorMessage);
         return throwError(() => new Error(errorMessage));
     }
 }

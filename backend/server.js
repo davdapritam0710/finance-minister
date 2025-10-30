@@ -7,23 +7,19 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Import logger
 import logger from "./config/logger.js";
 import { apiLogger, errorLogger } from "./middlewares/logger.js";
 
-// Import routes
 import userRoutes from "./routes/userRoutes.js";
 import kycRoutes from "./routes/kycRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 
-// Import middleware
 import errorHandler from "./middlewares/errorHandler.js";
 import notFound from "./middlewares/notFound.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Security middleware
 app.use(helmet());
 app.use(
   cors({
@@ -32,23 +28,22 @@ app.use(
   })
 );
 
-// Rate limiting
+// TODO: Add IP whitelist
+// app.use(ipWhitelist());
+
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
   message: "Too many requests from this IP, please try again later.",
 });
 app.use("/api/", limiter);
 
-// Body parsing middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
-// Logging middleware
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(apiLogger);
 
-// Health check endpoint
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "OK",
@@ -57,17 +52,14 @@ app.get("/health", (req, res) => {
   });
 });
 
-// API routes
 app.use("/api/users", userRoutes);
 app.use("/api/kyc", kycRoutes);
 app.use("/api/transactions", transactionRoutes);
 
-// Error handling middleware
 app.use(errorLogger);
 app.use(notFound);
 app.use(errorHandler);
 
-// Database connection
 mongoose
   .connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/finance-minister",
@@ -84,7 +76,6 @@ mongoose
     process.exit(1);
   });
 
-// Start server
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
   logger.info(`Health check: http://localhost:${PORT}/health`);

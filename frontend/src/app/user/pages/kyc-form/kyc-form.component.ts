@@ -22,8 +22,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterLink, Router } from '@angular/router';
 
+import { KYCService } from '../../services/kyc.service';
 import {
-    KYCService,
     KYC,
     KYCFormData,
     PersonalInfo,
@@ -31,7 +31,7 @@ import {
     InvestmentInfo,
     ComplianceInfo,
     Documents,
-} from '../../services/kyc.service';
+} from '../../models/kyc';
 
 @Component({
     selector: 'app-kyc-form',
