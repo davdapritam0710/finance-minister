@@ -13,8 +13,6 @@ import { apiLogger, errorLogger } from "./middlewares/logger.js";
 import userRoutes from "./routes/userRoutes.js";
 import kycRoutes from "./routes/kycRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
-import aiRoutes from "./ai/routes/aiRoutes.js";
-import chatbotRoutes from "./ai/routes/chatbotRoutes.js";
 
 import errorHandler from "./middlewares/errorHandler.js";
 import notFound from "./middlewares/notFound.js";
@@ -60,8 +58,6 @@ app.get("/health", (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/kyc", kycRoutes);
 app.use("/api/transactions", transactionRoutes);
-app.use("/api/ai", aiRoutes);
-app.use("/api/ai", chatbotRoutes);
 
 app.use(errorLogger);
 app.use(notFound);
