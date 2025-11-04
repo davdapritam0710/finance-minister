@@ -13,9 +13,14 @@ import { apiLogger, errorLogger } from "./middlewares/logger.js";
 import userRoutes from "./routes/userRoutes.js";
 import kycRoutes from "./routes/kycRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
+import aiRoutes from "./ai/routes/aiRoutes.js";
+import chatbotRoutes from "./ai/routes/chatbotRoutes.js";
 
 import errorHandler from "./middlewares/errorHandler.js";
 import notFound from "./middlewares/notFound.js";
+
+// Import and validate AI config
+import { validateAIConfig } from "./ai/config/aiConfig.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,6 +60,8 @@ app.get("/health", (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/kyc", kycRoutes);
 app.use("/api/transactions", transactionRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/ai", chatbotRoutes);
 
 app.use(errorLogger);
 app.use(notFound);
@@ -70,6 +77,14 @@ mongoose
   )
   .then(() => {
     logger.info("Connected to MongoDB");
+
+    // Validate AI configuration
+    const aiConfigured = validateAIConfig();
+    if (aiConfigured) {
+      logger.info("✅ AI features are enabled");
+    } else {
+      logger.warn("⚠️  AI features are disabled (no API key configured)");
+    }
   })
   .catch((error) => {
     logger.error("MongoDB connection error:", error);
@@ -79,6 +94,7 @@ mongoose
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
   logger.info(`Health check: http://localhost:${PORT}/health`);
+  logger.info(`API Documentation: http://localhost:${PORT}/api`);
 });
 
 export default app;

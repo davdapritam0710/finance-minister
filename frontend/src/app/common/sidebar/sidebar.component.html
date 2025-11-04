@@ -40,6 +40,16 @@
                             </li>
                         </ul>
                     </mat-expansion-panel>
+                    <a (click)="navigateTo('/user/transactions')" class="sidebar-menu-link cursor-pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            receipt_long
+                        </i>
+                        <span class="title">
+                            Transactions
+                        </span>
+                    </a>
+
                     <span class="sub-title text-body">
                         PAGES
                     </span>
@@ -607,7 +617,7 @@
                     <span class="sub-title text-body">
                         OTHERS
                     </span>
-                    <a (click)="navigateTo('/my-profile')" class="sidebar-menu-link" routerLinkActive="active"
+                    <a (click)="navigateTo('/user')" class="sidebar-menu-link cursor-pointer" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             account_circle
