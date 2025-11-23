@@ -10,10 +10,7 @@ dotenv.config();
 import logger from "./config/logger.js";
 import { apiLogger, errorLogger } from "./middlewares/logger.js";
 
-import userRoutes from "./routes/userRoutes.js";
-import kycRoutes from "./routes/kycRoutes.js";
-import transactionRoutes from "./routes/transactionRoutes.js";
-
+import indexRoutes from "./routes/index.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import notFound from "./middlewares/notFound.js";
 
@@ -55,9 +52,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.use("/api/users", userRoutes);
-app.use("/api/kyc", kycRoutes);
-app.use("/api/transactions", transactionRoutes);
+app.use("/api", indexRoutes);
 
 app.use(errorLogger);
 app.use(notFound);
