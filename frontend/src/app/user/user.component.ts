@@ -1,13 +1,17 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 import { UserService } from './services/user.service';
+import { BankService } from './services/bank.service';
 import {
     User,
     UpdateProfileRequest,
     UpdatePreferencesRequest,
 } from './models/user';
+import { Bank, BankResponse } from './models/bank';
+import { BankForm, BankFormData } from './features/bank-form/bank-form';
 
 @Component({
     selector: 'app-user',
@@ -51,11 +55,20 @@ export class UserComponent implements OnInit {
         icon: 'category',
     };
 
+    // Banks management
+    banks: Bank[] = [];
+    banksLoading = false;
+    banksPage = 1;
+    banksLimit = 10;
+    banksTotal = 0;
+
     constructor(
         private userService: UserService,
+        private bankService: BankService,
         private fb: FormBuilder,
         private snackBar: MatSnackBar,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private dialog: MatDialog
     ) {
         this.profileForm = this.fb.group({
             firstName: [
@@ -104,6 +117,7 @@ export class UserComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadUserProfile();
+        this.loadBanks();
     }
 
     // // Method to refresh profile data (can be called from other components)
@@ -346,5 +360,127 @@ export class UserComponent implements OnInit {
     getProgressPercentage(goal: any): number {
         if (goal.targetAmount === 0) return 0;
         return Math.min((goal.currentAmount / goal.targetAmount) * 100, 100);
+    }
+
+    // Bank management methods
+    loadBanks(): void {
+        this.banksLoading = true;
+        this.bankService
+            .getBanks({
+                page: this.banksPage,
+                limit: this.banksLimit,
+            })
+            .subscribe({
+                next: (response: BankResponse) => {
+                    this.banks = response.banks || [];
+                    this.banksTotal = response.pagination?.total || 0;
+                    this.banksLoading = false;
+                    this.cdr.detectChanges();
+                },
+                error: (error) => {
+                    console.error('Error loading banks:', error);
+                    this.snackBar.open('Failed to load banks', 'Close', {
+                        duration: 3000,
+                    });
+                    this.banksLoading = false;
+                    this.cdr.detectChanges();
+                },
+            });
+    }
+
+    openAddBankDialog(): void {
+        const dialogRef = this.dialog.open(BankForm, {
+            width: '800px',
+            maxWidth: '90vw',
+            data: { mode: 'add' } as BankFormData,
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.loadBanks();
+            }
+        });
+    }
+
+    openEditBankDialog(bank: Bank): void {
+        const dialogRef = this.dialog.open(BankForm, {
+            width: '800px',
+            maxWidth: '90vw',
+            data: { mode: 'edit', bank } as BankFormData,
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.loadBanks();
+            }
+        });
+    }
+
+    deleteBank(bank: Bank): void {
+        if (confirm(`Are you sure you want to delete ${bank.bankName}?`)) {
+            this.bankService.deleteBank(bank._id || bank.id || '').subscribe({
+                next: () => {
+                    this.snackBar.open('Bank deleted successfully', 'Close', {
+                        duration: 3000,
+                    });
+                    this.loadBanks();
+                },
+                error: (error) => {
+                    console.error('Error deleting bank:', error);
+                    this.snackBar.open('Error deleting bank', 'Close', {
+                        duration: 3000,
+                    });
+                },
+            });
+        }
+    }
+
+    linkBank(bank: Bank): void {
+        this.bankService.linkBank(bank._id || bank.id || '').subscribe({
+            next: () => {
+                this.snackBar.open('Bank linked successfully', 'Close', {
+                    duration: 3000,
+                });
+                this.loadBanks();
+            },
+            error: (error) => {
+                console.error('Error linking bank:', error);
+                this.snackBar.open('Error linking bank', 'Close', {
+                    duration: 3000,
+                });
+            },
+        });
+    }
+
+    unlinkBank(bank: Bank): void {
+        this.bankService.unlinkBank(bank._id || bank.id || '').subscribe({
+            next: () => {
+                this.snackBar.open('Bank unlinked successfully', 'Close', {
+                    duration: 3000,
+                });
+                this.loadBanks();
+            },
+            error: (error) => {
+                console.error('Error unlinking bank:', error);
+                this.snackBar.open('Error unlinking bank', 'Close', {
+                    duration: 3000,
+                });
+            },
+        });
+    }
+
+    formatCurrency(amount: number, currency: string): string {
+        return this.bankService.formatCurrency(amount, currency);
+    }
+
+    getStatusColor(status: string): string {
+        const colors: { [key: string]: string } = {
+            linked: '#4CAF50',
+            pending: '#FF9800',
+            failed: '#F44336',
+            disabled: '#9E9E9E',
+            unlinked: '#757575',
+        };
+        return colors[status] || '#757575';
     }
 }

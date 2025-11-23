@@ -6,12 +6,31 @@ const ENCRYPTION_KEY =
   process.env.ENCRYPTION_KEY || "finance-minister-encryption-key";
 const ENC_ALGORITHM = "aes-256-gcm";
 const IV_BYTES = 12;
+const KEY_LENGTH = 32; // 32 bytes for AES-256
+
+// Get or derive encryption key (must be exactly 32 bytes)
+function getEncryptionKey() {
+  if (!ENCRYPTION_KEY) {
+    throw new Error("Missing ENCRYPTION_KEY env var for encryption");
+  }
+
+  // Try to decode as base64 first
+  try {
+    const decoded = Buffer.from(ENCRYPTION_KEY, "base64");
+    if (decoded.length === KEY_LENGTH) {
+      return decoded;
+    }
+  } catch (e) {
+    // Not valid base64, will derive from string
+  }
+
+  // If not base64 or wrong length, derive a 32-byte key using SHA-256
+  return crypto.createHash("sha256").update(ENCRYPTION_KEY).digest();
+}
 
 function encryptField(plain) {
   if (!plain) return null;
-  if (!ENCRYPTION_KEY)
-    throw new Error("Missing ENCRYPTION_KEY env var for encryption");
-  const key = Buffer.from(ENCRYPTION_KEY, "base64");
+  const key = getEncryptionKey();
   const iv = crypto.randomBytes(IV_BYTES);
   const cipher = crypto.createCipheriv(ENC_ALGORITHM, key, iv);
   const encrypted = Buffer.concat([
@@ -27,9 +46,7 @@ function encryptField(plain) {
 
 function decryptField(ciphertext) {
   if (!ciphertext) return null;
-  if (!ENCRYPTION_KEY)
-    throw new Error("Missing ENCRYPTION_KEY env var for decryption");
-  const key = Buffer.from(ENCRYPTION_KEY, "base64");
+  const key = getEncryptionKey();
   const parts = String(ciphertext).split(":");
   if (parts.length !== 3) return null;
   const [ivB64, tagB64, ctB64] = parts;

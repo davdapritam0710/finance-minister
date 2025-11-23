@@ -496,6 +496,130 @@
                     </div>
                 </mat-tab>
 
+                <!-- Connections Tab -->
+                <mat-tab label="Connections">
+                    <div class="tab-content p-4">
+                        <div class="connections-header d-flex justify-content-between align-items-center mb-4">
+                            <h6 class="mb-0 text-primary">
+                                <i class="ri-bank-line me-2"></i>
+                                Bank Accounts
+                            </h6>
+                            <button mat-raised-button color="primary" (click)="openAddBankDialog()">
+                                <i class="material-symbols-outlined me-2">add</i>
+                                Add Bank
+                            </button>
+                        </div>
+
+                        <!-- Loading Spinner -->
+                        <div *ngIf="banksLoading" class="text-center py-4">
+                            <mat-progress-bar mode="indeterminate" class="mb-3"></mat-progress-bar>
+                            <p class="mt-3 text-muted">Loading banks...</p>
+                        </div>
+
+                        <!-- Banks List -->
+                        <div *ngIf="!banksLoading" class="banks-list">
+                            <div *ngIf="banks.length === 0" class="text-center py-5">
+                                <i class="material-symbols-outlined empty-icon" style="font-size: 64px; color: #ccc;">
+                                    account_balance
+                                </i>
+                                <h5 class="mt-3">No bank accounts found</h5>
+                                <p class="text-muted">Start by adding your first bank account</p>
+                                <button mat-raised-button color="primary" (click)="openAddBankDialog()">
+                                    <i class="material-symbols-outlined me-2">add</i>
+                                    Add Bank Account
+                                </button>
+                            </div>
+
+                            <div *ngIf="banks.length > 0" class="row g-3">
+                                <div *ngFor="let bank of banks" class="col-md-6 col-lg-4">
+                                    <mat-card class="bank-card h-100">
+                                        <mat-card-header>
+                                            <div class="d-flex justify-content-between align-items-start w-100">
+                                                <div class="flex-grow-1" style="min-width: 0;">
+                                                    <mat-card-title>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="bank-icon flex-shrink-0"
+                                                                [style.background-color]="getStatusColor(bank.status)">
+                                                                <i class="material-symbols-outlined">account_balance</i>
+                                                            </div>
+                                                            <div class="flex-grow-1 bank-name-container"
+                                                                style="min-width: 0;">
+                                                                <h6 class="mb-0 text-truncate">{{ bank.bankName }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </mat-card-title>
+                                                </div>
+                                                <button mat-icon-button [matMenuTriggerFor]="bankMenu"
+                                                    class="flex-shrink-0">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #bankMenu="matMenu">
+                                                    <button mat-menu-item (click)="openEditBankDialog(bank)">
+                                                        <mat-icon>edit</mat-icon>
+                                                        <span>Edit</span>
+                                                    </button>
+                                                    <button mat-menu-item
+                                                        (click)="bank.status === 'linked' ? unlinkBank(bank) : linkBank(bank)">
+                                                        <mat-icon>{{ bank.status === 'linked' ? 'link_off' : 'link'
+                                                            }}</mat-icon>
+                                                        <span>{{ bank.status === 'linked' ? 'Unlink' : 'Link' }}</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="deleteBank(bank)"
+                                                        class="text-danger">
+                                                        <mat-icon>delete</mat-icon>
+                                                        <span>Delete</span>
+                                                    </button>
+                                                </mat-menu>
+                                            </div>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <div class="bank-details">
+                                                <div class="detail-row">
+                                                    <span class="label">Account Type:</span>
+                                                    <span class="value">{{ bank.accountType | titlecase }}</span>
+                                                </div>
+                                                <div class="detail-row" *ngIf="bank.accountHolderName">
+                                                    <span class="label">Account Holder:</span>
+                                                    <span class="value">{{ bank.accountHolderName }}</span>
+                                                </div>
+                                                <div class="detail-row" *ngIf="bank.maskedAccount">
+                                                    <span class="label">Account Number:</span>
+                                                    <span class="value">{{ bank.maskedAccount }}</span>
+                                                </div>
+                                                <div class="detail-row">
+                                                    <span class="label">Balance:</span>
+                                                    <span class="value balance-amount">
+                                                        {{ formatCurrency(bank.balance?.current || 0, bank.currency) }}
+                                                    </span>
+                                                </div>
+                                                <div class="detail-row">
+                                                    <span class="label">Available:</span>
+                                                    <span class="value balance-amount">
+                                                        {{ formatCurrency(bank.balance?.available || 0, bank.currency)
+                                                        }}
+                                                    </span>
+                                                </div>
+                                                <div class="detail-row">
+                                                    <span class="label">Status:</span>
+                                                    <span class="badge"
+                                                        [style.background-color]="getStatusColor(bank.status)"
+                                                        [style.color]="'white'">
+                                                        {{ bank.status | titlecase }}
+                                                    </span>
+                                                </div>
+                                                <div class="detail-row" *ngIf="bank.linkedAt">
+                                                    <span class="label">Linked At:</span>
+                                                    <span class="value">{{ bank.linkedAt | date:'short' }}</span>
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+
             </mat-tab-group>
         </mat-card-content>
     </mat-card>

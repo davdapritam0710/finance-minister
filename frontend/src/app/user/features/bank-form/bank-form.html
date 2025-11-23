@@ -1,0 +1,137 @@
+<mat-dialog-title class="dialog-title">
+    <h4 class="mb-0">{{ isEditMode ? 'Edit Bank Account' : 'Add New Bank Account' }}</h4>
+</mat-dialog-title>
+
+<mat-dialog-content class="dialog-content">
+    <form [formGroup]="bankForm" (ngSubmit)="onSubmit()" class="bank-form">
+        <div class="form-grid">
+            <!-- Bank Name -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Bank Name *</mat-label>
+                    <input matInput formControlName="bankName" placeholder="e.g., State Bank of India">
+                    <mat-error *ngIf="getFieldError('bankName')">{{ getFieldError('bankName') }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Bank ID -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Bank ID *</mat-label>
+                    <input matInput formControlName="bankId" placeholder="e.g., SBI001">
+                    <mat-error *ngIf="getFieldError('bankId')">{{ getFieldError('bankId') }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Account Holder Name -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Account Holder Name</mat-label>
+                    <input matInput formControlName="accountHolderName" placeholder="Enter account holder name">
+                </mat-form-field>
+            </div>
+
+            <!-- Account Number -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Account Number</mat-label>
+                    <input matInput formControlName="accountNumber" placeholder="Enter account number" type="text">
+                    <mat-hint>Your account number will be encrypted</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <!-- Routing Number -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Routing Number / IFSC Code</mat-label>
+                    <input matInput formControlName="routingNumber" placeholder="Enter routing number or IFSC code"
+                        type="text">
+                    <mat-hint>Used for international transfers</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <!-- Account Type -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Account Type *</mat-label>
+                    <mat-select formControlName="accountType">
+                        <mat-option *ngFor="let type of accountTypes" [value]="type.value">
+                            {{ type.label }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="getFieldError('accountType')">{{ getFieldError('accountType') }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Currency -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Currency</mat-label>
+                    <mat-select formControlName="currency">
+                        <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                            {{ currency.symbol }} {{ currency.label }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Country -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Country</mat-label>
+                    <input matInput formControlName="country" placeholder="e.g., IN" maxlength="2">
+                    <mat-hint>2-letter ISO country code</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <!-- Balance -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Current Balance</mat-label>
+                    <input matInput type="number" formControlName="balance.current" placeholder="0.00" step="0.01"
+                        min="0">
+                    <mat-error *ngIf="getFieldError('balance.current')">{{ getFieldError('balance.current')
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Available Balance</mat-label>
+                    <input matInput type="number" formControlName="balance.available" placeholder="0.00" step="0.01"
+                        min="0">
+                    <mat-error *ngIf="getFieldError('balance.available')">{{ getFieldError('balance.available')
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Status -->
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="linked">Linked</mat-option>
+                        <mat-option value="failed">Failed</mat-option>
+                        <mat-option value="disabled">Disabled</mat-option>
+                        <mat-option value="unlinked">Unlinked</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onCancel()" [disabled]="loading" class="cancel-btn">
+        Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="bankForm.invalid || loading"
+        class="submit-btn">
+        <mat-spinner *ngIf="loading" diameter="20" class="me-2"></mat-spinner>
+        <i *ngIf="!loading" class="material-symbols-outlined me-2">
+            {{ isEditMode ? 'save' : 'add' }}
+        </i>
+        {{ isEditMode ? 'Update Bank Account' : 'Add Bank Account' }}
+    </button>
+</mat-dialog-actions>

@@ -85,6 +85,20 @@ export class HttpClientService {
         );
     }
 
+    patch<T>(
+        endpoint: string,
+        body: any,
+        headers?: HttpHeaders
+    ): Observable<ApiResponse<T>> {
+        return this.wrapInZone(
+            this.http.patch<ApiResponse<T>>(
+                `${this.baseUrl}/${endpoint}`,
+                body,
+                { headers }
+            )
+        );
+    }
+
     /**
      * 🔒 Centralized Zone Wrapper — guarantees UI updates after any HTTP call
      */

@@ -33,6 +33,8 @@ import { TransactionForm } from './pages/transaction-form/transaction-form';
 import { UserService } from './services/user.service';
 import { KYCService } from './services/kyc.service';
 import { TransactionService } from './services/transaction.service';
+import { BankService } from './services/bank.service';
+import { BankForm } from './features/bank-form/bank-form';
 
 @NgModule({
     declarations: [UserComponent, KYCFormComponent],
@@ -65,7 +67,8 @@ import { TransactionService } from './services/transaction.service';
         // Standalone components
         TransactionList,
         TransactionForm,
+        BankForm,
     ],
-    providers: [UserService, KYCService, TransactionService],
+    providers: [UserService, KYCService, TransactionService, BankService],
 })
 export class UserModule {}
