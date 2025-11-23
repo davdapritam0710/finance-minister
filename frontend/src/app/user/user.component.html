@@ -187,25 +187,6 @@
                                         {{ saving ? 'Saving...' : 'Save Profile' }}
                                     </button>
                                 </div>
-
-                                <!-- Action Buttons -->
-                                <div class="col-12 mt-3">
-                                    <div class="d-flex flex-wrap gap-2">
-
-                                        <button *ngIf="!user.isKycCompleted" mat-raised-button color="accent"
-                                            routerLink="/user/kyc">
-                                            <i class="ri-file-text-line me-2"></i>
-                                            Complete KYC Form
-                                        </button>
-                                    </div>
-
-                                    <p *ngIf="!user.isKycCompleted" class="text-muted mt-2 mb-0">
-                                        <small>
-                                            <i class="ri-information-line me-1"></i>
-                                            Complete your KYC (Know Your Customer) form to access all features
-                                        </small>
-                                    </p>
-                                </div>
                             </div>
                         </form>
                     </div>

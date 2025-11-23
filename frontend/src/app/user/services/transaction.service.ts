@@ -160,13 +160,13 @@ export class TransactionService {
             {
                 value: 'salary',
                 label: 'Salary',
-                icon: 'work',
+                icon: 'account_balance',
                 color: '#4CAF50',
             },
             {
                 value: 'freelance',
                 label: 'Freelance',
-                icon: 'laptop',
+                icon: 'work',
                 color: '#2196F3',
             },
             {
@@ -185,7 +185,7 @@ export class TransactionService {
             {
                 value: 'refund',
                 label: 'Refund',
-                icon: 'undo',
+                icon: 'settings_backup_restore',
                 color: '#607D8B',
             },
             {
@@ -271,7 +271,7 @@ export class TransactionService {
             {
                 value: 'savings',
                 label: 'Savings',
-                icon: 'savings',
+                icon: 'account_balance_wallet',
                 color: '#4CAF50',
             },
             {
@@ -283,7 +283,7 @@ export class TransactionService {
             {
                 value: 'other_expense',
                 label: 'Other Expense',
-                icon: 'remove_circle',
+                icon: 'payments',
                 color: '#9E9E9E',
             },
         ];

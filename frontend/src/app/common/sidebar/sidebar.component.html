@@ -617,15 +617,6 @@
                     <span class="sub-title text-body">
                         OTHERS
                     </span>
-                    <a (click)="navigateTo('/user')" class="sidebar-menu-link cursor-pointer" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact: true}">
-                        <i class="material-symbols-outlined">
-                            account_circle
-                        </i>
-                        <span class="title">
-                            My Profile
-                        </span>
-                    </a>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -638,6 +629,18 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a (click)="navigateTo('/user')" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    My Profile
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a (click)="navigateTo('/user/kyc')" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    KYC
+                                </a>
+                            </li>
                             <li class="sidemenu-item">
                                 <a (click)="navigateTo('/settings')" routerLinkActive="active"
                                     [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">

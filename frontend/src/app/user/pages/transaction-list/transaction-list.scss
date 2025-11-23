@@ -90,40 +90,97 @@
 
 // Transaction Table
 .transactions-table {
-    .transaction-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
+    .mat-mdc-table {
+        .mat-mdc-cell {
+            padding: {
+                top: 15px;
+                bottom: 15px;
+            }
 
-        i {
-            font-size: 20px;
-        }
-    }
+            ;
 
-    .transaction-info {
-        .transaction-title {
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 4px;
+            &:last-child {
+                text-align: right;
+                padding-right: 0;
+            }
+
+            &:first-child {
+                padding-left: 0;
+            }
         }
 
-        .transaction-subtitle {
-            font-size: 12px;
-            color: #666;
-
-            .transaction-type {
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-weight: 500;
-
-                i {
-                    font-size: 16px;
+        .mat-mdc-row {
+            &:first-child {
+                .mat-mdc-cell {
+                    padding-top: 5px;
                 }
+            }
+
+            &:nth-child(2) {
+                .icon {
+                    color: var(--dangerColor);
+                    background-color: #fce4e2;
+                }
+            }
+
+            &:nth-child(3) {
+                .icon {
+                    color: var(--primaryColor);
+                    background-color: #ebe9fe;
+                }
+            }
+
+            &:nth-child(4) {
+                .icon {
+                    color: var(--infoColor);
+                    background-color: #daf7fb;
+                }
+            }
+
+            &:nth-child(5) {
+                .icon {
+                    color: var(--warningColor);
+                    background-color: #fff4e8;
+                }
+            }
+
+            &:nth-child(6) {
+                .icon {
+                    color: #2ecc71;
+                    background-color: #e0f8ea;
+                }
+            }
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            position: relative;
+            color: var(--daxaColor);
+            background-color: #dbeafd;
+
+            i {
+                left: 0;
+                right: 0;
+                top: 50%;
+                position: absolute;
+                transform: translateY(-50%);
+            }
+        }
+
+        .info {
+            margin-left: 15px;
+
+            .title {
+                font-size: 18px;
+                margin-top: 0;
+            }
+
+            span {
+                font-size: 14px;
+                margin-top: 5px;
             }
         }
     }
@@ -135,6 +192,14 @@
         .amount-symbol {
             font-size: 14px;
         }
+    }
+
+    .plus-price {
+        color: #2ecc71;
+    }
+
+    .minus-price {
+        color: var(--dangerColor);
     }
 
     .date-display {
@@ -158,6 +223,18 @@
     }
 }
 
+::ng-deep {
+    .transactions-list-card {
+        .mat-mdc-card-content {
+            .transactions-table {
+                .mat-mdc-paginator {
+                    padding-top: 15px;
+                }
+            }
+        }
+    }
+}
+
 // Responsive adjustments
 @media (max-width: 768px) {
     .summary-card {
@@ -176,8 +253,52 @@
     }
 
     .transactions-table {
+        .mat-mdc-table {
+            .mat-mdc-cell {
+                padding: {
+                    top: 10px;
+                    bottom: 10px;
+                }
+
+                ;
+            }
+
+            .mat-mdc-row {
+                &:first-child {
+                    .mat-mdc-cell {
+                        padding-top: 0;
+                    }
+                }
+            }
+
+            .icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .info {
+                margin-left: 10px;
+
+                .title {
+                    font-size: 16px;
+                }
+            }
+        }
+
         .table-responsive {
             font-size: 14px;
+        }
+    }
+
+    ::ng-deep {
+        .transactions-list-card {
+            .mat-mdc-card-content {
+                .transactions-table {
+                    .mat-mdc-paginator {
+                        padding-top: 10px;
+                    }
+                }
+            }
         }
     }
 }
